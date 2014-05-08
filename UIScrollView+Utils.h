@@ -14,6 +14,10 @@
 
 - (void)autoContentSizeHeightWithOffset:(CGFloat)offset;
 
+- (void)autoContentSizeWidth;
+
+- (void)autoContentSizeWidthWithOffset:(CGFloat)offset;
+
 - (void)autoTopContentInsetForNavigationController:(UINavigationController *)navigationController;
 
 - (void)autoBottomContentInsetForTabBar:(UITabBarController *)tabBarController;

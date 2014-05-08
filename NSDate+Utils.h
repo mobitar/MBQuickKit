@@ -13,6 +13,9 @@
 - (BOOL)isWithinRangeOfDate:(NSDate *)fromDate andDate:(NSDate *)toDate;
 
 - (NSString *)alphabetizedMonthDayAndYear;
+- (NSString *)numericalMonthDayAndYear;
+
+- (NSString *)month;
 
 /** Converts "Monday" to "Mon" */
 + (NSString *)stringByAbbreviatingWeekday:(NSString *)weekday;

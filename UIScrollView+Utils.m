@@ -25,6 +25,21 @@
     self.contentSize = CGSizeMake(self.contentSize.width, maxY + offset);
 }
 
+- (void)autoContentSizeWidth
+{
+    [self autoContentSizeWidthWithOffset:0];
+}
+
+- (void)autoContentSizeWidthWithOffset:(CGFloat)offset
+{
+    CGFloat maxX = 0;
+    for(UIView *view in self.subviews) {
+        maxX = MAX(maxX, CGRectGetMaxX(view.frame));
+    }
+    
+    self.contentSize = CGSizeMake(maxX + offset, self.contentSize.height);
+}
+
 - (void)autoBottomContentInsetForTabBar:(UITabBarController *)tabBarController
 {
     NSAssert(tabBarController, @"Tab bar controller should not be nil");

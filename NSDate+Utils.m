@@ -28,6 +28,13 @@
     return [formatter stringFromDate:self];
 }
 
+- (NSString *)numericalMonthDayAndYear
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterShortStyle];
+    return [formatter stringFromDate:self];
+}
+
 + (NSString *)stringByAbbreviatingWeekday:(NSString *)weekday
 {
     NSDateFormatter *formatter = [NSDateFormatter new];
@@ -44,6 +51,13 @@
     [formatter setDateFormat:format];
     [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     return [formatter dateFromString:string];
+}
+
+- (NSString *)month
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMMM"];
+    return [formatter stringFromDate:self];
 }
 
 @end
