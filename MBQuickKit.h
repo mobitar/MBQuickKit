@@ -14,3 +14,5 @@
 #import "UIActionSheet+Blocks.h"
 #import "NSException+Utils.h"
 #import "NSLocale+Utils.h"
+#import "UIImage+Utils.h"
+#import "UINavigationBar+Utils.h"
