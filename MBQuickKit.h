@@ -17,3 +17,4 @@
 #import "UIImage+Utils.h"
 #import "UINavigationBar+Utils.h"
 #import "UIColor+Util.h"
+#import "UIImageView+Utils.h"
