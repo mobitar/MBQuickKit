@@ -57,4 +57,17 @@
     return animation;
 }
 
+- (void)setHidden:(BOOL)hidden animated:(BOOL)animated
+{
+    if(animated) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.alpha = !hidden;
+        } completion:^(BOOL finished) {
+            self.hidden = hidden;
+        }];
+    } else {
+        self.hidden = hidden;
+    }
+}
+
 @end

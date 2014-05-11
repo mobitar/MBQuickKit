@@ -16,4 +16,6 @@
 
 - (CAKeyframeAnimation *)addMomentaryExpandAndFadeAnimation;
 
+- (void)setHidden:(BOOL)hidden animated:(BOOL)animated;
+
 @end
