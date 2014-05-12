@@ -15,4 +15,10 @@
     return [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
 }
 
+- (void)setImageRenderingMode:(UIImageRenderingMode)renderMode
+{
+    NSAssert(self.image, @"Image must be set before setting rendering mode");
+    self.image = [self.image imageWithRenderingMode:renderMode];
+}
+
 @end

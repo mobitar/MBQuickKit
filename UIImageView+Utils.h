@@ -12,4 +12,6 @@
 
 - (instancetype)initWithImageNamed:(NSString *)imageName;
 
+- (void)setImageRenderingMode:(UIImageRenderingMode)renderMode;
+
 @end
