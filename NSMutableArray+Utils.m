@@ -21,4 +21,16 @@
     return YES;
 }
 
+- (BOOL)removeObjectsMatchingPredicate:(NSPredicate *)predicate
+{
+    NSArray *objects = [self filteredArrayUsingPredicate:predicate];
+    if(!objects.count) {
+        return NO;
+    }
+    
+    [self removeObjectsInArray:objects];
+    return YES;
+}
+
+
 @end

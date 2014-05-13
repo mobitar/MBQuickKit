@@ -10,6 +10,10 @@
 
 @interface NSMutableArray (Utils)
 
+/** Removes the last object matching the predicate */
 - (BOOL)removeObjectMatchingPredicate:(NSPredicate *)predicate;
+
+/** Removes all objects matching the predicate */
+- (BOOL)removeObjectsMatchingPredicate:(NSPredicate *)predicate;
 
 @end

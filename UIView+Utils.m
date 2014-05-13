@@ -8,6 +8,13 @@
 
 #import "UIView+Utils.h"
 
+CGFloat UIViewGetHeight(UIView *view) { return CGRectGetHeight(view.frame); }
+CGFloat UIViewGetWidth(UIView *view)  { return CGRectGetWidth(view.frame); }
+CGFloat UIViewGetMaxY(UIView *view)   { return CGRectGetMaxY(view.frame); }
+CGFloat UIViewGetMaxX(UIView *view)   { return CGRectGetMaxX(view.frame); }
+CGFloat UIViewGetMinY(UIView *view)   { return CGRectGetMinY(view.frame); }
+CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
+
 @implementation UIView (Utils)
 
 - (void)trailVerticallyTo:(UIView *)view

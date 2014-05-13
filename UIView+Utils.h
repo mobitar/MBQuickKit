@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+CGFloat UIViewGetHeight(UIView *view);
+CGFloat UIViewGetWidth(UIView *view);
+CGFloat UIViewGetMaxY(UIView *view);
+CGFloat UIViewGetMaxX(UIView *view);
+CGFloat UIViewGetMinY(UIView *view);
+CGFloat UIViewGetMinX(UIView *view);
+
 @interface UIView (Utils)
 
 - (void)trailVerticallyTo:(UIView *)view;
