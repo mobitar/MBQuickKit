@@ -20,3 +20,4 @@
 #import "UIImageView+Utils.h"
 #import "NSMutableArray+Utils.h"
 #import "MFMailComposeViewController+MBQuickKit.h"
+#import "NSDictionary+MBQuickKit.h"
