@@ -18,4 +18,8 @@
 
 - (BOOL)isValidURL;
 
+- (NSString *)stringByDecodingURLFormat;
+
+- (NSString *)stringByEncodingURLFormat;
+
 @end

@@ -21,3 +21,4 @@
 #import "NSMutableArray+Utils.h"
 #import "MFMailComposeViewController+MBQuickKit.h"
 #import "NSDictionary+MBQuickKit.h"
+#import "NSURL+MBQuickKit.h"

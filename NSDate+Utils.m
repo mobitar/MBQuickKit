@@ -35,6 +35,13 @@
     return [formatter stringFromDate:self];
 }
 
+- (NSString *)toStringWithFormat:(NSString *)format
+{
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setDateFormat:format];
+    return [formatter stringFromDate:self];
+}
+
 + (NSString *)stringByAbbreviatingWeekday:(NSString *)weekday
 {
     NSDateFormatter *formatter = [NSDateFormatter new];

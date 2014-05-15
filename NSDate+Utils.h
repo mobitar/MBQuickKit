@@ -17,6 +17,8 @@
 
 - (NSString *)month;
 
+- (NSString *)toStringWithFormat:(NSString *)format;
+
 /** Converts "Monday" to "Mon" */
 + (NSString *)stringByAbbreviatingWeekday:(NSString *)weekday;
 

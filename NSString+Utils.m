@@ -45,4 +45,18 @@
     return checkingResult.resultType == NSTextCheckingTypeLink && NSEqualRanges(checkingResult.range, urlStringRange);
 }
 
+- (NSString *)stringByDecodingURLFormat
+{
+    NSString *result = [self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return result;
+}
+
+- (NSString *)stringByEncodingURLFormat
+{
+    NSString *result = [self stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    result = [result stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return result;
+}
+
 @end
