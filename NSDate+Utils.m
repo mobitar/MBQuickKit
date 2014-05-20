@@ -28,6 +28,26 @@
     return [formatter stringFromDate:self];
 }
 
+- (NSString *)alphabetizedMonth
+{
+    return [self toStringWithFormat:@"MMM"];
+}
+
+- (NSString *)alphabetizedMonthAndYear
+{
+    return [self toStringWithFormat:@"MMMM, yyyy"];
+}
+
+- (NSInteger)numericalMonth
+{
+    return [[self toStringWithFormat:@"MM"] integerValue];
+}
+
+- (NSInteger)year
+{
+    return [[self toStringWithFormat:@"yyyy"] integerValue];
+}
+
 - (NSString *)numericalMonthDayAndYear
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -39,6 +59,7 @@
 {
     NSDateFormatter *formatter = [NSDateFormatter new];
     [formatter setDateFormat:format];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     return [formatter stringFromDate:self];
 }
 
@@ -65,6 +86,41 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMMM"];
     return [formatter stringFromDate:self];
+}
+
+- (NSDate *)dateInBeginningOfMonth
+{
+    NSCalendar *currentCalendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [currentCalendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self];
+    [comps setDay:1];
+    [comps setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    return [currentCalendar dateFromComponents:comps];
+}
+
+- (NSDate *)dateInEndOfMonth
+{
+    NSCalendar *currentCalendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [currentCalendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self];
+    [comps setDay:31];
+    [comps setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    return [currentCalendar dateFromComponents:comps];
+}
+
++ (NSDate *)dateInMonth:(NSInteger)month year:(NSInteger)year
+{
+    NSCalendar *currentCalendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [currentCalendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:[NSDate date]];
+    [comps setMonth:month];
+    [comps setYear:year];
+    [comps setDay:1];
+    
+    // Normalise the time portion
+    [comps setHour:0];
+    [comps setMinute:0];
+    [comps setSecond:0];
+    [comps setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    
+    return [currentCalendar dateFromComponents:comps];
 }
 
 @end

@@ -14,8 +14,12 @@
 
 - (void)addBounceAnimation;
 
+- (void)addPulseAnimation;
+
 - (CAKeyframeAnimation *)addMomentaryExpandAndFadeAnimation;
 
 - (void)setHidden:(BOOL)hidden animated:(BOOL)animated;
+
++ (void)animateWithDuration:(NSTimeInterval)duration usingSpringWithDamping:(CGFloat)dampingRatio animations:(void (^)(void))animations;
 
 @end
