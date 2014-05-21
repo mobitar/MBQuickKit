@@ -25,12 +25,18 @@
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     return [formatter stringFromDate:self];
 }
 
 - (NSString *)alphabetizedMonth
 {
     return [self toStringWithFormat:@"MMM"];
+}
+
+- (NSString *)alphabetizedMonthAndDay
+{
+    return [self toStringWithFormat:@"MMM d"];
 }
 
 - (NSString *)alphabetizedMonthAndYear

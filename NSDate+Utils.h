@@ -15,6 +15,7 @@
 - (NSInteger)year;
 - (NSInteger)numericalMonth;
 - (NSString *)alphabetizedMonth;
+- (NSString *)alphabetizedMonthAndDay;
 - (NSString *)alphabetizedMonthAndYear;
 - (NSString *)alphabetizedMonthDayAndYear;
 - (NSString *)numericalMonthDayAndYear;
