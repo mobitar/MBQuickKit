@@ -28,4 +28,13 @@
 
 - (void)scrollToBottomAnimated:(BOOL)animated;
 
+- (NSInteger)currentPageHorizontally;
+- (NSInteger)currentPageVertically;
+- (void)proceedToNextPageVerticallyAnimated:(BOOL)animated;
+- (void)proceedToNextPageHorizontallyAnimated:(BOOL)animated;
+- (void)proceedToPreviousPageVerticallyAnimated:(BOOL)animated;
+- (void)proceedToPreviousPageHorizontallyAnimated:(BOOL)animated;
+- (void)proceedToPageHorizontally:(NSInteger)page animated:(BOOL)animated;
+- (void)proceedToPageVertically:(NSInteger)page animated:(BOOL)animated;
+
 @end
