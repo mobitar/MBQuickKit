@@ -57,6 +57,40 @@
     return animation;
 }
 
++ (CABasicAnimation*)basicAnimationForKeyPath:(NSString*)keyPath fromValue:(id)fromValue toValue:(id)toValue duration:(CGFloat)duration fillMode:(NSString*)fillMode removeOnCompletion:(BOOL)removeOnCompletion
+{
+    CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:keyPath];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    
+    if(fromValue)
+        animation.fromValue = fromValue;
+    if(toValue)
+        animation.toValue = toValue;
+    
+    animation.duration = duration;
+    if(fillMode)
+        animation.fillMode = fillMode;
+    animation.removedOnCompletion = removeOnCompletion;
+    return animation;
+}
+
++ (CABasicAnimation *)pulseAnimationToMaxScale:(CATransform3D)scale
+{
+    CABasicAnimation *animation = [self basicAnimationForKeyPath:@"transform" fromValue:nil toValue:[NSValue valueWithCATransform3D:scale] duration:0.35 fillMode:nil removeOnCompletion:YES];
+    animation.autoreverses = YES;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.repeatCount = HUGE_VAL;
+    return animation;
+}
+
+- (void)addPulseAnimation
+{
+    if([self.layer animationForKey:@"pulse-animation"]) {
+        return;
+    }
+    [self.layer addAnimation:[self.class pulseAnimationToMaxScale:CATransform3DMakeScale(1.3, 1.3, 1.3)] forKey:@"pulse-animation"];
+}
+
 - (void)setHidden:(BOOL)hidden animated:(BOOL)animated
 {
     if(animated) {
@@ -68,6 +102,11 @@
     } else {
         self.hidden = hidden;
     }
+}
+
++ (void)animateWithDuration:(NSTimeInterval)duration usingSpringWithDamping:(CGFloat)dampingRatio animations:(void (^)(void))animations
+{
+    [self animateWithDuration:duration delay:0.0 usingSpringWithDamping:dampingRatio initialSpringVelocity:1.0 options:0 animations:animations completion:nil];
 }
 
 @end

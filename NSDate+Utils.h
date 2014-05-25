@@ -12,14 +12,26 @@
 
 - (BOOL)isWithinRangeOfDate:(NSDate *)fromDate andDate:(NSDate *)toDate;
 
+- (NSInteger)year;
+- (NSInteger)numericalMonth;
+- (NSString *)alphabetizedMonth;
+- (NSString *)alphabetizedMonthAndDay;
+- (NSString *)alphabetizedMonthAndYear;
 - (NSString *)alphabetizedMonthDayAndYear;
 - (NSString *)numericalMonthDayAndYear;
 
+- (NSDate *)dateInBeginningOfMonth;
+- (NSDate *)dateInEndOfMonth;
+
 - (NSString *)month;
+
+- (NSString *)toStringWithFormat:(NSString *)format;
 
 /** Converts "Monday" to "Mon" */
 + (NSString *)stringByAbbreviatingWeekday:(NSString *)weekday;
 
 + (NSDate *)dateFromString:(NSString *)string format:(NSString *)format;
+
++ (NSDate *)dateInMonth:(NSInteger)month year:(NSInteger)year;
 
 @end
