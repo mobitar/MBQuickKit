@@ -61,6 +61,11 @@
     return [formatter stringFromDate:self];
 }
 
+- (NSString *)numericalMonthAndYear
+{
+    return [self toStringWithFormat:@"MM/yyyy"];
+}
+
 - (NSString *)toStringWithFormat:(NSString *)format
 {
     NSDateFormatter *formatter = [NSDateFormatter new];
