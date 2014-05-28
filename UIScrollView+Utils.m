@@ -75,4 +75,45 @@
     [self setContentOffset:CGPointMake(self.contentOffset.x, self.contentSize.height - self.bounds.size.height + self.contentInset.bottom) animated:animated];
 }
 
+- (NSInteger)currentPageHorizontally
+{
+    return self.contentOffset.x / self.bounds.size.width;
+}
+
+- (NSInteger)currentPageVertically
+{
+    return self.contentOffset.y / self.bounds.size.height;
+}
+
+- (void)proceedToNextPageVerticallyAnimated:(BOOL)animated
+{
+   [self proceedToPageVertically:[self currentPageVertically] + 1 animated:animated];
+}
+
+- (void)proceedToNextPageHorizontallyAnimated:(BOOL)animated
+{
+    [self proceedToPageHorizontally:[self currentPageHorizontally] + 1 animated:animated];
+}
+
+- (void)proceedToPreviousPageVerticallyAnimated:(BOOL)animated
+{
+    [self proceedToPageVertically:[self currentPageVertically] - 1 animated:animated];
+}
+
+- (void)proceedToPreviousPageHorizontallyAnimated:(BOOL)animated
+{
+    [self proceedToPageHorizontally:[self currentPageHorizontally] - 1 animated:animated];
+}
+
+- (void)proceedToPageHorizontally:(NSInteger)page animated:(BOOL)animated
+{
+    [self setContentOffset:CGPointMake(page * self.bounds.size.width, self.contentOffset.y) animated:animated];
+}
+
+- (void)proceedToPageVertically:(NSInteger)page animated:(BOOL)animated
+{
+    [self setContentOffset:CGPointMake(self.contentOffset.x, page * self.bounds.size.height) animated:animated];
+}
+
+
 @end
