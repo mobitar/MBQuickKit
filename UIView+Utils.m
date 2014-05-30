@@ -73,6 +73,11 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     [self setXOrigin:UIViewGetWidth(self.superview) - UIViewGetWidth(self)];
 }
 
+- (void)alignTopToView:(UIView *)toView
+{
+    [self setYOrigin:UIViewGetMinY(toView)];
+}
+
 - (void)centerHorizontallyInSuperview
 {
     NSAssert(self.superview, nil);
