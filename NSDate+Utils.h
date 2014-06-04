@@ -35,4 +35,6 @@
 
 + (NSDate *)dateInMonth:(NSInteger)month year:(NSInteger)year;
 
++ (NSInteger)numberOfDaysBetween:(NSDate *)date1 and:(NSDate *)date2;
+
 @end

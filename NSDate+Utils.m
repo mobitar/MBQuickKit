@@ -66,6 +66,14 @@
     return [self toStringWithFormat:@"MM/yyyy"];
 }
 
++ (NSInteger)numberOfDaysBetween:(NSDate *)date1 and:(NSDate *)date2
+{
+    NSUInteger unitFlags = NSDayCalendarUnit;
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [calendar components:unitFlags fromDate:date1 toDate:date2 options:0];
+    return [components day] + 1;
+}
+
 - (NSString *)toStringWithFormat:(NSString *)format
 {
     NSDateFormatter *formatter = [NSDateFormatter new];
@@ -112,7 +120,8 @@
 {
     NSCalendar *currentCalendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [currentCalendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self];
-    [comps setDay:31];
+    [comps setMonth:[comps month] + 1];
+    [comps setDay:0];
     [comps setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     return [currentCalendar dateFromComponents:comps];
 }
