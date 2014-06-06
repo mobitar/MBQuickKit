@@ -17,6 +17,13 @@
     return [array copy];
 }
 
+- (NSArray *)arrayByRemovingObjectsFromArray:(NSArray *)array
+{
+    NSMutableArray *newArray = [self mutableCopy];
+    [newArray removeObjectsInArray:array];
+    return [newArray copy];
+}
+
 - (instancetype)arrayWithUniqueObjects
 {
     NSMutableArray *uniqueObjects = [NSMutableArray new];

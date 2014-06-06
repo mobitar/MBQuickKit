@@ -12,6 +12,8 @@
 
 - (NSArray *)arrayByRemovingObject:(id)object;
 
+- (NSArray *)arrayByRemovingObjectsFromArray:(NSArray *)array;
+
 - (instancetype)arrayWithUniqueObjects;
 
 @end
