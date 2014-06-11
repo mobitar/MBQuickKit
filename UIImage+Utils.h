@@ -12,4 +12,8 @@
 
 - (UIImage *)imageByApplyingAlpha:(CGFloat)alpha;
 
++ (UIImage *)backButtonImage;
+
++ (UIImage *)forwardButtonImage;
+
 @end

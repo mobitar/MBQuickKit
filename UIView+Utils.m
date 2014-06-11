@@ -257,4 +257,24 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     }];
 }
 
+#pragma mark - Misc
+
+- (UIView *)nextResponderBySearchingSuperviewHeirarchyVertically
+{
+    CGFloat thisY = UIViewGetMinY(self);
+    CGFloat closestY = thisY;
+    UIView *closestView = nil;
+    for(UIView *view in self.superview.subviews) {
+        if([view canBecomeFirstResponder]) {
+            CGFloat origin = UIViewGetMinY(view);
+            if(origin < closestY && origin > thisY) {
+                closestY = origin;
+                closestView = view;
+            }
+        }
+    }
+    
+    return closestView;
+}
+
 @end

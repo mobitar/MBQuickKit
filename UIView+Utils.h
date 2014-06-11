@@ -57,7 +57,10 @@ CGFloat UIViewGetMinX(UIView *view);
 #pragma mark - Animations
 
 - (void)addSubviewWithFadeAnimation:(UIView *)view;
-
 - (void)removeFromSuperviewWithFadeAnimation;
+
+#pragma mark - Misc
+
+- (UIView *)nextResponderBySearchingSuperviewHeirarchyVertically;
 
 @end

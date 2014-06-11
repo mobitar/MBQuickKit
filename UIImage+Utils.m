@@ -25,4 +25,57 @@
     return newImage;
 }
 
++ (UIImage *)backButtonImage
+{
+    static UIImage *image;
+    
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        CGSize size = CGSizeMake(12.0, 21.0);
+        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+        
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        path.lineWidth = 1.5;
+        path.lineCapStyle = kCGLineCapButt;
+        path.lineJoinStyle = kCGLineJoinMiter;
+        [path moveToPoint:CGPointMake(11.0, 1.0)];
+        [path addLineToPoint:CGPointMake(1.0, 11.0)];
+        [path addLineToPoint:CGPointMake(11.0, 20.0)];
+        [path stroke];
+        
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    });
+    
+    return image;
+}
+
++ (UIImage *)forwardButtonImage
+{
+    static UIImage *image;
+    
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        UIImage *backButtonImage = [self backButtonImage];
+        
+        CGSize size = backButtonImage.size;
+        UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        CGFloat x_mid = size.width / 2.0;
+        CGFloat y_mid = size.height / 2.0;
+        
+        CGContextTranslateCTM(context, x_mid, y_mid);
+        CGContextRotateCTM(context, M_PI);
+        
+        [backButtonImage drawAtPoint:CGPointMake(-x_mid, -y_mid)];
+        
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    });
+    
+    return image;
+}
+
 @end
