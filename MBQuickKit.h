@@ -23,3 +23,4 @@
 #import "NSDictionary+MBQuickKit.h"
 #import "UIButton+MBQuickKit.h"
 #import "UILabel+MBQuickKit.h"
+#import "UIAlertView+Blocks.h"
