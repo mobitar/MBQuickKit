@@ -14,6 +14,10 @@
 
 - (CGFloat)heightWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
 
+- (CGSize)sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
+
+- (void)mb_drawInRect:(CGRect)rect withFont:(UIFont *)font color:(UIColor *)color;
+
 - (NSString *)stringByRemovingWhiteSpace;
 
 - (BOOL)isValidURL;

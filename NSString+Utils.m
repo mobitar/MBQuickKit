@@ -22,6 +22,17 @@
                            attributes:@{NSFontAttributeName : font} context:nil].size.height;
 }
 
+- (CGSize)sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size
+{
+    return [self boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin
+                           attributes:@{NSFontAttributeName : font} context:nil].size;
+}
+
+- (void)mb_drawInRect:(CGRect)rect withFont:(UIFont *)font color:(UIColor *)color
+{
+    [self drawInRect:rect withAttributes:@{NSFontAttributeName : font, NSForegroundColorAttributeName : color}];
+}
+
 - (NSString *)stringByRemovingWhiteSpace
 {
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
