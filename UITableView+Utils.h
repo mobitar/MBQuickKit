@@ -16,4 +16,6 @@
 
 - (id)dequeueReusableCellForClass:(Class)aClass;
 
+- (BOOL)isIndexPathLast:(NSIndexPath *)indexPath;
+
 @end

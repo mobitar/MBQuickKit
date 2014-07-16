@@ -25,4 +25,9 @@
     return [self dequeueReusableCellWithIdentifier:NSStringFromClass(aClass)];
 }
 
+- (BOOL)isIndexPathLast:(NSIndexPath *)indexPath
+{
+    return [self numberOfRowsInSection:indexPath.section] - 1 == indexPath.row;
+}
+
 @end

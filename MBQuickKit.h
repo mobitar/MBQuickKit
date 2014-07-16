@@ -24,3 +24,4 @@
 #import "UIButton+MBQuickKit.h"
 #import "UILabel+MBQuickKit.h"
 #import "UIAlertView+Blocks.h"
+#import "UISearchBar+MBQuickKit.h"

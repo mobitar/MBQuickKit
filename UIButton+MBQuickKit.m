@@ -20,4 +20,11 @@
     [self setTitle:normalTitle forState:UIControlStateNormal];
 }
 
+- (void)setImageRenderingMode:(UIImageRenderingMode)renderMode
+{
+    UIImage *image = [self imageForState:UIControlStateNormal];
+    NSAssert(image, @"Image must be set before setting rendering mode");
+    [self setImage:[image imageWithRenderingMode:renderMode] forState:UIControlStateNormal];
+}
+
 @end

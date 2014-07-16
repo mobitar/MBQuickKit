@@ -12,4 +12,6 @@
 
 @property (nonatomic, readwrite) NSString *normalTitle;
 
+- (void)setImageRenderingMode:(UIImageRenderingMode)renderMode;
+
 @end
