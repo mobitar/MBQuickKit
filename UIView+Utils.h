@@ -17,6 +17,10 @@ CGFloat UIViewGetMinX(UIView *view);
 
 @interface UIView (Utils)
 
+- (CGFloat)width;
+- (CGFloat)height;
+- (CGSize)size;
+
 - (void)trailVerticallyTo:(UIView *)view;
 - (void)trailVerticallyTo:(UIView *)view withOffset:(CGFloat)offset;
 - (void)trailVerticallyTo:(UIView *)view andFitInView:(UIView *)fitInView;
@@ -34,6 +38,9 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)centerSubviewsVertically:(NSArray *)subviews offsetPerView:(NSArray *)spacing;
 
 - (void)setOrigin:(CGPoint)origin;
+- (void)setXOrigin:(CGFloat)x;
+- (void)setYOrigin:(CGFloat)y;
+
 - (void)setSize:(CGSize)size;
 - (void)setHeight:(CGFloat)height;
 - (void)setWidth:(CGFloat)width;

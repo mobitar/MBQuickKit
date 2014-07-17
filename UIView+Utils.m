@@ -17,6 +17,21 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
 
 @implementation UIView (Utils)
 
+- (CGFloat)width
+{
+    return UIViewGetWidth(self);
+}
+
+- (CGFloat)height
+{
+    return UIViewGetHeight(self);
+}
+
+- (CGSize)size
+{
+    return self.frame.size;
+}
+
 - (void)trailVerticallyTo:(UIView *)view
 {
     [self trailVerticallyTo:view withOffset:0];
@@ -119,10 +134,10 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     }];
 }
 
-- (void)setOrigin:(CGPoint)origin
+- (void)setXOrigin:(CGFloat)x
 {
     CGRect frame = self.frame;
-    frame.origin = origin;
+    frame.origin.x = x;
     self.frame = frame;
 }
 
@@ -133,10 +148,10 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     self.frame = frame;
 }
 
-- (void)setXOrigin:(CGFloat)x
+- (void)setOrigin:(CGPoint)origin
 {
     CGRect frame = self.frame;
-    frame.origin.x = x;
+    frame.origin = origin;
     self.frame = frame;
 }
 
