@@ -66,7 +66,7 @@
     return [self toStringWithFormat:@"MM/yyyy"];
 }
 
-+ (NSInteger)numberOfDaysBetween:(NSDate *)date1 and:(NSDate *)date2
++ (NSInteger)numberOfDaysBetweenDate:(NSDate *)date1 andDate:(NSDate *)date2
 {
     NSUInteger unitFlags = NSDayCalendarUnit;
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];

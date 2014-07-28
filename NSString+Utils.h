@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface NSString (Utils)
 
@@ -15,6 +16,8 @@
 - (CGFloat)heightWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
 
 - (CGSize)sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
+
+- (CGSize)mb_sizeWithFont:(UIFont *)font;
 
 - (void)mb_drawInRect:(CGRect)rect withFont:(UIFont *)font color:(UIColor *)color;
 

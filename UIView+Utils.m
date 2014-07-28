@@ -169,12 +169,12 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     self.frame = frame;
 }
 
-- (void)autoFitBetween:(UIView *)top and:(UIView *)bottom
+- (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom
 {
-    [self autoFitBetween:top and:bottom offset:0];
+    [self autoFitBetween:top andView:bottom offset:0];
 }
 
-- (void)autoFitBetween:(UIView *)top and:(UIView *)bottom offset:(CGFloat)offset
+- (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom offset:(CGFloat)offset
 {
     CGRect frame = self.frame;
     frame.origin.y = CGRectGetMaxY(top.frame) + offset;

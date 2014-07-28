@@ -12,4 +12,6 @@
 
 - (UITabBarController *)nearestTabBarController;
 
+- (void)presentViewControllerInNavigationController:(UIViewController *)viewControllerToPresent;
+
 @end

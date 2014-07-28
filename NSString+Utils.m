@@ -33,6 +33,11 @@
     [self drawInRect:rect withAttributes:@{NSFontAttributeName : font, NSForegroundColorAttributeName : color}];
 }
 
+- (CGSize)mb_sizeWithFont:(UIFont *)font
+{
+    return [self sizeWithFont:font constrainedToSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+}
+
 - (NSString *)stringByRemovingWhiteSpace
 {
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];

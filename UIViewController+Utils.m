@@ -31,4 +31,9 @@
     return [self nearestTabBarControllerFromViewController:superController];
 }
 
+- (void)presentViewControllerInNavigationController:(UIViewController *)viewControllerToPresent
+{
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:viewControllerToPresent] animated:YES completion:nil];
+}
+
 @end
