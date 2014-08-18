@@ -34,7 +34,9 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)centerVerticallyInView:(UIView *)view;
 - (void)centerHorizontallyInView:(UIView *)view;
 - (void)centerHorizontallyInSuperview;
+- (void)centerInSuperview;
 - (void)centerVerticallyInSuperview;
+- (void)centerVerticallyInSuperviewWithOffset:(CGFloat)offset;
 - (void)centerSubviewsVertically:(NSArray *)subviews offsetPerView:(NSArray *)spacing;
 
 - (void)setOrigin:(CGPoint)origin;

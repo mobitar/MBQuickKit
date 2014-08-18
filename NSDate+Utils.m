@@ -48,11 +48,11 @@
 {
     return [[self toStringWithFormat:@"MM"] integerValue];
 }
-
-- (NSInteger)year
-{
-    return [[self toStringWithFormat:@"yyyy"] integerValue];
-}
+//
+//- (NSInteger)year
+//{
+//    return [[self toStringWithFormat:@"yyyy"] integerValue];
+//}
 
 - (NSString *)numericalMonthDayAndYear
 {
@@ -100,12 +100,12 @@
     return [formatter dateFromString:string];
 }
 
-- (NSString *)month
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMMM"];
-    return [formatter stringFromDate:self];
-}
+//- (NSString *)month
+//{
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"MMMM"];
+//    return [formatter stringFromDate:self];
+//}
 
 - (NSDate *)dateInBeginningOfMonth
 {
@@ -114,6 +114,41 @@
     [comps setDay:1];
     [comps setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     return [currentCalendar dateFromComponents:comps];
+}
+
+- (NSInteger)day
+{
+    return [self.components day];
+}
+
+- (NSInteger)month
+{
+    return [self.components month];
+}
+
+- (NSInteger)year
+{
+    return [self.components year];
+}
+
+- (NSDateComponents *)components
+{
+    NSCalendar *currentCalendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [currentCalendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self];
+    [comps setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    return comps;
+}
+
+- (BOOL)isInSameDayAsDate:(NSDate *)otherDate
+{
+    NSDateComponents *comps = [self components];
+    NSDateComponents *otherComps = [otherDate components];
+    return comps.year == otherComps.year && comps.month == otherComps.month && comps.day == otherComps.day;
+}
+
+- (NSDate *)dateByAddingHours:(NSInteger)numberOfHours
+{
+    return [self dateByAddingTimeInterval:numberOfHours * 60 * 60];
 }
 
 - (NSDate *)dateInEndOfMonth

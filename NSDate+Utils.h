@@ -11,6 +11,7 @@
 @interface NSDate (Utils)
 
 - (BOOL)isWithinRangeOfDate:(NSDate *)fromDate andDate:(NSDate *)toDate;
+- (BOOL)isInSameDayAsDate:(NSDate *)otherDate;
 
 - (NSInteger)year;
 - (NSInteger)numericalMonth;
@@ -24,7 +25,8 @@
 - (NSDate *)dateInBeginningOfMonth;
 - (NSDate *)dateInEndOfMonth;
 
-- (NSString *)month;
+- (NSInteger)month;
+- (NSDate *)dateByAddingHours:(NSInteger)numberOfHours;
 
 - (NSString *)toStringWithFormat:(NSString *)format;
 

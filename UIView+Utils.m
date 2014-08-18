@@ -93,6 +93,12 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     [self setYOrigin:UIViewGetMinY(toView)];
 }
 
+- (void)centerInSuperview
+{
+    [self centerHorizontallyInView:self.superview];
+    [self centerVerticallyInView:self.superview];
+}
+
 - (void)centerHorizontallyInSuperview
 {
     NSAssert(self.superview, nil);
@@ -105,6 +111,15 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     CGRect frame = self.frame;
     frame.origin.y = CGRectGetHeight(view.frame)/2.0 - CGRectGetHeight(frame)/2.0;
     self.frame = frame;
+}
+
+- (void)centerVerticallyInSuperviewWithOffset:(CGFloat)offset
+{
+    NSAssert(self.superview, @"Superview cannot be nil");
+    
+    [self centerVerticallyInView:self.superview];
+    
+    [self shiftBy:CGPointMake(0, offset)];
 }
 
 - (void)centerVerticallyInSuperview
