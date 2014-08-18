@@ -70,6 +70,7 @@ CGFloat UIViewGetMinX(UIView *view);
 
 #pragma mark - Misc
 
+- (void)makeCircular;
 - (UIView *)nextResponderBySearchingSuperviewHeirarchyVertically;
 
 @end

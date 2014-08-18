@@ -289,6 +289,12 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
 
 #pragma mark - Misc
 
+- (void)makeCircular
+{
+    self.layer.cornerRadius = UIViewGetWidth(self)/2.0;
+    self.clipsToBounds = YES;
+}
+
 - (UIView *)nextResponderBySearchingSuperviewHeirarchyVertically
 {
     CGFloat thisY = UIViewGetMinY(self);
