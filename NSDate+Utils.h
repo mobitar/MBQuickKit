@@ -15,6 +15,7 @@
 
 - (NSInteger)year;
 - (NSInteger)numericalMonth;
+- (NSString *)alphabetizedDay;
 - (NSString *)alphabetizedMonth;
 - (NSString *)alphabetizedMonthAndDay;
 - (NSString *)alphabetizedMonthAndYear;
@@ -37,6 +38,9 @@
 
 + (NSDate *)dateInMonth:(NSInteger)month year:(NSInteger)year;
 
+/** 
+ The earlier date should be on the left to return a positive number
+ */
 + (NSInteger)numberOfDaysBetweenDate:(NSDate *)date1 andDate:(NSDate *)date2;
 
 @end

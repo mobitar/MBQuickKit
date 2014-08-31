@@ -39,6 +39,11 @@
     return [self toStringWithFormat:@"MMM d"];
 }
 
+- (NSString *)alphabetizedDay
+{
+    return [self toStringWithFormat:@"EEEE"];
+}
+
 - (NSString *)alphabetizedMonthAndYear
 {
     return [self toStringWithFormat:@"MMMM, yyyy"];

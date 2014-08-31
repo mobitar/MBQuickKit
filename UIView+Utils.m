@@ -149,6 +149,26 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     }];
 }
 
+- (void)centerSubviewsHorizontally:(NSArray *)subviews offsetPerView:(NSArray *)spacing
+{
+    if(spacing.count) {
+        NSAssert(spacing.count == subviews.count - 1, @"Subviews and spacing arrays should match in count");
+    }
+    
+    __block CGFloat totalWidth = 0;
+    [subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+        NSNumber *offset = [spacing safeObjectAtIndex:idx];
+        totalWidth += CGRectGetWidth(view.frame) + offset.floatValue;
+    }];
+    
+    __block CGFloat currentX = CGRectGetWidth(self.frame)/2.0 - totalWidth/2.0;
+    [subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+        NSNumber *offset = [spacing safeObjectAtIndex:idx - 1];
+        [view setXOrigin:currentX + offset.floatValue];
+        currentX = CGRectGetMaxX(view.frame);
+    }];
+}
+
 - (void)setXOrigin:(CGFloat)x
 {
     CGRect frame = self.frame;
