@@ -93,6 +93,21 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     [self setYOrigin:UIViewGetMinY(toView)];
 }
 
+- (void)alignLeftEdgeTo:(UIView*)view
+{
+    [self setXOrigin:view.xOrigin];
+}
+
+- (void)alignCenterYTo:(UIView*)view
+{
+    [self setYOrigin:UIViewGetMinY(view) + (UIViewGetHeight(view)/2.0 - UIViewGetHeight(self)/2.0)];
+}
+
+- (void)alignRightEdgeTo:(UIView*)view
+{
+    [self setXOrigin:UIViewGetMaxX(view) - UIViewGetWidth(self)];
+}
+
 - (void)centerInSuperview
 {
     [self centerHorizontallyInView:self.superview];
