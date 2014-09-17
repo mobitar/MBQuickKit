@@ -24,6 +24,7 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)trailVerticallyTo:(UIView *)view;
 - (void)trailVerticallyTo:(UIView *)view withOffset:(CGFloat)offset;
 - (void)trailVerticallyTo:(UIView *)view andFitInView:(UIView *)fitInView;
+- (void)trailHorizontallyTo:(UIView *)view withOffset:(CGFloat)offset;
 
 - (void)shiftBy:(CGPoint)shift;
 

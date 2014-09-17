@@ -45,6 +45,13 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     self.frame = frame;
 }
 
+- (void)trailHorizontallyTo:(UIView *)view withOffset:(CGFloat)offset
+{
+    CGRect frame = self.frame;
+    frame.origin.x = CGRectGetMaxX(view.frame) + offset;
+    self.frame = frame;
+}
+
 - (void)trailVerticallyTo:(UIView *)view andFitInView:(UIView *)fitInView
 {
     CGRect frame = self.frame;
