@@ -27,3 +27,4 @@
 #import "UISearchBar+MBQuickKit.h"
 #import "NSError+MBQuickKit.h"
 #import "MBXActionSheet.h"
+#import "UIStoryboard+MBQuickKit.h"
