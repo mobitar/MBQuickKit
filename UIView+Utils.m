@@ -7,6 +7,7 @@
 //
 
 #import "UIView+Utils.h"
+#import "NSArray+Utils.h"
 
 CGFloat UIViewGetHeight(UIView *view) { return CGRectGetHeight(view.frame); }
 CGFloat UIViewGetWidth(UIView *view)  { return CGRectGetWidth(view.frame); }
@@ -95,7 +96,7 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
 
 - (void)alignLeftEdgeTo:(UIView*)view
 {
-    [self setXOrigin:view.xOrigin];
+    [self setXOrigin:view.frame.origin.x];
 }
 
 - (void)alignCenterYTo:(UIView*)view
