@@ -13,6 +13,9 @@
 - (BOOL)isWithinRangeOfDate:(NSDate *)fromDate andDate:(NSDate *)toDate;
 - (BOOL)isInSameDayAsDate:(NSDate *)otherDate;
 
+- (BOOL) isToday;
+- (BOOL) isTomorrow;
+
 - (NSInteger)year;
 - (NSInteger)numericalMonth;
 - (NSString *)alphabetizedDay;
@@ -22,6 +25,7 @@
 - (NSString *)alphabetizedMonthDayAndYear;
 - (NSString *)numericalMonthDayAndYear;
 - (NSString *)numericalMonthAndYear;
+- (NSInteger)numericalHour;
 
 - (NSDate *)dateInBeginningOfDay;
 - (NSDate *)dateInBeginningOfMonth;

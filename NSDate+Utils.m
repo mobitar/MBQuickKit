@@ -8,7 +8,64 @@
 
 #import "NSDate+Utils.h"
 
+static const unsigned componentFlags = (NSYearCalendarUnit| NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit);
+
 @implementation NSDate (Utils)
+
++ (NSCalendar *) currentCalendar
+{
+    static NSCalendar *sharedCalendar = nil;
+    if (!sharedCalendar)
+        sharedCalendar = [NSCalendar autoupdatingCurrentCalendar];
+    return sharedCalendar;
+}
+
+- (NSDate *) dateByAddingDays: (NSInteger) dDays
+{
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setDay:dDays];
+    NSDate *newDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self options:0];
+    return newDate;
+}
+
+- (NSDate *) dateBySubtractingDays: (NSInteger) dDays
+{
+    return [self dateByAddingDays: (dDays * -1)];
+}
+
++ (NSDate *) dateWithDaysFromNow: (NSInteger) days
+{
+    return [[NSDate date] dateByAddingDays:days];
+}
+
++ (NSDate *) dateWithDaysBeforeNow: (NSInteger) days
+{
+    return [[NSDate date] dateBySubtractingDays:days];
+}
+
++ (NSDate *) dateTomorrow
+{
+    return [NSDate dateWithDaysFromNow:1];
+}
+
+- (BOOL) isEqualToDateIgnoringTime: (NSDate *) aDate
+{
+    NSDateComponents *components1 = [[NSDate currentCalendar] components:componentFlags fromDate:self];
+    NSDateComponents *components2 = [[NSDate currentCalendar] components:componentFlags fromDate:aDate];
+    return ((components1.year == components2.year) &&
+            (components1.month == components2.month) &&
+            (components1.day == components2.day));
+}
+
+- (BOOL) isToday
+{
+    return [self isEqualToDateIgnoringTime:[NSDate date]];
+}
+
+- (BOOL) isTomorrow
+{
+    return [self isEqualToDateIgnoringTime:[NSDate dateTomorrow]];
+}
 
 - (BOOL)isWithinRangeOfDate:(NSDate *)fromDate andDate:(NSDate *)toDate
 {
@@ -54,6 +111,11 @@
     return [[self toStringWithFormat:@"MM"] integerValue];
 }
 
+- (NSInteger)numericalHour
+{
+    return [[self toStringWithFormat:@"HH"] integerValue];
+}
+
 - (NSString *)numericalMonthDayAndYear
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -77,7 +139,7 @@
 {
     NSDateFormatter *formatter = [NSDateFormatter new];
     [formatter setDateFormat:format];
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+//    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     return [formatter stringFromDate:self];
 }
 
@@ -95,18 +157,18 @@
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:format];
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+//    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     return [formatter dateFromString:string];
 }
 
 - (NSDate *)dateInBeginningOfDay
 {
     NSCalendar *currentCalendar = [NSCalendar currentCalendar];
-    NSDateComponents *comps = [currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:self];
+    NSDateComponents *comps = [currentCalendar components:componentFlags fromDate:self];
     [comps setHour:0];
     [comps setMinute:0];
     [comps setSecond:0];
-    [comps setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+//    [comps setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     return [currentCalendar dateFromComponents:comps];
 }
 
