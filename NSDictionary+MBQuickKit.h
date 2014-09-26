@@ -12,4 +12,6 @@
 
 - (NSString *)toJSON;
 
++ (NSDictionary *)dictionaryFromLocalJSONFileNamed:(NSString *)fileName;
+
 @end

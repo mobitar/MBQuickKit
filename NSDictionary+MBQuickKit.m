@@ -17,4 +17,11 @@
     return jsonString;
 }
 
++ (NSDictionary *)dictionaryFromLocalJSONFileNamed:(NSString *)fileName
+{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:[fileName stringByDeletingPathExtension] ofType:[fileName pathExtension]];
+    NSMutableDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:filePath] options:NSJSONReadingMutableContainers error:nil];
+    return jsonDict;
+}
+
 @end
