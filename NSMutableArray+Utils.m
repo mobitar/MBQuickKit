@@ -32,5 +32,9 @@
     return YES;
 }
 
+- (void)removeFirstObject
+{
+    [self removeObjectAtIndex:0];
+}
 
 @end

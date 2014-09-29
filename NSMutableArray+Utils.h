@@ -16,4 +16,6 @@
 /** Removes all objects matching the predicate */
 - (BOOL)removeObjectsMatchingPredicate:(NSPredicate *)predicate;
 
+- (void)removeFirstObject;
+
 @end

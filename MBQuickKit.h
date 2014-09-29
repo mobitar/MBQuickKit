@@ -28,3 +28,5 @@
 #import "NSError+MBQuickKit.h"
 #import "MBXActionSheet.h"
 #import "UIStoryboard+MBQuickKit.h"
+#import "UICollectionView+MBQuickKit.h"
+#import "MKMapView+MBQuickKit.h"
