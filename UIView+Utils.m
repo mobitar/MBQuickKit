@@ -68,6 +68,25 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     self.frame = frame;
 }
 
+- (void)shiftSubviewsTrailingVerticallyToView:(UIView *)view by:(CGPoint)offset
+{
+    [self shiftSubviewsTrailingVerticallyToView:view by:offset excludingViews:nil];
+}
+
+- (void)shiftSubviewsTrailingVerticallyToView:(UIView *)view by:(CGPoint)offset excludingViews:(NSArray *)skipViews
+{
+    CGFloat minY = UIViewGetMaxY(view);
+    for(UIView *subview in self.subviews) {
+        if([skipViews containsObject:subview]) {
+            continue;
+        }
+        
+        if(UIViewGetMinY(subview) >= minY) {
+            [subview shiftBy:offset];
+        }
+    }
+}
+
 - (void)centerHorizontallyInView:(UIView *)view
 {
     CGRect frame = self.frame;
@@ -336,6 +355,16 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
 {
     self.layer.cornerRadius = UIViewGetWidth(self)/2.0;
     self.clipsToBounds = YES;
+}
+
+- (void)addShadow
+{
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOffset = CGSizeMake(0, 5);
+    self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
+    self.layer.shadowRadius = 4.0;
+    self.layer.shadowOpacity = 1.0;
+    self.layer.masksToBounds = NO;
 }
 
 - (UIView *)nextResponderBySearchingSuperviewHeirarchyVertically

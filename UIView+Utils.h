@@ -27,6 +27,8 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)trailHorizontallyTo:(UIView *)view withOffset:(CGFloat)offset;
 
 - (void)shiftBy:(CGPoint)shift;
+- (void)shiftSubviewsTrailingVerticallyToView:(UIView *)view by:(CGPoint)offset;
+- (void)shiftSubviewsTrailingVerticallyToView:(UIView *)view by:(CGPoint)offset excludingViews:(NSArray *)skipViews;
 
 - (void)alignLeftInSuperview;
 - (void)alignRightInSuperview;
@@ -76,6 +78,7 @@ CGFloat UIViewGetMinX(UIView *view);
 #pragma mark - Misc
 
 - (void)makeCircular;
+- (void)addShadow;
 - (UIView *)nextResponderBySearchingSuperviewHeirarchyVertically;
 
 @end
