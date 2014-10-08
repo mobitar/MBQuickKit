@@ -22,4 +22,6 @@
 
 + (void)animateWithDuration:(NSTimeInterval)duration usingSpringWithDamping:(CGFloat)dampingRatio animations:(void (^)(void))animations;
 
++ (void)animateWithDuration:(NSTimeInterval)duration usingSpringWithDamping:(CGFloat)dampingRatio animations:(void (^)(void))animations completion:(void(^)(BOOL finished))completion;
+
 @end
