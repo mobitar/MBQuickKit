@@ -106,7 +106,7 @@
 
 + (void)animateWithDuration:(NSTimeInterval)duration usingSpringWithDamping:(CGFloat)dampingRatio animations:(void (^)(void))animations
 {
-    [self animateWithDuration:duration delay:0.0 usingSpringWithDamping:dampingRatio initialSpringVelocity:1.0 options:0 animations:animations completion:nil];
+    [self animateWithDuration:duration delay:0.0 usingSpringWithDamping:dampingRatio initialSpringVelocity:0.0 options:0 animations:animations completion:nil];
 }
 
 @end
