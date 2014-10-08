@@ -10,6 +10,11 @@
 
 @implementation UIScrollView (Utils)
 
+- (void)sizeEqualToContent
+{
+    self.size = self.contentSize;
+}
+
 - (void)autoContentSizeHeight
 {
     [self autoContentSizeHeightWithOffset:0];
