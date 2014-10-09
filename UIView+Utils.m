@@ -60,12 +60,34 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     self.frame = frame;
 }
 
+- (void)leadHorizontallyTo:(UIView *)view
+{
+    [self leadHorizontallyTo:view withOffset:0];
+}
+
+- (void)leadHorizontallyTo:(UIView *)view withOffset:(CGFloat)offset
+{
+    CGRect frame = self.frame;
+    frame.origin.x = CGRectGetMinX(view.frame) - UIViewGetWidth(self) + offset;
+    self.frame = frame;
+}
+
 - (void)shiftBy:(CGPoint)shift
 {
     CGRect frame = self.frame;
     frame.origin.x += shift.x;
     frame.origin.y += shift.y;
     self.frame = frame;
+}
+
+- (void)shiftHorizontallyBy:(CGFloat)offset
+{
+    [self shiftBy:CGPointMake(offset, 0)];
+}
+
+- (void)shiftVerticallyBy:(CGFloat)offset
+{
+    [self shiftBy:CGPointMake(0, offset)];
 }
 
 - (void)shiftSubviewsTrailingVerticallyToView:(UIView *)view by:(CGPoint)offset
@@ -110,9 +132,14 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
 
 - (void)alignRightInSuperview
 {
+    [self alignRightInSuperviewWithOffset:0];
+}
+
+- (void)alignRightInSuperviewWithOffset:(CGFloat)offset
+{
     NSAssert(self.superview, nil);
     
-    [self setXOrigin:UIViewGetWidth(self.superview) - UIViewGetWidth(self)];
+    [self setXOrigin:UIViewGetWidth(self.superview) - UIViewGetWidth(self) + offset];
 }
 
 - (void)alignTopToView:(UIView *)toView

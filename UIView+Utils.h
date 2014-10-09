@@ -26,7 +26,12 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)trailVerticallyTo:(UIView *)view andFitInView:(UIView *)fitInView;
 - (void)trailHorizontallyTo:(UIView *)view withOffset:(CGFloat)offset;
 
+- (void)leadHorizontallyTo:(UIView *)view;
+- (void)leadHorizontallyTo:(UIView *)view withOffset:(CGFloat)offset;
+
 - (void)shiftBy:(CGPoint)shift;
+- (void)shiftHorizontallyBy:(CGFloat)offset;
+- (void)shiftVerticallyBy:(CGFloat)offset;
 - (void)shiftSubviewsTrailingVerticallyToView:(UIView *)view by:(CGPoint)offset;
 - (void)shiftSubviewsTrailingVerticallyToView:(UIView *)view by:(CGPoint)offset excludingViews:(NSArray *)skipViews;
 
@@ -36,6 +41,7 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)alignLeftEdgeTo:(UIView*)view;
 - (void)alignRightEdgeTo:(UIView*)view;
 - (void)alignCenterYTo:(UIView*)view;
+- (void)alignRightInSuperviewWithOffset:(CGFloat)offset;
 
 - (void)centerVerticallyInView:(UIView *)view;
 - (void)centerHorizontallyInView:(UIView *)view;
