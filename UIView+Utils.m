@@ -144,7 +144,12 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
 
 - (void)alignTopToView:(UIView *)toView
 {
-    [self setYOrigin:UIViewGetMinY(toView)];
+    [self alignTopToView:toView withOffset:0];
+}
+
+- (void)alignTopToView:(UIView *)toView withOffset:(CGFloat)offset
+{
+    [self setYOrigin:UIViewGetMinY(toView) + offset];
 }
 
 - (void)alignLeftEdgeTo:(UIView*)view

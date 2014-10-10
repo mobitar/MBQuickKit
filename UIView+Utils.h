@@ -38,6 +38,7 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)alignLeftInSuperview;
 - (void)alignRightInSuperview;
 - (void)alignTopToView:(UIView *)toView;
+- (void)alignTopToView:(UIView *)toView withOffset:(CGFloat)offset;
 - (void)alignLeftEdgeTo:(UIView*)view;
 - (void)alignRightEdgeTo:(UIView*)view;
 - (void)alignCenterYTo:(UIView*)view;
