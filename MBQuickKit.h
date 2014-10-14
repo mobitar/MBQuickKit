@@ -30,3 +30,4 @@
 #import "UIStoryboard+MBQuickKit.h"
 #import "UICollectionView+MBQuickKit.h"
 #import "MKMapView+MBQuickKit.h"
+#import "UITableViewCell+MBQuickKit.h"

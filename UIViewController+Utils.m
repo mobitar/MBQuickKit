@@ -36,4 +36,9 @@
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:viewControllerToPresent] animated:YES completion:nil];
 }
 
+- (void)presentViewControllerAnimated:(UIViewController *)viewControllerToPresent
+{
+    [self presentViewController:viewControllerToPresent animated:YES completion:nil];
+}
+
 @end

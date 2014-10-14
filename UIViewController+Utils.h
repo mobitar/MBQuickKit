@@ -14,4 +14,6 @@
 
 - (void)presentViewControllerInNavigationController:(UIViewController *)viewControllerToPresent;
 
+- (void)presentViewControllerAnimated:(UIViewController *)viewControllerToPresent;
+
 @end
