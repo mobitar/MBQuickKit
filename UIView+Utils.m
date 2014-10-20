@@ -298,6 +298,28 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     [self setSize:self.superview.frame.size];
 }
 
+- (void)sizeWidthFullScreen
+{
+    [self setWidth:[UIScreen mainScreen].bounds.size.width];
+}
+
+- (void)sizeWidthToReachView:(UIView *)view offset:(CGFloat)offset
+{
+    CGFloat minX = UIViewGetMinX(view);
+    CGFloat maxX = UIViewGetMaxX(self);
+    CGFloat diff = minX - maxX;
+    if(diff < 0) {
+        return;
+    }
+    
+    [self offsetSizeBy:CGPointMake(diff + offset, 0)];
+}
+
+- (void)offsetSizeBy:(CGPoint)offset
+{
+    [self setSize:CGSizeMake(self.size.width + offset.x, self.size.height + offset.y)];
+}
+
 - (void)moveToBottomOfSuperview
 {
     NSAssert(self.superview, @"Superview cannot be nil");

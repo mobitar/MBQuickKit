@@ -60,7 +60,10 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)setSize:(CGSize)size;
 - (void)setHeight:(CGFloat)height;
 - (void)setWidth:(CGFloat)width;
+- (void)sizeWidthFullScreen;
 - (void)sizeEqualToSuperview;
+- (void)sizeWidthToReachView:(UIView *)view offset:(CGFloat)offset;
+- (void)offsetSizeBy:(CGPoint)offset;
 
 - (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom;
 - (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom offset:(CGFloat)offset;

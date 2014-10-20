@@ -10,6 +10,8 @@
 
 @interface MKMapView (MBQuickKit)
 
+NSString* NSStringFromCLLocationCoordinate2D(CLLocationCoordinate2D coordinate);
+
 - (void)zoomToStreetLevel;
 
 @end

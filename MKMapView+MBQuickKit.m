@@ -10,6 +10,11 @@
 
 @implementation MKMapView (MBQuickKit)
 
+NSString* NSStringFromCLLocationCoordinate2D(CLLocationCoordinate2D coordinate)
+{
+    return [NSString stringWithFormat:@"Latitude: %f Longitude: %f", coordinate.latitude, coordinate.longitude];
+}
+
 - (void)zoomToStreetLevel
 {
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.centerCoordinate, 500, 500);
