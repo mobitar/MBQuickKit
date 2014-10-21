@@ -26,4 +26,22 @@
     return objc_getAssociatedObject(self, (__bridge const void *)(key));
 }
 
+void dispatch_async_main(dispatch_block_t block)
+{
+    dispatch_async(dispatch_get_main_queue(), block);
+}
+
+void dispatch_once_forever(NSString *eventName, dispatch_block_t block)
+{
+    NSString *key = [NSString stringWithFormat:@"dispatch_once_forever_%@", eventName];
+    if([[NSUserDefaults standardUserDefaults] objectForKey:key]) {
+        return;
+    }
+
+    [[NSUserDefaults standardUserDefaults] setObject:key forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+   
+    block();
+}
+
 @end

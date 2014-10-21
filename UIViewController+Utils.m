@@ -41,4 +41,9 @@
     [self presentViewController:viewControllerToPresent animated:YES completion:nil];
 }
 
+- (BOOL)isModal
+{
+    return self.navigationController.viewControllers.firstObject == self;
+}
+
 @end

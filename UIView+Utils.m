@@ -60,6 +60,18 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     self.frame = frame;
 }
 
+- (void)leadVerticallyTo:(UIView *)view
+{
+    [self leadVerticallyTo:view withOffset:0];
+}
+
+- (void)leadVerticallyTo:(UIView *)view withOffset:(CGFloat)offset
+{
+    CGRect frame = self.frame;
+    frame.origin.y = CGRectGetMinY(view.frame) - UIViewGetHeight(self) + offset;
+    self.frame = frame;
+}
+
 - (void)leadHorizontallyTo:(UIView *)view
 {
     [self leadHorizontallyTo:view withOffset:0];
@@ -182,8 +194,27 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
 
 - (void)centerVerticallyInView:(UIView *)view
 {
+    [self centerVerticallyInRect:view.bounds];
+}
+
+- (void)centerVerticallyInRect:(CGRect)rect
+{
     CGRect frame = self.frame;
-    frame.origin.y = CGRectGetHeight(view.frame)/2.0 - CGRectGetHeight(frame)/2.0;
+    frame.origin.y = rect.origin.y + CGRectGetHeight(rect)/2.0 - CGRectGetHeight(frame)/2.0;
+    self.frame = frame;
+}
+
+- (void)centerVerticallyWithRespectToView:(UIView *)wrtView withOffset:(CGFloat)offset
+{
+    CGRect frame = self.frame;
+    frame.origin.y = offset + UIViewGetMinY(wrtView) + CGRectGetHeight(wrtView.frame)/2.0 - CGRectGetHeight(frame)/2.0;
+    self.frame = frame;
+}
+
+- (void)centerHorizontallyWithRespectToView:(UIView *)wrtView withOffset:(CGFloat)offset
+{
+    CGRect frame = self.frame;
+    frame.origin.x = offset + UIViewGetMinX(wrtView) + CGRectGetWidth(wrtView.frame)/2.0 - CGRectGetWidth(frame)/2.0;
     self.frame = frame;
 }
 
@@ -205,6 +236,11 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
 
 - (void)centerSubviewsVertically:(NSArray *)subviews offsetPerView:(NSArray *)spacing
 {
+    [self centerSubviewsVertically:subviews offsetPerView:spacing inRect:self.bounds];
+}
+
+- (void)centerSubviewsVertically:(NSArray *)subviews offsetPerView:(NSArray *)spacing inRect:(CGRect)rect
+{
     if(spacing.count) {
         NSAssert(subviews.count == spacing.count, @"Subviews and spacing arrays should match in count");
     }
@@ -215,7 +251,7 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
         totalHeight += CGRectGetHeight(view.frame) + offset.floatValue;
     }];
     
-    __block CGFloat currentY = CGRectGetHeight(self.frame)/2.0 - totalHeight/2.0;
+    __block CGFloat currentY = rect.origin.y + CGRectGetHeight(rect)/2.0 - totalHeight/2.0;
     [subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
         NSNumber *offset = spacing[idx];
         [view setYOrigin:currentY + offset.floatValue];
@@ -241,6 +277,12 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
         [view setXOrigin:currentX + offset.floatValue];
         currentX = CGRectGetMaxX(view.frame);
     }];
+}
+
+- (CGRect)frameInBetweenVerticalView:(UIView *)topView andView:(UIView *)bottomView
+{
+    CGFloat origin = UIViewGetMaxY(topView);
+    return CGRectMake(0, origin, UIViewGetWidth(self), UIViewGetMinY(bottomView) - origin);
 }
 
 - (void)setXOrigin:(CGFloat)x
@@ -315,6 +357,11 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     [self offsetSizeBy:CGPointMake(diff + offset, 0)];
 }
 
+- (void)stretchHeightToReachBottomOfSuperview
+{
+    [self setHeight:UIViewGetHeight(self.superview) - UIViewGetMinY(self)];
+}
+
 - (void)offsetSizeBy:(CGPoint)offset
 {
     [self setSize:CGSizeMake(self.size.width + offset.x, self.size.height + offset.y)];
@@ -325,6 +372,13 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     NSAssert(self.superview, @"Superview cannot be nil");
     
     [self moveToBottomOfView:self.superview];
+}
+
+- (void)moveToBottomOfSuperviewWithOffset:(CGFloat)offset
+{
+    NSAssert(self.superview, @"Superview cannot be nil");
+    
+    [self moveToBottomOfView:self.superview withOffset:offset];
 }
 
 - (void)moveToBottomOfView:(UIView *)view

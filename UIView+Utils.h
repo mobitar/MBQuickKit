@@ -26,6 +26,9 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)trailVerticallyTo:(UIView *)view andFitInView:(UIView *)fitInView;
 - (void)trailHorizontallyTo:(UIView *)view withOffset:(CGFloat)offset;
 
+- (void)leadVerticallyTo:(UIView *)view;
+- (void)leadVerticallyTo:(UIView *)view withOffset:(CGFloat)offset;
+
 - (void)leadHorizontallyTo:(UIView *)view;
 - (void)leadHorizontallyTo:(UIView *)view withOffset:(CGFloat)offset;
 
@@ -47,10 +50,14 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)centerVerticallyInView:(UIView *)view;
 - (void)centerHorizontallyInView:(UIView *)view;
 - (void)centerHorizontallyInSuperview;
+- (void)centerHorizontallyWithRespectToView:(UIView *)wrtView withOffset:(CGFloat)offset;
 - (void)centerInSuperview;
 - (void)centerVerticallyInSuperview;
 - (void)centerVerticallyInSuperviewWithOffset:(CGFloat)offset;
+- (void)centerVerticallyWithRespectToView:(UIView *)wrtView withOffset:(CGFloat)offset;
+- (void)centerVerticallyInRect:(CGRect)rect;
 - (void)centerSubviewsVertically:(NSArray *)subviews offsetPerView:(NSArray *)spacing;
+- (void)centerSubviewsVertically:(NSArray *)subviews offsetPerView:(NSArray *)spacing inRect:(CGRect)rect;
 - (void)centerSubviewsHorizontally:(NSArray *)subviews offsetPerView:(NSArray *)spacing;
 
 - (void)setOrigin:(CGPoint)origin;
@@ -65,15 +72,20 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)sizeWidthToReachView:(UIView *)view offset:(CGFloat)offset;
 - (void)offsetSizeBy:(CGPoint)offset;
 
+- (void)stretchHeightToReachBottomOfSuperview;
+
 - (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom;
 - (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom offset:(CGFloat)offset;
 
 - (void)moveToBottomOfSuperview;
+- (void)moveToBottomOfSuperviewWithOffset:(CGFloat)offset;
 - (void)moveToBottomOfView:(UIView *)view;
 - (void)moveToBottomOfView:(UIView *)view withOffset:(CGFloat)offset;
 - (void)moveToRightOfSuperviewWithOffset:(CGFloat)offset;
 - (void)moveToRightOfSuperview;
 - (void)moveToRightOfView:(UIView *)view offset:(CGFloat)offset;
+
+- (CGRect)frameInBetweenVerticalView:(UIView *)topView andView:(UIView *)bottomView;
 
 + (id)viewFromNibNamed:(NSString*)name;
 + (instancetype)loadFromNIB;

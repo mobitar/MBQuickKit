@@ -16,4 +16,6 @@
 
 - (void)presentViewControllerAnimated:(UIViewController *)viewControllerToPresent;
 
+- (BOOL)isModal;
+
 @end
