@@ -69,7 +69,7 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)setWidth:(CGFloat)width;
 - (void)sizeWidthFullScreen;
 - (void)sizeEqualToSuperview;
-- (void)sizeWidthToReachView:(UIView *)view offset:(CGFloat)offset;
+- (void)stretchWidthToReachView:(UIView *)view offset:(CGFloat)offset;
 - (void)offsetSizeBy:(CGPoint)offset;
 
 - (void)stretchHeightToReachBottomOfSuperview;

@@ -345,16 +345,9 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     [self setWidth:[UIScreen mainScreen].bounds.size.width];
 }
 
-- (void)sizeWidthToReachView:(UIView *)view offset:(CGFloat)offset
+- (void)stretchWidthToReachView:(UIView *)view offset:(CGFloat)offset
 {
-    CGFloat minX = UIViewGetMinX(view);
-    CGFloat maxX = UIViewGetMaxX(self);
-    CGFloat diff = minX - maxX;
-    if(diff < 0) {
-        return;
-    }
-    
-    [self offsetSizeBy:CGPointMake(diff + offset, 0)];
+    [self setWidth:UIViewGetWidth(view) - UIViewGetMinX(self) + offset];
 }
 
 - (void)stretchHeightToReachBottomOfSuperview
