@@ -16,4 +16,10 @@
     searchField.textColor = textColor;
 }
 
+- (void)setPlaceholderColor:(UIColor *)textColor
+{
+    UITextField *searchField = [self valueForKey:@"_searchField"];
+    [searchField setValue:textColor forKeyPath:@"_placeholderLabel.textColor"];
+}
+
 @end

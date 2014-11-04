@@ -22,4 +22,10 @@ NSString* NSStringFromCLLocationCoordinate2D(CLLocationCoordinate2D coordinate)
     [self setRegion:adjustedRegion animated:YES];
 }
 
+- (CLLocation *)centerLocation
+{
+    CLLocationCoordinate2D center = self.centerCoordinate;
+    return [[CLLocation alloc] initWithLatitude:center.latitude longitude:center.longitude];
+}
+
 @end

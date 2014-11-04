@@ -11,5 +11,5 @@
 @interface UISearchBar (MBQuickKit)
 
 - (void)setTextColor:(UIColor *)textColor;
-
+- (void)setPlaceholderColor:(UIColor *)textColor;
 @end

@@ -13,5 +13,6 @@
 NSString* NSStringFromCLLocationCoordinate2D(CLLocationCoordinate2D coordinate);
 
 - (void)zoomToStreetLevel;
+- (CLLocation *)centerLocation;
 
 @end
