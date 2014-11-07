@@ -192,10 +192,18 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     [self centerHorizontallyInView:self.superview];
 }
 
+- (void)centerHorizontallyInRect:(CGRect)rect
+{
+    CGRect frame = self.frame;
+    frame.origin.x = rect.origin.x + CGRectGetWidth(rect)/2.0 - CGRectGetWidth(frame)/2.0;
+    self.frame = frame;
+}
+
 - (void)centerVerticallyInView:(UIView *)view
 {
     [self centerVerticallyInRect:view.bounds];
 }
+
 
 - (void)centerVerticallyInRect:(CGRect)rect
 {
@@ -247,13 +255,13 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     
     __block CGFloat totalHeight = 0;
     [subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
-        NSNumber *offset = spacing[idx];
+        NSNumber *offset = [spacing safeObjectAtIndex:idx];
         totalHeight += CGRectGetHeight(view.frame) + offset.floatValue;
     }];
     
     __block CGFloat currentY = rect.origin.y + CGRectGetHeight(rect)/2.0 - totalHeight/2.0;
     [subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
-        NSNumber *offset = spacing[idx];
+        NSNumber *offset = [spacing safeObjectAtIndex:idx];
         [view setYOrigin:offset.floatValue + currentY];
         currentY = CGRectGetMaxY(view.frame);
     }];
@@ -347,7 +355,7 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
 
 - (void)stretchWidthToReachView:(UIView *)view offset:(CGFloat)offset
 {
-    [self setWidth:UIViewGetWidth(view) - UIViewGetMinX(self) + offset];
+    [self setWidth:UIViewGetMaxX(view) - UIViewGetMinX(self) + offset];
 }
 
 - (void)stretchHeightToReachBottomOfSuperview

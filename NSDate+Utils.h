@@ -16,9 +16,12 @@
 - (BOOL) isToday;
 - (BOOL) isTomorrow;
 
+- (NSDateComponents *)components;
+- (NSDateComponents *)componentsWithTimeZone:(NSTimeZone *)timeZone;
+
 - (NSInteger)year;
-- (NSInteger)numericalMonth;
-- (NSString *)alphabetizedDay;
+- (NSString *)weekday;
+- (NSString *)shortWeekday;
 - (NSString *)alphabetizedMonth;
 - (NSString *)alphabetizedMonthAndDay;
 - (NSString *)alphabetizedMonthAndYear;
@@ -32,7 +35,12 @@
 - (NSDate *)dateInEndOfMonth;
 
 - (NSInteger)month;
+
 - (NSDate *)dateByAddingHours:(NSInteger)numberOfHours;
+- (NSDate *)dateByAddingYears:(NSInteger)years;
+- (NSDate *)dateByAddingMonths:(NSInteger)months;
+
+- (NSInteger)numberOfMonthsFromDate:(NSDate *)date;
 
 - (NSString *)toStringWithFormat:(NSString *)format;
 
