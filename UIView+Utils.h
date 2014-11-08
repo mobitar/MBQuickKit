@@ -46,16 +46,19 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)alignRightEdgeTo:(UIView*)view;
 - (void)alignCenterYTo:(UIView*)view;
 - (void)alignRightInSuperviewWithOffset:(CGFloat)offset;
+- (void)alignBottomEdgeToView:(UIView*)view offset:(CGFloat)offset;
 
 - (void)centerVerticallyInView:(UIView *)view;
 - (void)centerHorizontallyInView:(UIView *)view;
 - (void)centerHorizontallyInSuperview;
 - (void)centerHorizontallyWithRespectToView:(UIView *)wrtView withOffset:(CGFloat)offset;
 - (void)centerHorizontallyInRect:(CGRect)rect;
+- (void)centerHorizontallyBetweenView:(UIView *)leftView andView:(UIView *)rightView;
 - (void)centerInSuperview;
 - (void)centerVerticallyInSuperview;
 - (void)centerVerticallyInSuperviewWithOffset:(CGFloat)offset;
 - (void)centerVerticallyWithRespectToView:(UIView *)wrtView withOffset:(CGFloat)offset;
+- (void)centerVerticallyBetweenView:(UIView *)topView andView:(UIView *)bottomView;
 - (void)centerVerticallyInRect:(CGRect)rect;
 - (void)centerSubviewsVertically:(NSArray *)subviews offsetPerView:(NSArray *)spacing;
 - (void)centerSubviewsVertically:(NSArray *)subviews offsetPerView:(NSArray *)spacing inRect:(CGRect)rect;
@@ -69,11 +72,14 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)setHeight:(CGFloat)height;
 - (void)setWidth:(CGFloat)width;
 - (void)sizeWidthFullScreen;
+- (void)sizeWidthEqualToSuperview;
+- (void)sizeWidthEqualToView:(UIView *)view;
 - (void)sizeEqualToSuperview;
 - (void)stretchWidthToReachView:(UIView *)view offset:(CGFloat)offset;
 - (void)offsetSizeBy:(CGPoint)offset;
 
 - (void)stretchHeightToReachBottomOfSuperview;
+- (void)stretchHeightToReachView:(UIView *)view;
 
 - (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom;
 - (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom offset:(CGFloat)offset;

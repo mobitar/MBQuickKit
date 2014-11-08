@@ -179,6 +179,11 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     [self setXOrigin:UIViewGetMaxX(view) - UIViewGetWidth(self)];
 }
 
+- (void)alignBottomEdgeToView:(UIView*)view offset:(CGFloat)offset
+{
+    [self setYOrigin:UIViewGetMaxY(view) - UIViewGetHeight(self) + offset];
+}
+
 - (void)centerInSuperview
 {
     [self centerHorizontallyInView:self.superview];
@@ -210,6 +215,16 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     CGRect frame = self.frame;
     frame.origin.y = rect.origin.y + CGRectGetHeight(rect)/2.0 - CGRectGetHeight(frame)/2.0;
     self.frame = frame;
+}
+
+- (void)centerVerticallyBetweenView:(UIView *)topView andView:(UIView *)bottomView
+{
+    [self centerVerticallyInRect:CGRectMake(0, UIViewGetMaxY(topView), 0, UIViewGetMinY(bottomView) - UIViewGetMaxY(topView))];
+}
+
+- (void)centerHorizontallyBetweenView:(UIView *)leftView andView:(UIView *)rightView
+{
+    [self centerHorizontallyInRect:CGRectMake(UIViewGetMaxX(leftView), 0, UIViewGetMinX(rightView) - UIViewGetMaxX(leftView), 0)];
 }
 
 - (void)centerVerticallyWithRespectToView:(UIView *)wrtView withOffset:(CGFloat)offset
@@ -348,6 +363,18 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     [self setSize:self.superview.frame.size];
 }
 
+- (void)sizeWidthEqualToSuperview
+{
+    NSAssert(self.superview, @"Superview cannot be nil");
+
+    [self sizeWidthEqualToView:self.superview];
+}
+
+- (void)sizeWidthEqualToView:(UIView *)view
+{
+    [self setWidth:UIViewGetWidth(view)];
+}
+
 - (void)sizeWidthFullScreen
 {
     [self setWidth:[UIScreen mainScreen].bounds.size.width];
@@ -360,7 +387,12 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
 
 - (void)stretchHeightToReachBottomOfSuperview
 {
-    [self setHeight:UIViewGetHeight(self.superview) - UIViewGetMinY(self)];
+    [self stretchHeightToReachView:self.superview];
+}
+
+- (void)stretchHeightToReachView:(UIView *)view
+{
+    [self setHeight:UIViewGetMinY(view) - UIViewGetMinY(self)];
 }
 
 - (void)offsetSizeBy:(CGPoint)offset
