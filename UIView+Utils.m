@@ -387,7 +387,7 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
 
 - (void)stretchHeightToReachBottomOfSuperview
 {
-    [self stretchHeightToReachView:self.superview];
+    [self setHeight:UIViewGetHeight(self.superview) - UIViewGetMinY(self)];
 }
 
 - (void)stretchHeightToReachView:(UIView *)view
