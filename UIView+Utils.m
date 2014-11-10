@@ -441,6 +441,26 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     [self setOrigin:CGPointMake(CGRectGetWidth(self.superview.frame) - CGRectGetWidth(self.frame) + offset, self.frame.origin.y)];
 }
 
+- (void)bringToFront
+{
+    [self.superview bringSubviewToFront:self];
+}
+
+- (void)sendToBack
+{
+    [self.superview sendSubviewToBack:self];
+}
+
+- (void)NSLog
+{
+    NSLog(@"%@", NSStringFromCGRect(self.frame));
+}
+
+- (void)printRecursiveDescription
+{
+    NSLog(@"%@", [self performSelector:@selector(recursiveDescription)]);
+}
+
 + (id)viewFromNibNamed:(NSString*)name
 {
     NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:name owner:nil options:nil];

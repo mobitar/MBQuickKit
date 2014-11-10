@@ -17,7 +17,7 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     static NSCalendar *sharedCalendar = nil;
     if (!sharedCalendar) {
         sharedCalendar = [NSCalendar autoupdatingCurrentCalendar];
-        [sharedCalendar setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+//        [sharedCalendar setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     }
     return sharedCalendar;
 }

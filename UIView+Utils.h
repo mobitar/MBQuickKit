@@ -92,6 +92,11 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)moveToRightOfSuperview;
 - (void)moveToRightOfView:(UIView *)view offset:(CGFloat)offset;
 
+- (void)bringToFront;
+- (void)sendToBack;
+- (void)NSLog;
+- (void)printRecursiveDescription;
+
 - (CGRect)frameInBetweenVerticalView:(UIView *)topView andView:(UIView *)bottomView;
 
 + (id)viewFromNibNamed:(NSString*)name;
