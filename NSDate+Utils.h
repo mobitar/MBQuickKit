@@ -11,7 +11,7 @@
 @interface NSDate (Utils)
 
 - (BOOL)isWithinRangeOfDate:(NSDate *)fromDate andDate:(NSDate *)toDate;
-- (BOOL)isInSameDayAsDate:(NSDate *)otherDate;
+- (BOOL)isInSameDayAsDate:(NSDate *)otherDate timezone:(NSTimeZone *)timezone;
 
 - (BOOL) isToday;
 - (BOOL) isTomorrow;
@@ -19,22 +19,22 @@
 - (NSDateComponents *)components;
 - (NSDateComponents *)componentsWithTimeZone:(NSTimeZone *)timeZone;
 
-- (NSInteger)year;
-- (NSString *)weekday;
-- (NSString *)shortWeekday;
+- (NSInteger)yearWithTimeZone:(NSTimeZone *)timezone;
+- (NSString *)weekdayWithTimeZone:(NSTimeZone *)timezone;
+- (NSString *)shortWeekdayWithTimeZone:(NSTimeZone *)timezone;
 - (NSString *)alphabetizedMonth;
 - (NSString *)alphabetizedMonthAndDay;
 - (NSString *)alphabetizedMonthAndYear;
-- (NSString *)alphabetizedMonthDayAndYear;
+- (NSString *)alphabetizedMonthDayAndYearWithTimeZone:(NSTimeZone *)timezone;
 - (NSString *)numericalMonthDayAndYear;
 - (NSString *)numericalMonthAndYear;
 - (NSInteger)numericalHour;
 
 - (NSDate *)dateInBeginningOfDay;
-- (NSDate *)dateInBeginningOfMonth;
-- (NSDate *)dateInEndOfMonth;
+- (NSDate *)dateInBeginningOfMonthInTimeZone:(NSTimeZone *)timezone;
+- (NSDate *)dateInEndOfMonthInTimeZone:(NSTimeZone *)timezone;
 
-- (NSInteger)month;
+- (NSInteger)monthWithTimeZone:(NSTimeZone *)timezone;
 
 - (NSDate *)dateByAddingHours:(NSInteger)numberOfHours;
 - (NSDate *)dateByAddingYears:(NSInteger)years;
@@ -49,7 +49,7 @@
 
 + (NSDate *)dateFromString:(NSString *)string format:(NSString *)format;
 
-+ (NSDate *)dateInMonth:(NSInteger)month year:(NSInteger)year;
++ (NSDate *)dateInMonth:(NSInteger)month year:(NSInteger)year timezone:(NSTimeZone *)timezone;
 
 /** 
  The earlier date should be on the left to return a positive number

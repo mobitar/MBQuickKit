@@ -14,6 +14,8 @@ CGFloat UIViewGetMaxY(UIView *view);
 CGFloat UIViewGetMaxX(UIView *view);
 CGFloat UIViewGetMinY(UIView *view);
 CGFloat UIViewGetMinX(UIView *view);
+CGFloat UIViewGetMidX(UIView *view);
+CGFloat UIViewGetMidY(UIView *view);
 
 @interface UIView (Utils)
 

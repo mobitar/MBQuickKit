@@ -15,6 +15,8 @@ CGFloat UIViewGetMaxY(UIView *view)   { return CGRectGetMaxY(view.frame); }
 CGFloat UIViewGetMaxX(UIView *view)   { return CGRectGetMaxX(view.frame); }
 CGFloat UIViewGetMinY(UIView *view)   { return CGRectGetMinY(view.frame); }
 CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
+CGFloat UIViewGetMidX(UIView *view)   { return CGRectGetMidX(view.frame); }
+CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
 
 @implementation UIView (Utils)
 
