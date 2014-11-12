@@ -242,7 +242,7 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return comps.year == otherComps.year && comps.month == otherComps.month && comps.day == otherComps.day;
 }
 
-- (NSDate *)dateByAddingHours:(NSInteger)numberOfHours
+- (NSDate *)dateByAddingHours:(CGFloat)numberOfHours
 {
     return [self dateByAddingTimeInterval:numberOfHours * 60 * 60];
 }
@@ -272,6 +272,17 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     [comps setTimeZone:timezone];
     
     return [currentCalendar dateFromComponents:comps];
+}
+
+- (NSDate *)dateByRoundingMinutesDownToNearestQuarterWithTimeZone:(NSTimeZone *)timeZone
+{
+    NSDateComponents *time = [self componentsWithTimeZone:timeZone];
+    NSInteger minutes = [time minute];
+    // round to nearest 15 minutes
+    float minuteUnit = floor((float) minutes / 15.0);
+    minutes = minuteUnit * 15.0;
+    [time setMinute: minutes];
+    return [time.calendar dateFromComponents:time];
 }
 
 @end

@@ -36,13 +36,14 @@
 
 - (NSInteger)monthWithTimeZone:(NSTimeZone *)timezone;
 
-- (NSDate *)dateByAddingHours:(NSInteger)numberOfHours;
+- (NSDate *)dateByAddingHours:(CGFloat)numberOfHours;
 - (NSDate *)dateByAddingYears:(NSInteger)years;
 - (NSDate *)dateByAddingMonths:(NSInteger)months;
 
 - (NSInteger)numberOfMonthsFromDate:(NSDate *)date;
 
 - (NSString *)toStringWithFormat:(NSString *)format;
+- (NSString *)toStringWithFormat:(NSString *)format timeZone:(NSTimeZone *)timeZone;
 
 /** Converts "Monday" to "Mon" */
 + (NSString *)stringByAbbreviatingWeekday:(NSString *)weekday;
@@ -55,5 +56,7 @@
  The earlier date should be on the left to return a positive number
  */
 + (NSInteger)numberOfDaysBetweenDate:(NSDate *)date1 andDate:(NSDate *)date2;
+
+- (NSDate *)dateByRoundingMinutesDownToNearestQuarterWithTimeZone:(NSTimeZone *)timeZone;
 
 @end

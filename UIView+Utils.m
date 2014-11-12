@@ -345,6 +345,16 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     self.frame = frame;
 }
 
+- (void)setHeightEqualToSuperview
+{
+    [self setHeightEqualToSuperviewWithOffset:0];
+}
+
+- (void)setHeightEqualToSuperviewWithOffset:(CGFloat)offset
+{
+    [self setHeight:UIViewGetHeight(self.superview) + offset];
+}
+
 - (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom
 {
     [self autoFitBetween:top andView:bottom offset:0];
@@ -385,6 +395,11 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
 - (void)stretchWidthToReachView:(UIView *)view offset:(CGFloat)offset
 {
     [self setWidth:UIViewGetMaxX(view) - UIViewGetMinX(self) + offset];
+}
+
+- (void)stretchWidthToEndOfSuperview
+{
+    [self setWidth:UIViewGetWidth(self.superview) - UIViewGetMinX(self)];
 }
 
 - (void)stretchHeightToReachBottomOfSuperview

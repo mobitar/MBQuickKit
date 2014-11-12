@@ -12,4 +12,9 @@
 
 - (NSString *)toStringWithSignificantDigits;
 
+- (NSNumber *)numberByRoundingUpToNearestQuarter;
+- (NSNumber *)numberByRoundingDownToNearestQuarter;
+- (NSNumber *)numberByRoundingUpToNearestFraction:(CGFloat)fraction;
+- (NSNumber *)numberByRoundingDownToNearestFraction:(CGFloat)fraction;
+
 @end
