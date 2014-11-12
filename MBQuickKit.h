@@ -32,5 +32,6 @@
 #import "MKMapView+MBQuickKit.h"
 #import "UITableViewCell+MBQuickKit.h"
 #import "UIBarButtonItem+MBQuickKit.h"
+#import "NSNumber+MBQuickKit.h"
 
 #define UIString(key) NSLocalizedString(key, nil)
