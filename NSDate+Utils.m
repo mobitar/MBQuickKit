@@ -276,11 +276,17 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
 
 - (NSDate *)dateByRoundingMinutesDownToNearestQuarterWithTimeZone:(NSTimeZone *)timeZone
 {
+    return [self dateByRoundingMinutesDownToNearestFraction:0.25 timeZone:timeZone];
+}
+
+- (NSDate *)dateByRoundingMinutesDownToNearestFraction:(CGFloat)fraction timeZone:(NSTimeZone *)timeZone
+{
     NSDateComponents *time = [self componentsWithTimeZone:timeZone];
     NSInteger minutes = [time minute];
-    // round to nearest 15 minutes
-    float minuteUnit = floor((float) minutes / 15.0);
-    minutes = minuteUnit * 15.0;
+    CGFloat const minutesInHour = 60.0;
+    fraction = fraction * minutesInHour;
+    float minuteUnit = floor((float) minutes / fraction);
+    minutes = minuteUnit * fraction;
     [time setMinute: minutes];
     return [time.calendar dateFromComponents:time];
 }

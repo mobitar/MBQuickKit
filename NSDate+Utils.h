@@ -58,5 +58,6 @@
 + (NSInteger)numberOfDaysBetweenDate:(NSDate *)date1 andDate:(NSDate *)date2;
 
 - (NSDate *)dateByRoundingMinutesDownToNearestQuarterWithTimeZone:(NSTimeZone *)timeZone;
+- (NSDate *)dateByRoundingMinutesDownToNearestFraction:(CGFloat)fraction timeZone:(NSTimeZone *)timeZone;
 
 @end
