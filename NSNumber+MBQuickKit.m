@@ -42,4 +42,16 @@
     return [self numberByRoundingDownToNearestFraction:0.25];
 }
 
+static CGFloat const metersInMile = 1609.34;
+
+- (NSNumber *)metersToMiles
+{
+    return @(self.floatValue / metersInMile);
+}
+
+- (NSNumber *)milesToMeters
+{
+    return @(self.floatValue * metersInMile);
+}
+
 @end

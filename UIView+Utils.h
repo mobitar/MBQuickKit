@@ -99,7 +99,8 @@ CGFloat UIViewGetMidY(UIView *view);
 
 - (void)bringToFront;
 - (void)sendToBack;
-- (void)NSLog;
+- (void)printFrame;
+- (void)printDescription;
 - (void)printRecursiveDescription;
 
 - (CGRect)frameInBetweenVerticalView:(UIView *)topView andView:(UIView *)bottomView;

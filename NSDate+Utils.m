@@ -204,8 +204,8 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
 - (NSInteger)numberOfMonthsFromDate:(NSDate *)date
 {
     NSInteger month = [[[self.class currentCalendar] components: NSCalendarUnitMonth
-                                                       fromDate: self
-                                                         toDate: date
+                                                       fromDate: date
+                                                         toDate: self
                                                         options: 0] month];
     return month;
 }

@@ -17,7 +17,18 @@ NSString* NSStringFromCLLocationCoordinate2D(CLLocationCoordinate2D coordinate)
 
 - (void)zoomToStreetLevel
 {
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.centerCoordinate, 500, 500);
+    [self zoomToShowMeters:500];
+}
+
+- (void)zoomToShowMiles:(CGFloat)miles
+{
+    CGFloat meters = [@(miles) milesToMeters].floatValue;
+    [self zoomToShowMeters:meters];
+}
+
+- (void)zoomToShowMeters:(CGFloat)meters
+{
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.centerCoordinate, meters, meters);
     MKCoordinateRegion adjustedRegion = [self regionThatFits:viewRegion];
     [self setRegion:adjustedRegion animated:YES];
 }

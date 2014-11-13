@@ -17,4 +17,7 @@
 - (NSNumber *)numberByRoundingUpToNearestFraction:(CGFloat)fraction;
 - (NSNumber *)numberByRoundingDownToNearestFraction:(CGFloat)fraction;
 
+- (NSNumber *)metersToMiles;
+- (NSNumber *)milesToMeters;
+
 @end

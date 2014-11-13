@@ -16,7 +16,6 @@
 - (BOOL) isToday;
 - (BOOL) isTomorrow;
 
-- (NSDateComponents *)components;
 - (NSDateComponents *)componentsWithTimeZone:(NSTimeZone *)timeZone;
 
 - (NSInteger)yearWithTimeZone:(NSTimeZone *)timezone;

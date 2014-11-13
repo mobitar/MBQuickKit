@@ -468,7 +468,12 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     [self.superview sendSubviewToBack:self];
 }
 
-- (void)NSLog
+- (void)printDescription
+{
+    NSLog(@"%@", self);
+}
+
+- (void)printFrame
 {
     NSLog(@"%@", NSStringFromCGRect(self.frame));
 }
