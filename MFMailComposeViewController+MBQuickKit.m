@@ -7,6 +7,8 @@
 //
 
 #import "MFMailComposeViewController+MBQuickKit.h"
+#include <sys/types.h>
+#include <sys/sysctl.h>
 
 @implementation MFMailComposeViewController (MBQuickKit)
 
@@ -25,6 +27,27 @@
     } else {
         return nil;
     }
+}
+
++ (NSString *)diagnosticsString
+{
+    NSString *deviceType = [self platform];
+    NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
+    NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    
+    NSString *info = [NSString stringWithFormat:@"-----------------\nDevice Information\n\nOS Version: %@\nDevice Model: %@\nApp Version: %@\n-----------------", systemVersion, deviceType, appVersion];
+    return info;
+}
+
++ (NSString *)platform
+{
+    size_t size;
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char *machine = malloc(size);
+    sysctlbyname("hw.machine", machine, &size, NULL, 0);
+    NSString *platform = [NSString stringWithUTF8String:machine];
+    free(machine);
+    return platform;
 }
 
 @end
