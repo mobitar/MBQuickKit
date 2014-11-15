@@ -14,6 +14,8 @@ CGFloat UIViewGetMaxY(UIView *view);
 CGFloat UIViewGetMaxX(UIView *view);
 CGFloat UIViewGetMinY(UIView *view);
 CGFloat UIViewGetMinX(UIView *view);
+CGFloat UIViewGetMidX(UIView *view);
+CGFloat UIViewGetMidY(UIView *view);
 
 @interface UIView (Utils)
 
@@ -70,12 +72,15 @@ CGFloat UIViewGetMinX(UIView *view);
 
 - (void)setSize:(CGSize)size;
 - (void)setHeight:(CGFloat)height;
+- (void)setHeightEqualToSuperview;
 - (void)setWidth:(CGFloat)width;
+- (void)setHeightEqualToSuperviewWithOffset:(CGFloat)offset;
 - (void)sizeWidthFullScreen;
 - (void)sizeWidthEqualToSuperview;
 - (void)sizeWidthEqualToView:(UIView *)view;
 - (void)sizeEqualToSuperview;
 - (void)stretchWidthToReachView:(UIView *)view offset:(CGFloat)offset;
+- (void)stretchWidthToEndOfSuperview;
 - (void)offsetSizeBy:(CGPoint)offset;
 
 - (void)stretchHeightToReachBottomOfSuperview;
@@ -91,6 +96,12 @@ CGFloat UIViewGetMinX(UIView *view);
 - (void)moveToRightOfSuperviewWithOffset:(CGFloat)offset;
 - (void)moveToRightOfSuperview;
 - (void)moveToRightOfView:(UIView *)view offset:(CGFloat)offset;
+
+- (void)bringToFront;
+- (void)sendToBack;
+- (void)printFrame;
+- (void)printDescription;
+- (void)printRecursiveDescription;
 
 - (CGRect)frameInBetweenVerticalView:(UIView *)topView andView:(UIView *)bottomView;
 

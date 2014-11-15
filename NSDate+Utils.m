@@ -17,21 +17,13 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     static NSCalendar *sharedCalendar = nil;
     if (!sharedCalendar) {
         sharedCalendar = [NSCalendar autoupdatingCurrentCalendar];
-        [sharedCalendar setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     }
     return sharedCalendar;
 }
 
-+ (NSDateComponents *)defaultComponents
-{
-    NSDateComponents *dateComponents = [NSDateComponents new];
-    [dateComponents setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-    return dateComponents;
-}
-
 - (NSDate *) dateByAddingDays: (NSInteger) dDays
 {
-    NSDateComponents *dateComponents = [self.class defaultComponents];
+    NSDateComponents *dateComponents = [NSDateComponents new];
     [dateComponents setDay:dDays];
     NSDate *newDate = [[self.class currentCalendar] dateByAddingComponents:dateComponents toDate:self options:0];
     return newDate;
@@ -39,7 +31,7 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
 
 - (NSDate *)dateByAddingYears:(NSInteger)years
 {
-    NSDateComponents *dateComponents = [self.class defaultComponents];
+    NSDateComponents *dateComponents = [NSDateComponents new];
     [dateComponents setYear:years];
     NSDate *newDate = [[self.class currentCalendar] dateByAddingComponents:dateComponents toDate:self options:0];
     return newDate;
@@ -47,7 +39,7 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
 
 - (NSDate *)dateByAddingMonths:(NSInteger)months
 {
-    NSDateComponents *dateComponents = [self.class defaultComponents];
+    NSDateComponents *dateComponents = [NSDateComponents new];
     [dateComponents setMonth:months];
     NSDate *newDate = [[self.class currentCalendar] dateByAddingComponents:dateComponents toDate:self options:0];
     return newDate;
@@ -103,11 +95,11 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return NO;
 }
 
-- (NSString *)alphabetizedMonthDayAndYear
+- (NSString *)alphabetizedMonthDayAndYearWithTimeZone:(NSTimeZone *)timezone
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [formatter setTimeZone:timezone];
     return [formatter stringFromDate:self];
 }
 
@@ -121,14 +113,14 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return [self toStringWithFormat:@"MMM d"];
 }
 
-- (NSString *)weekday
+- (NSString *)weekdayWithTimeZone:(NSTimeZone *)timezone
 {
-    return [self toStringWithFormat:@"EEEE" timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    return [self toStringWithFormat:@"EEEE" timeZone:timezone];
 }
 
-- (NSString *)shortWeekday
+- (NSString *)shortWeekdayWithTimeZone:(NSTimeZone *)timezone
 {
-    return [self toStringWithFormat:@"EEE" timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    return [self toStringWithFormat:@"EEE" timeZone:timezone];
 }
 
 - (NSString *)alphabetizedMonthAndYear
@@ -200,42 +192,37 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return [currentCalendar dateFromComponents:comps];
 }
 
-- (NSDate *)dateInBeginningOfMonth
+- (NSDate *)dateInBeginningOfMonthInTimeZone:(NSTimeZone *)timezone
 {
     NSCalendar *currentCalendar = [self.class currentCalendar];
     NSDateComponents *comps = [currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:self];
     [comps setDay:1];
-    [comps setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [comps setTimeZone:timezone];
     return [currentCalendar dateFromComponents:comps];
 }
 
 - (NSInteger)numberOfMonthsFromDate:(NSDate *)date
 {
     NSInteger month = [[[self.class currentCalendar] components: NSCalendarUnitMonth
-                                                       fromDate: self
-                                                         toDate: date
+                                                       fromDate: date
+                                                         toDate: self
                                                         options: 0] month];
     return month;
 }
 
-- (NSInteger)day
+- (NSInteger)dayWithTimeZone:(NSTimeZone *)timezone
 {
-    return [self.components day];
+    return [[self componentsWithTimeZone:timezone] day];
 }
 
-- (NSInteger)month
+- (NSInteger)monthWithTimeZone:(NSTimeZone *)timezone
 {
-    return [self.components month];
+    return [[self componentsWithTimeZone:timezone] month];
 }
 
-- (NSInteger)year
+- (NSInteger)yearWithTimeZone:(NSTimeZone *)timezone
 {
-    return [self.components year];
-}
-
-- (NSDateComponents *)components
-{
-    return [self componentsWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    return [[self componentsWithTimeZone:timezone] year];
 }
 
 - (NSDateComponents *)componentsWithTimeZone:(NSTimeZone *)timeZone
@@ -248,29 +235,29 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return comps;
 }
 
-- (BOOL)isInSameDayAsDate:(NSDate *)otherDate
+- (BOOL)isInSameDayAsDate:(NSDate *)otherDate timezone:(NSTimeZone *)timezone
 {
-    NSDateComponents *comps = [self components];
-    NSDateComponents *otherComps = [otherDate components];
+    NSDateComponents *comps = [self componentsWithTimeZone:timezone];
+    NSDateComponents *otherComps = [otherDate componentsWithTimeZone:timezone];
     return comps.year == otherComps.year && comps.month == otherComps.month && comps.day == otherComps.day;
 }
 
-- (NSDate *)dateByAddingHours:(NSInteger)numberOfHours
+- (NSDate *)dateByAddingHours:(CGFloat)numberOfHours
 {
     return [self dateByAddingTimeInterval:numberOfHours * 60 * 60];
 }
 
-- (NSDate *)dateInEndOfMonth
+- (NSDate *)dateInEndOfMonthInTimeZone:(NSTimeZone *)timezone
 {
     NSCalendar *currentCalendar = [self.class currentCalendar];
     NSDateComponents *comps = [currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:self];
     [comps setMonth:[comps month] + 1];
     [comps setDay:0];
-    [comps setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [comps setTimeZone:timezone];
     return [currentCalendar dateFromComponents:comps];
 }
 
-+ (NSDate *)dateInMonth:(NSInteger)month year:(NSInteger)year
++ (NSDate *)dateInMonth:(NSInteger)month year:(NSInteger)year timezone:(NSTimeZone *)timezone
 {
     NSCalendar *currentCalendar = [self.class currentCalendar];
     NSDateComponents *comps = [currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate date]];
@@ -282,9 +269,26 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     [comps setHour:0];
     [comps setMinute:0];
     [comps setSecond:0];
-    [comps setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [comps setTimeZone:timezone];
     
     return [currentCalendar dateFromComponents:comps];
+}
+
+- (NSDate *)dateByRoundingMinutesDownToNearestQuarterWithTimeZone:(NSTimeZone *)timeZone
+{
+    return [self dateByRoundingMinutesDownToNearestFraction:0.25 timeZone:timeZone];
+}
+
+- (NSDate *)dateByRoundingMinutesDownToNearestFraction:(CGFloat)fraction timeZone:(NSTimeZone *)timeZone
+{
+    NSDateComponents *time = [self componentsWithTimeZone:timeZone];
+    NSInteger minutes = [time minute];
+    CGFloat const minutesInHour = 60.0;
+    fraction = fraction * minutesInHour;
+    float minuteUnit = floor((float) minutes / fraction);
+    minutes = minuteUnit * fraction;
+    [time setMinute: minutes];
+    return [time.calendar dateFromComponents:time];
 }
 
 @end

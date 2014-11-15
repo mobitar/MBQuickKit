@@ -15,6 +15,8 @@ CGFloat UIViewGetMaxY(UIView *view)   { return CGRectGetMaxY(view.frame); }
 CGFloat UIViewGetMaxX(UIView *view)   { return CGRectGetMaxX(view.frame); }
 CGFloat UIViewGetMinY(UIView *view)   { return CGRectGetMinY(view.frame); }
 CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
+CGFloat UIViewGetMidX(UIView *view)   { return CGRectGetMidX(view.frame); }
+CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
 
 @implementation UIView (Utils)
 
@@ -343,6 +345,16 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     self.frame = frame;
 }
 
+- (void)setHeightEqualToSuperview
+{
+    [self setHeightEqualToSuperviewWithOffset:0];
+}
+
+- (void)setHeightEqualToSuperviewWithOffset:(CGFloat)offset
+{
+    [self setHeight:UIViewGetHeight(self.superview) + offset];
+}
+
 - (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom
 {
     [self autoFitBetween:top andView:bottom offset:0];
@@ -383,6 +395,11 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
 - (void)stretchWidthToReachView:(UIView *)view offset:(CGFloat)offset
 {
     [self setWidth:UIViewGetMaxX(view) - UIViewGetMinX(self) + offset];
+}
+
+- (void)stretchWidthToEndOfSuperview
+{
+    [self setWidth:UIViewGetWidth(self.superview) - UIViewGetMinX(self)];
 }
 
 - (void)stretchHeightToReachBottomOfSuperview
@@ -439,6 +456,31 @@ CGFloat UIViewGetMinX(UIView *view)   { return CGRectGetMinX(view.frame); }
     NSAssert(self.superview, @"Superview cannot be nil");
     
     [self setOrigin:CGPointMake(CGRectGetWidth(self.superview.frame) - CGRectGetWidth(self.frame) + offset, self.frame.origin.y)];
+}
+
+- (void)bringToFront
+{
+    [self.superview bringSubviewToFront:self];
+}
+
+- (void)sendToBack
+{
+    [self.superview sendSubviewToBack:self];
+}
+
+- (void)printDescription
+{
+    NSLog(@"%@", self);
+}
+
+- (void)printFrame
+{
+    NSLog(@"%@", NSStringFromCGRect(self.frame));
+}
+
+- (void)printRecursiveDescription
+{
+    NSLog(@"%@", [self performSelector:@selector(recursiveDescription)]);
 }
 
 + (id)viewFromNibNamed:(NSString*)name
