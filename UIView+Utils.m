@@ -211,7 +211,6 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     [self centerVerticallyInRect:view.bounds];
 }
 
-
 - (void)centerVerticallyInRect:(CGRect)rect
 {
     CGRect frame = self.frame;
@@ -241,6 +240,11 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     CGRect frame = self.frame;
     frame.origin.x = offset + UIViewGetMinX(wrtView) + CGRectGetWidth(wrtView.frame)/2.0 - CGRectGetWidth(frame)/2.0;
     self.frame = frame;
+}
+
+- (void)centerHorizontallyWithRespectToView:(UIView *)wrtView
+{
+    [self centerHorizontallyWithRespectToView:wrtView withOffset:0];
 }
 
 - (void)centerVerticallyInSuperviewWithOffset:(CGFloat)offset

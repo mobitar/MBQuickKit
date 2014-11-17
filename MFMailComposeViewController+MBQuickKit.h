@@ -15,4 +15,6 @@
                                            recipients:(NSArray *)recipients
                                           messageBody:(NSString *)body;
 
++ (NSString *)diagnosticsString;
+
 @end
