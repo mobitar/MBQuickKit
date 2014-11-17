@@ -59,4 +59,6 @@
 - (NSDate *)dateByRoundingMinutesDownToNearestQuarterWithTimeZone:(NSTimeZone *)timeZone;
 - (NSDate *)dateByRoundingMinutesDownToNearestFraction:(CGFloat)fraction timeZone:(NSTimeZone *)timeZone;
 
++ (NSTimeZone *)timezoneFromDateString:(NSString *)dateStr;
+
 @end

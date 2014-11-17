@@ -291,4 +291,20 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return [time.calendar dateFromComponents:time];
 }
 
++ (NSTimeZone *)timezoneFromDateString:(NSString *)dateStr
+{
+    // length == 5                  => the passed string is considere the time-zone itself (eg. +0200)
+    // length != 5 && length == 24  => the passed string is a full date with time-zone (eg. 2012-09-02T19:00:00-0700)
+    // in all the other cases the passed string doesn't represent a UTC date or time-zome string so the system time-zone is returned as default.
+    if ([dateStr length] != 5 && [dateStr length] < 24) {
+        return [NSTimeZone systemTimeZone];
+    }
+    NSString *GMTString      = [dateStr substringFromIndex:[dateStr length]-5];
+    NSString *sign = [dateStr substringWithRange:NSMakeRange([dateStr length]-6, 1)];
+    NSInteger directionVector = [sign isEqualToString:@"-"] ? -1 : 1;
+    NSInteger hoursFromGMT   = [[GMTString substringToIndex:3] intValue];
+    NSInteger minutesFromGMT = [[GMTString substringFromIndex:3] intValue];
+    NSInteger secondsFromGMT = (hoursFromGMT * 60 * 60) + (minutesFromGMT * 60);
+    return [NSTimeZone timeZoneForSecondsFromGMT:secondsFromGMT * directionVector];}
+
 @end
