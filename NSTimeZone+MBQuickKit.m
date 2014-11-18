@@ -15,4 +15,9 @@
     return [self localizedName:NSTimeZoneNameStyleGeneric locale:[NSLocale localeWithLocaleIdentifier:@"en_US"]];
 }
 
+- (NSString *)localizedAbbreviation
+{
+    return [self localizedName:NSTimeZoneNameStyleShortStandard locale:[NSLocale localeWithLocaleIdentifier:@"en_US"]];
+}
+
 @end

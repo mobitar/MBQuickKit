@@ -60,4 +60,9 @@
     return jsonString;
 }
 
+- (id)randomObject
+{
+    return self[arc4random() % self.count];
+}
+
 @end

@@ -16,6 +16,8 @@
 
 - (instancetype)arrayWithUniqueObjects;
 
+- (id)randomObject;
+
 - (id)safeObjectAtIndex:(NSInteger)index;
 - (instancetype)safeSubArrayWithRange:(NSRange)range;
 - (NSString*)toJSON;

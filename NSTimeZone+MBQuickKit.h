@@ -12,4 +12,6 @@
 
 - (NSString *)localizedName;
 
+- (NSString *)localizedAbbreviation;
+
 @end
