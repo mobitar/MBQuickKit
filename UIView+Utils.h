@@ -81,6 +81,7 @@ CGFloat UIViewGetMidY(UIView *view);
 - (void)sizeWidthEqualToView:(UIView *)view;
 - (void)sizeEqualToSuperview;
 - (void)stretchWidthToReachView:(UIView *)view offset:(CGFloat)offset;
+- (void)stretchWidthToEndOfSuperviewWithOffset:(CGFloat)offset;
 - (void)stretchWidthToEndOfSuperview;
 - (void)offsetSizeBy:(CGPoint)offset;
 

@@ -11,7 +11,7 @@
 @interface NSObject (Utils)
 
 void dispatch_async_main(dispatch_block_t block);
-void dispatch_once_forever(NSString *eventName, dispatch_block_t block);
+void dispatch_once_forever(NSString *eventName, dispatch_block_t block, void(^completion)(BOOL didPerform));
 
 - (void)setDynamicValue:(id)value forKey:(NSString *)key;
 - (void)removeDynamicValueForKey:(NSString *)key;
