@@ -12,4 +12,6 @@
 
 - (void)setTextColor:(UIColor *)textColor;
 - (void)setPlaceholderColor:(UIColor *)textColor;
+- (void)setRectBackgroundColor:(UIColor *)color;
+
 @end

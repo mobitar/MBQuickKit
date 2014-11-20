@@ -22,4 +22,10 @@
     [searchField setValue:textColor forKeyPath:@"_placeholderLabel.textColor"];
 }
 
+- (void)setRectBackgroundColor:(UIColor *)color
+{
+    UITextField *searchField = [self valueForKey:@"_searchField"];
+    searchField.backgroundColor = color;
+}
+
 @end
