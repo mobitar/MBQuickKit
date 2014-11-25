@@ -17,4 +17,6 @@ void dispatch_once_forever(NSString *eventName, dispatch_block_t block, void(^co
 - (void)removeDynamicValueForKey:(NSString *)key;
 - (id)getDynamicValueForKey:(NSString *)key;
 
+- (void)printDescription;
+
 @end

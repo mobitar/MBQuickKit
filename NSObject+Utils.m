@@ -46,4 +46,9 @@ void dispatch_once_forever(NSString *eventName, dispatch_block_t block, void(^co
     completion(YES);
 }
 
+- (void)printDescription
+{
+    NSLog(@"%@", self);
+}
+
 @end
