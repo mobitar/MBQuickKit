@@ -547,10 +547,10 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
 - (void)addShadow
 {
     self.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.layer.shadowOffset = CGSizeMake(0, 5);
+    self.layer.shadowOffset = CGSizeMake(0, 3);
     self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
-    self.layer.shadowRadius = 4.0;
-    self.layer.shadowOpacity = 1.0;
+    self.layer.shadowRadius = 2.0;
+    self.layer.shadowOpacity = 0.5;
     self.layer.masksToBounds = NO;
 }
 
