@@ -40,6 +40,7 @@
 - (NSDate *)dateByAddingMonths:(NSInteger)months;
 
 - (NSInteger)numberOfMonthsFromDate:(NSDate *)date;
++ (CGFloat)numberOfHoursBetweenDate:(NSDate *)firstDate andDate:(NSDate *)secondDate;
 
 - (NSString *)toStringWithFormat:(NSString *)format;
 - (NSString *)toStringWithFormat:(NSString *)format timeZone:(NSTimeZone *)timeZone;

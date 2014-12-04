@@ -152,6 +152,14 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return [components day] + 1;
 }
 
++ (CGFloat)numberOfHoursBetweenDate:(NSDate *)firstDate andDate:(NSDate *)secondDate
+{
+    NSTimeInterval distanceBetweenDates = [secondDate timeIntervalSinceDate:firstDate];
+    double secondsInAnHour = 3600.0;
+    CGFloat hoursBetweenDates = distanceBetweenDates / secondsInAnHour;
+    return hoursBetweenDates;
+}
+
 - (NSString *)toStringWithFormat:(NSString *)format
 {
     return [self toStringWithFormat:format timeZone:nil];
