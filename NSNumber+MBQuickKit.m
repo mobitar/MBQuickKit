@@ -18,6 +18,15 @@
     return output;
 }
 
+- (NSString *)toStringWithSignificantDigits:(NSInteger)numberOfSignificantDigits
+{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatter setMinimumSignificantDigits:numberOfSignificantDigits];
+    NSString *output = [formatter stringFromNumber:self];
+    return output;
+}
+
 - (NSNumber *)numberByRoundingUpToNearestFraction:(CGFloat)fraction
 {
     double num = self.doubleValue;

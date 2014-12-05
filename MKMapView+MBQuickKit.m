@@ -15,6 +15,11 @@ NSString* NSStringFromCLLocationCoordinate2D(CLLocationCoordinate2D coordinate)
     return [NSString stringWithFormat:@"Latitude: %f Longitude: %f", coordinate.latitude, coordinate.longitude];
 }
 
+BOOL CLLocationCoordinate2DEqual(CLLocationCoordinate2D coordinate1, CLLocationCoordinate2D coordinate2)
+{
+    return coordinate1.latitude == coordinate2.latitude && coordinate1.longitude == coordinate2.longitude;
+}
+
 - (void)zoomToStreetLevel
 {
     [self zoomToShowMeters:500];

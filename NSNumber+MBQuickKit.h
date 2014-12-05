@@ -11,6 +11,7 @@
 @interface NSNumber (MBQuickKit)
 
 - (NSString *)toStringWithSignificantDigits;
+- (NSString *)toStringWithSignificantDigits:(NSInteger)numberOfSignificantDigits;
 
 - (NSNumber *)numberByRoundingUpToNearestQuarter;
 - (NSNumber *)numberByRoundingDownToNearestQuarter;
