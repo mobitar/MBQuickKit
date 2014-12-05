@@ -22,6 +22,12 @@
     [searchField setValue:textColor forKeyPath:@"_placeholderLabel.textColor"];
 }
 
+- (void)setFont:(UIFont *)font
+{
+    UITextField *searchField = [self valueForKey:@"_searchField"];
+    searchField.font = font;
+}
+
 - (void)setRectBackgroundColor:(UIColor *)color
 {
     UITextField *searchField = [self valueForKey:@"_searchField"];
