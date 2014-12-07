@@ -12,6 +12,8 @@
 
 @property (nonatomic, readwrite) NSString *normalTitle;
 
+@property(nonatomic, assign) UIEdgeInsets hitTestEdgeInsets;
+
 - (void)setImageRenderingMode:(UIImageRenderingMode)renderMode;
 
 @end
