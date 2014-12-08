@@ -10,12 +10,12 @@
 
 @implementation UIBarButtonItem (MBQuickKit)
 
-+ (instancetype)activityIndicatorItem
++ (instancetype)activityIndicatorItemWithColor:(UIColor *)color
 {
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [indicator startAnimating];
-    indicator.tintColor = [UIColor whiteColor];
-    indicator.color = [UIColor whiteColor];
+    indicator.tintColor = color;
+    indicator.color = color;
     return [[UIBarButtonItem alloc] initWithCustomView:indicator];
 }
 

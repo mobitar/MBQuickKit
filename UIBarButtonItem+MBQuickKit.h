@@ -10,6 +10,6 @@
 
 @interface UIBarButtonItem (MBQuickKit)
 
-+ (instancetype)activityIndicatorItem;
++ (instancetype)activityIndicatorItemWithColor:(UIColor *)color;
 
 @end
