@@ -34,5 +34,6 @@
 #import "UIBarButtonItem+MBQuickKit.h"
 #import "NSNumber+MBQuickKit.h"
 #import "NSTimeZone+MBQuickKit.h"
+#import "UIApplication+MBQuickKit.h"
 
 #define UIString(key) NSLocalizedString(key, nil)
