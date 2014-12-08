@@ -10,6 +10,8 @@
 
 @interface MBXGradientView : UIView
 
+@property (nonatomic) UIView *overlayView;
+
 /** Default is clearColor */
 @property (nonatomic) UIColor *fromColor;
 
