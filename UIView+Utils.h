@@ -45,6 +45,7 @@ CGFloat UIViewGetMidY(UIView *view);
 - (void)alignTopToView:(UIView *)toView;
 - (void)alignTopToView:(UIView *)toView withOffset:(CGFloat)offset;
 - (void)alignLeftEdgeTo:(UIView*)view;
+- (void)alignLeftEdgeTo:(UIView*)view withOffset:(CGFloat)offset;
 - (void)alignRightEdgeTo:(UIView*)view;
 - (void)alignCenterYTo:(UIView*)view;
 - (void)alignRightInSuperviewWithOffset:(CGFloat)offset;
@@ -88,7 +89,8 @@ CGFloat UIViewGetMidY(UIView *view);
 - (void)offsetSizeBy:(CGPoint)offset;
 
 - (void)stretchHeightToReachBottomOfSuperview;
-- (void)stretchHeightToReachView:(UIView *)view;
+- (void)stretchHeightToReachTopOfView:(UIView *)view;
+- (void)stretchHeightToReachBottomOfView:(UIView *)view;
 
 - (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom;
 - (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom offset:(CGFloat)offset;

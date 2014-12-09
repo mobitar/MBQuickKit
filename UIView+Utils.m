@@ -171,6 +171,11 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     [self setXOrigin:view.frame.origin.x];
 }
 
+- (void)alignLeftEdgeTo:(UIView*)view withOffset:(CGFloat)offset
+{
+    [self setXOrigin:view.frame.origin.x + offset];
+}
+
 - (void)alignCenterYTo:(UIView*)view
 {
     [self setYOrigin:UIViewGetMinY(view) + (UIViewGetHeight(view)/2.0 - UIViewGetHeight(self)/2.0)];
@@ -431,9 +436,14 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     [self setHeight:UIViewGetHeight(self.superview) - UIViewGetMinY(self)];
 }
 
-- (void)stretchHeightToReachView:(UIView *)view
+- (void)stretchHeightToReachTopOfView:(UIView *)view
 {
     [self setHeight:UIViewGetMinY(view) - UIViewGetMinY(self)];
+}
+
+- (void)stretchHeightToReachBottomOfView:(UIView *)view
+{
+    [self setHeight:UIViewGetMaxY(view) - UIViewGetMinY(self)];
 }
 
 - (void)offsetSizeBy:(CGPoint)offset
