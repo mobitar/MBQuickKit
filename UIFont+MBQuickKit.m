@@ -25,4 +25,14 @@
     return [UIFont fontWithName:@"HelveticaNeue" size:size];
 }
 
+- (instancetype)sameFontAdaptedForScreenWidth:(CGFloat)screenWidth baseScreenWidth:(CGFloat)baseScreenWidth
+{
+    CGFloat factor = (baseScreenWidth - screenWidth)/baseScreenWidth;
+    // subtract a point for every tenth
+    CGFloat pointOffset = (factor * 10);
+
+    UIFont *newFont = [UIFont fontWithName:self.fontName size:self.pointSize - pointOffset];
+    return newFont;
+}
+
 @end
