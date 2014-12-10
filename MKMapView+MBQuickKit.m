@@ -81,6 +81,10 @@ BOOL CLLocationCoordinate2DEqual(CLLocationCoordinate2D coordinate1, CLLocationC
     region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 2.1; // Add a little extra space on the sides
     region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 2.1; // Add a little extra space on the sides
     
+    if(isnan(region.span.latitudeDelta) || isnan(region.span.longitudeDelta)) {
+        return;
+    }
+    
     region = [self regionThatFits:region];
     [self setRegion:region animated:YES];
 }
