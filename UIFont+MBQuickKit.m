@@ -27,6 +27,11 @@ CGFloat const MBXBaseScreenWidth = 414; // 6 Plus width
     return [UIFont fontWithName:@"HelveticaNeue" size:size];
 }
 
++ (UIFont *)mediumHelveticaNeueFontOfSize:(CGFloat)size
+{
+    return [UIFont fontWithName:@"HelveticaNeue-Medium" size:size];
+}
+
 - (instancetype)sameFontAdaptedForScreenWidth:(CGFloat)screenWidth baseScreenWidth:(CGFloat)baseScreenWidth
 {
     CGFloat factor = (baseScreenWidth - screenWidth)/baseScreenWidth;
