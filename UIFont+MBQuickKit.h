@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern CGFloat const MBXBaseScreenWidth; // 6 Plus width
+
 @interface UIFont (MBQuickKit)
 
 + (UIFont *)ultraLightHelveticaNeueFontOfSize:(CGFloat)size;

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 ParkWhiz. All rights reserved.
 //
 
+CGFloat const MBXBaseScreenWidth = 414; // 6 Plus width
+
 #import "UIFont+MBQuickKit.h"
 
 @implementation UIFont (MBQuickKit)
@@ -32,6 +34,7 @@
     CGFloat pointOffset = (factor * 10);
 
     UIFont *newFont = [UIFont fontWithName:self.fontName size:self.pointSize - pointOffset];
+//    NSLog(@"baseFont:%f newFont:%f", self.pointSize, newFont.pointSize);
     return newFont;
 }
 
