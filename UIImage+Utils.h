@@ -16,4 +16,6 @@
 
 + (UIImage *)forwardButtonImage;
 
+- (UIImage *)imageByResizingToSize:(CGSize)size;
+
 @end

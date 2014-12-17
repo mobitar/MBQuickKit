@@ -17,4 +17,10 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
 }
 
+- (void)openAppStoreToReviewsTabForAppId:(NSString *)appId
+{
+    NSString *url = [NSString stringWithFormat:@"https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%@&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8", appId];
+    [self openURL:[NSURL URLWithString:url]];
+}
+
 @end

@@ -12,4 +12,6 @@
 
 - (void)callPhoneNumber:(NSString *)phone;
 
+- (void)openAppStoreToReviewsTabForAppId:(NSString *)appId;
+
 @end

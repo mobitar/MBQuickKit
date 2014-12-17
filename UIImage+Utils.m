@@ -25,6 +25,16 @@
     return newImage;
 }
 
+- (UIImage *)imageByResizingToSize:(CGSize)size
+{
+    UIGraphicsBeginImageContextWithOptions(size, NO, UIScreen.mainScreen.scale);
+    CGRect imageRect = CGRectMake(0.0, 0.0, size.width, size.height);
+    [self drawInRect:imageRect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 + (UIImage *)backButtonImage
 {
     static UIImage *image;
