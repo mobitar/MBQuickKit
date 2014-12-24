@@ -58,6 +58,16 @@ BOOL CLLocationCoordinate2DEqual(CLLocationCoordinate2D coordinate1, CLLocationC
 
 - (void)zoomToShowAnnotations:(NSArray *)annotations
 {    
+    [self zoomToShowAnnotationsWhileLockingCenter:NO annotations:annotations];
+}
+
+- (void)zoomToShowAnnotationsWhileLockingCenter:(NSArray *)annotations
+{
+    [self zoomToShowAnnotationsWhileLockingCenter:YES annotations:annotations];
+}
+
+- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations
+{
     CLLocationCoordinate2D topLeftCoord;
     topLeftCoord.latitude = -90;
     topLeftCoord.longitude = 180;
@@ -76,8 +86,15 @@ BOOL CLLocationCoordinate2DEqual(CLLocationCoordinate2D coordinate1, CLLocationC
     }
     
     MKCoordinateRegion region;
-    region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
-    region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
+    
+    if(lockCenter) {
+        region.center.latitude = self.centerCoordinate.latitude;
+        region.center.longitude = self.centerCoordinate.longitude;
+    } else  {
+        region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
+        region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
+    }
+    
     region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 2.1; // Add a little extra space on the sides
     region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 2.1; // Add a little extra space on the sides
     

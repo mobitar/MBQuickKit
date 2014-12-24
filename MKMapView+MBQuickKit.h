@@ -18,5 +18,7 @@ BOOL CLLocationCoordinate2DEqual(CLLocationCoordinate2D coordinate1, CLLocationC
 - (void)zoomToShowMiles:(CGFloat)miles;
 - (void)zoomToShowMeters:(CGFloat)meters;
 - (NSArray *)annotationsExcludingUserLocation;
+
 - (void)zoomToShowAnnotations:(NSArray *)annotations;
+- (void)zoomToShowAnnotationsWhileLockingCenter:(NSArray *)annotations;
 @end

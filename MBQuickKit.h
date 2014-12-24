@@ -36,5 +36,6 @@
 #import "NSTimeZone+MBQuickKit.h"
 #import "UIApplication+MBQuickKit.h"
 #import "UIFont+MBQuickKit.h"
+#import "CLLocation+MBQuickKit.h"
 
 #define UIString(key) NSLocalizedString(key, nil)
