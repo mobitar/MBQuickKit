@@ -45,17 +45,17 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return newDate;
 }
 
-- (NSDate *) dateBySubtractingDays: (NSInteger) dDays
+- (NSDate *)dateBySubtractingDays:(NSInteger)dDays
 {
     return [self dateByAddingDays: (dDays * -1)];
 }
 
-+ (NSDate *) dateWithDaysFromNow: (NSInteger) days
++ (NSDate *)dateWithDaysFromNow:(NSInteger)days
 {
     return [[NSDate date] dateByAddingDays:days];
 }
 
-+ (NSDate *) dateWithDaysBeforeNow: (NSInteger) days
++ (NSDate *)dateWithDaysBeforeNow:(NSInteger)days
 {
     return [[NSDate date] dateBySubtractingDays:days];
 }
@@ -65,7 +65,7 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return [NSDate dateWithDaysFromNow:1];
 }
 
-- (BOOL) isEqualToDateIgnoringTime: (NSDate *) aDate
+- (BOOL)isEqualToDateIgnoringTime:(NSDate *)aDate
 {
     NSDateComponents *components1 = [[NSDate currentCalendar] components:componentFlags fromDate:self];
     NSDateComponents *components2 = [[NSDate currentCalendar] components:componentFlags fromDate:aDate];
@@ -74,12 +74,12 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
             (components1.day == components2.day));
 }
 
-- (BOOL) isToday
+- (BOOL)isToday
 {
     return [self isEqualToDateIgnoringTime:[NSDate date]];
 }
 
-- (BOOL) isTomorrow
+- (BOOL)isTomorrow
 {
     return [self isEqualToDateIgnoringTime:[NSDate dateTomorrow]];
 }
@@ -93,6 +93,18 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     }
     
     return NO;
+}
+
+- (NSDate *)dateByApplyingTimeOfDate:(NSDate *)sourceDate inTimeZone:(NSTimeZone *)timeZone
+{
+    NSDateComponents *targetComps = [self componentsWithTimeZone:timeZone];
+    NSDateComponents *sourceComps = [sourceDate componentsWithTimeZone:timeZone];
+    
+    [targetComps setHour:sourceComps.hour];
+    [targetComps setMinute:sourceComps.minute];
+    [targetComps setSecond:sourceComps.second];
+    
+    return [targetComps.calendar dateFromComponents:targetComps];
 }
 
 - (NSString *)alphabetizedMonthDayAndYearWithTimeZone:(NSTimeZone *)timezone

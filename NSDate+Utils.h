@@ -39,6 +39,8 @@
 - (NSDate *)dateByAddingYears:(NSInteger)years;
 - (NSDate *)dateByAddingMonths:(NSInteger)months;
 
+- (NSDate *)dateByApplyingTimeOfDate:(NSDate *)sourceDate inTimeZone:(NSTimeZone *)timeZone;
+
 - (NSInteger)numberOfMonthsFromDate:(NSDate *)date;
 + (CGFloat)numberOfHoursBetweenDate:(NSDate *)firstDate andDate:(NSDate *)secondDate;
 
