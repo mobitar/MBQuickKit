@@ -20,6 +20,11 @@ BOOL CLLocationCoordinate2DEqual(CLLocationCoordinate2D coordinate1, CLLocationC
     return coordinate1.latitude == coordinate2.latitude && coordinate1.longitude == coordinate2.longitude;
 }
 
+CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2D coord1, CLLocationCoordinate2D coord2)
+{
+    return [[[CLLocation alloc] initWithCoordinate:coord1] distanceFromLocation:[[CLLocation alloc] initWithCoordinate:coord2]];
+}
+
 - (void)zoomToStreetLevel
 {
     [self zoomToShowMeters:500];

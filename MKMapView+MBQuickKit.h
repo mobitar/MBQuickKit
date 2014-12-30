@@ -12,6 +12,7 @@
 
 NSString* NSStringFromCLLocationCoordinate2D(CLLocationCoordinate2D coordinate);
 BOOL CLLocationCoordinate2DEqual(CLLocationCoordinate2D coordinate1, CLLocationCoordinate2D coordinate2);
+CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2D coord1, CLLocationCoordinate2D coord2);
 
 - (void)zoomToStreetLevel;
 - (CLLocation *)centerLocation;
