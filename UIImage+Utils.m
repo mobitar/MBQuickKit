@@ -88,4 +88,14 @@
     return image;
 }
 
++ (UIImage *)imageFromLayer:(CALayer *)layer
+{
+    UIGraphicsBeginImageContextWithOptions(layer.bounds.size, NO, 0);
+    [layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+
 @end
