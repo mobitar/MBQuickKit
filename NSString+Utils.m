@@ -75,4 +75,9 @@
     return result;
 }
 
++ (NSString *)emdashString
+{
+    return [NSString stringWithFormat: @"%C", (unichar)0x2014];
+}
+
 @end
