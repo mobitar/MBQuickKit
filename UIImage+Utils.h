@@ -18,4 +18,6 @@
 
 - (UIImage *)imageByResizingToSize:(CGSize)size;
 
++ (UIImage *)imageFromLayer:(CALayer *)layer;
+
 @end
