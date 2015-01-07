@@ -7,6 +7,7 @@
 //
 
 #import "MKMapView+MBQuickKit.h"
+#import "MBXAnnotation.h"
 
 @implementation MKMapView (MBQuickKit)
 
@@ -61,9 +62,9 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     return annotations;
 }
 
-- (void)zoomToShowAnnotations:(NSArray *)annotations
+- (void)zoomToShowAnnotations:(NSArray *)annotations paddingMultiplier:(CGFloat)multipler
 {    
-    [self zoomToShowAnnotationsWhileLockingCenter:NO annotations:annotations];
+    [self zoomToShowAnnotationsWhileLockingCenter:NO annotations:annotations extraPaddingMultiplier:multipler];
 }
 
 - (void)zoomToShowAnnotationsWhileLockingCenter:(NSArray *)annotations
@@ -71,7 +72,7 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     [self zoomToShowAnnotationsWhileLockingCenter:YES annotations:annotations];
 }
 
-- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations
+- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations extraPaddingMultiplier:(CGFloat)multiplier
 {
     CLLocationCoordinate2D topLeftCoord;
     topLeftCoord.latitude = -90;
@@ -80,6 +81,12 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     CLLocationCoordinate2D bottomRightCoord;
     bottomRightCoord.latitude = 90;
     bottomRightCoord.longitude = -180;
+    
+    MBXAnnotation *center = [MBXAnnotation new];
+    center.coordinate = self.centerCoordinate;
+    if(lockCenter) {
+        annotations = [annotations arrayByAddingObject:center];
+    }
     
     for(id<MKAnnotation> annotation in annotations)
     {
@@ -100,8 +107,8 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
         region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
     }
     
-    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 2.1; // Add a little extra space on the sides
-    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 2.1; // Add a little extra space on the sides
+    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * (multiplier != 0 ? multiplier : 1); // Add a little extra space on the sides
+    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * (multiplier != 0 ? multiplier : 1); // Add a little extra space on the sides
     
     if(isnan(region.span.latitudeDelta) || isnan(region.span.longitudeDelta)) {
         return;
@@ -109,6 +116,11 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     
     region = [self regionThatFits:region];
     [self setRegion:region animated:YES];
+}
+
+- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations
+{
+    [self zoomToShowAnnotationsWhileLockingCenter:lockCenter annotations:annotations extraPaddingMultiplier:2.1];
 }
 
 @end
