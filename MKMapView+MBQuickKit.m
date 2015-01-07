@@ -67,9 +67,9 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     [self zoomToShowAnnotationsWhileLockingCenter:NO annotations:annotations extraPaddingMultiplier:multipler];
 }
 
-- (void)zoomToShowAnnotationsWhileLockingCenter:(NSArray *)annotations
+- (void)zoomToShowAnnotationsWhileLockingCenter:(NSArray *)annotations paddingMultiplier:(CGFloat)multipler
 {
-    [self zoomToShowAnnotationsWhileLockingCenter:YES annotations:annotations];
+    [self zoomToShowAnnotationsWhileLockingCenter:YES annotations:annotations paddingMultiplier:multipler];
 }
 
 - (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations extraPaddingMultiplier:(CGFloat)multiplier
@@ -118,9 +118,9 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     [self setRegion:region animated:YES];
 }
 
-- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations
+- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations paddingMultiplier:(CGFloat)multiplier
 {
-    [self zoomToShowAnnotationsWhileLockingCenter:lockCenter annotations:annotations extraPaddingMultiplier:2.1];
+    [self zoomToShowAnnotationsWhileLockingCenter:lockCenter annotations:annotations extraPaddingMultiplier:multiplier];
 }
 
 @end
