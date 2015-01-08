@@ -18,4 +18,7 @@
 
 - (BOOL)isModal;
 
+/** See http://stackoverflow.com/questions/19091737/ios-7-table-view-fail-to-auto-adjust-content-inset for purpose of this method*/
+- (void)autoAdjustScrollViewContentInsetForScrollView:(UIScrollView *)scrollView;
+
 @end

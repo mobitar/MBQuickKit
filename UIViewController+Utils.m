@@ -46,4 +46,18 @@
     return self.navigationController.viewControllers.firstObject == self;
 }
 
+- (void)autoAdjustScrollViewContentInsetForScrollView:(UIScrollView *)scrollView
+{
+    if ([self respondsToSelector:@selector(topLayoutGuide)]) {
+        UIEdgeInsets currentInsets = scrollView.contentInset;
+        scrollView.contentInset = (UIEdgeInsets){
+            .top = self.topLayoutGuide.length,
+            .bottom = currentInsets.bottom,
+            .left = currentInsets.left,
+            .right = currentInsets.right
+        };
+    }
+
+}
+
 @end
