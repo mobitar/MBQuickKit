@@ -64,7 +64,7 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
 
 - (void)zoomToShowAnnotations:(NSArray *)annotations paddingMultiplier:(CGFloat)multipler
 {    
-    [self zoomToShowAnnotationsWhileLockingCenter:NO annotations:annotations extraPaddingMultiplier:multipler];
+    [self zoomToShowAnnotationsWhileLockingCenter:NO annotations:annotations edgeInsets:UIEdgeInsetsZero extraPaddingMultiplier:multipler];
 }
 
 - (void)zoomToShowAnnotationsWhileLockingCenter:(NSArray *)annotations paddingMultiplier:(CGFloat)multipler
@@ -72,7 +72,18 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     [self zoomToShowAnnotationsWhileLockingCenter:YES annotations:annotations paddingMultiplier:multipler];
 }
 
-- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations extraPaddingMultiplier:(CGFloat)multiplier
+- (MKMapRect)MKMapRectForCoordinateRegion:(MKCoordinateRegion)region
+{
+    MKMapPoint a = MKMapPointForCoordinate(CLLocationCoordinate2DMake(
+                                                                      region.center.latitude + region.span.latitudeDelta / 2,
+                                                                      region.center.longitude - region.span.longitudeDelta / 2));
+    MKMapPoint b = MKMapPointForCoordinate(CLLocationCoordinate2DMake(
+                                                                      region.center.latitude - region.span.latitudeDelta / 2,
+                                                                      region.center.longitude + region.span.longitudeDelta / 2));
+    return MKMapRectMake(MIN(a.x,b.x), MIN(a.y,b.y), ABS(a.x-b.x), ABS(a.y-b.y));
+}
+
+- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)insets extraPaddingMultiplier:(CGFloat)multiplier
 {
     CLLocationCoordinate2D topLeftCoord;
     topLeftCoord.latitude = -90;
@@ -110,17 +121,19 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * (multiplier != 0 ? multiplier : 1); // Add a little extra space on the sides
     region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * (multiplier != 0 ? multiplier : 1); // Add a little extra space on the sides
     
+    
     if(isnan(region.span.latitudeDelta) || isnan(region.span.longitudeDelta)) {
         return;
     }
     
     region = [self regionThatFits:region];
-    [self setRegion:region animated:YES];
+    MKMapRect mapRect = [self MKMapRectForCoordinateRegion:region];
+    [self setVisibleMapRect:mapRect edgePadding:insets animated:YES];
 }
 
 - (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations paddingMultiplier:(CGFloat)multiplier
 {
-    [self zoomToShowAnnotationsWhileLockingCenter:lockCenter annotations:annotations extraPaddingMultiplier:multiplier];
+    [self zoomToShowAnnotationsWhileLockingCenter:lockCenter annotations:annotations edgeInsets:UIEdgeInsetsZero extraPaddingMultiplier:multiplier];
 }
 
 @end
