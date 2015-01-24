@@ -87,6 +87,7 @@ CGFloat UIViewGetMidY(UIView *view);
 - (void)stretchWIdthToReachEndOfSiblingView:(UIView *)siblingView offset:(CGFloat)offset;
 - (void)stretchWidthToEndOfSuperview;
 - (void)offsetSizeBy:(CGPoint)offset;
+- (BOOL)isOutOfSuperviewBoundsHorizontally;
 
 - (void)stretchHeightToReachBottomOfSuperview;
 - (void)stretchHeightToReachTopOfView:(UIView *)view;
@@ -106,7 +107,7 @@ CGFloat UIViewGetMidY(UIView *view);
 - (void)bringToFront;
 - (void)sendToBack;
 - (void)printFrame;
-- (void)printRecursiveDescription;
+//- (void)printRecursiveDescription;
 
 - (CGRect)frameInBetweenVerticalView:(UIView *)topView andView:(UIView *)bottomView;
 

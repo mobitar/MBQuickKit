@@ -29,4 +29,6 @@
 
 - (NSString *)stringByEncodingURLFormat;
 
++ (NSString *)emdashString;
+
 @end

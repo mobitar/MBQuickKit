@@ -86,6 +86,11 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     self.frame = frame;
 }
 
+- (BOOL)isOutOfSuperviewBoundsHorizontally
+{
+    return UIViewGetMaxX(self) > UIViewGetWidth(self.superview);
+}
+
 - (void)shiftBy:(CGPoint)shift
 {
     CGRect frame = self.frame;
@@ -507,10 +512,10 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     NSLog(@"%@", NSStringFromCGRect(self.frame));
 }
 
-- (void)printRecursiveDescription
-{
-    NSLog(@"%@", [self performSelector:@selector(recursiveDescription)]);
-}
+//- (void)printRecursiveDescription
+//{
+//    NSLog(@"%@", [self performSelector:@selector(recursiveDescription)]);
+//}
 
 + (id)viewFromNibNamed:(NSString*)name
 {

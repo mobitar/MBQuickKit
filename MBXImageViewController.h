@@ -12,4 +12,8 @@
 
 - (instancetype)initWithImage:(UIImage *)image;
 
+@property (nonatomic) UIColor *backgroundColor;
+
+@property (nonatomic) BOOL zoomEnabled;
+
 @end

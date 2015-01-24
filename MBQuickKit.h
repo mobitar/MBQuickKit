@@ -37,5 +37,6 @@
 #import "UIApplication+MBQuickKit.h"
 #import "UIFont+MBQuickKit.h"
 #import "CLLocation+MBQuickKit.h"
+#import "NSIndexPath+MBQuickKit.h"
 
 #define UIString(key) NSLocalizedString(key, nil)

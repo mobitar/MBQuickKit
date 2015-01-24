@@ -20,6 +20,9 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
 - (void)zoomToShowMeters:(CGFloat)meters;
 - (NSArray *)annotationsExcludingUserLocation;
 
-- (void)zoomToShowAnnotations:(NSArray *)annotations;
-- (void)zoomToShowAnnotationsWhileLockingCenter:(NSArray *)annotations;
+- (MKMapRect)MKMapRectForCoordinateRegion:(MKCoordinateRegion)region;
+
+- (void)zoomToShowAnnotations:(NSArray *)annotations paddingMultiplier:(CGFloat)multipler;
+- (void)zoomToShowAnnotationsWhileLockingCenter:(NSArray *)annotations paddingMultiplier:(CGFloat)multipler;
+- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)insets extraPaddingMultiplier:(CGFloat)multiplier;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "MKMapView+MBQuickKit.h"
+#import "MBXAnnotation.h"
 
 @implementation MKMapView (MBQuickKit)
 
@@ -61,17 +62,28 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     return annotations;
 }
 
-- (void)zoomToShowAnnotations:(NSArray *)annotations
+- (void)zoomToShowAnnotations:(NSArray *)annotations paddingMultiplier:(CGFloat)multipler
 {    
-    [self zoomToShowAnnotationsWhileLockingCenter:NO annotations:annotations];
+    [self zoomToShowAnnotationsWhileLockingCenter:NO annotations:annotations edgeInsets:UIEdgeInsetsZero extraPaddingMultiplier:multipler];
 }
 
-- (void)zoomToShowAnnotationsWhileLockingCenter:(NSArray *)annotations
+- (void)zoomToShowAnnotationsWhileLockingCenter:(NSArray *)annotations paddingMultiplier:(CGFloat)multipler
 {
-    [self zoomToShowAnnotationsWhileLockingCenter:YES annotations:annotations];
+    [self zoomToShowAnnotationsWhileLockingCenter:YES annotations:annotations paddingMultiplier:multipler];
 }
 
-- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations
+- (MKMapRect)MKMapRectForCoordinateRegion:(MKCoordinateRegion)region
+{
+    MKMapPoint a = MKMapPointForCoordinate(CLLocationCoordinate2DMake(
+                                                                      region.center.latitude + region.span.latitudeDelta / 2,
+                                                                      region.center.longitude - region.span.longitudeDelta / 2));
+    MKMapPoint b = MKMapPointForCoordinate(CLLocationCoordinate2DMake(
+                                                                      region.center.latitude - region.span.latitudeDelta / 2,
+                                                                      region.center.longitude + region.span.longitudeDelta / 2));
+    return MKMapRectMake(MIN(a.x,b.x), MIN(a.y,b.y), ABS(a.x-b.x), ABS(a.y-b.y));
+}
+
+- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)insets extraPaddingMultiplier:(CGFloat)multiplier
 {
     CLLocationCoordinate2D topLeftCoord;
     topLeftCoord.latitude = -90;
@@ -80,6 +92,12 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     CLLocationCoordinate2D bottomRightCoord;
     bottomRightCoord.latitude = 90;
     bottomRightCoord.longitude = -180;
+    
+    MBXAnnotation *center = [MBXAnnotation new];
+    center.coordinate = self.centerCoordinate;
+    if(lockCenter) {
+        annotations = [annotations arrayByAddingObject:center];
+    }
     
     for(id<MKAnnotation> annotation in annotations)
     {
@@ -100,15 +118,22 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
         region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
     }
     
-    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 2.1; // Add a little extra space on the sides
-    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 2.1; // Add a little extra space on the sides
+    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * (multiplier != 0 ? multiplier : 1); // Add a little extra space on the sides
+    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * (multiplier != 0 ? multiplier : 1); // Add a little extra space on the sides
+    
     
     if(isnan(region.span.latitudeDelta) || isnan(region.span.longitudeDelta)) {
         return;
     }
     
     region = [self regionThatFits:region];
-    [self setRegion:region animated:YES];
+    MKMapRect mapRect = [self MKMapRectForCoordinateRegion:region];
+    [self setVisibleMapRect:mapRect edgePadding:insets animated:YES];
+}
+
+- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations paddingMultiplier:(CGFloat)multiplier
+{
+    [self zoomToShowAnnotationsWhileLockingCenter:lockCenter annotations:annotations edgeInsets:UIEdgeInsetsZero extraPaddingMultiplier:multiplier];
 }
 
 @end

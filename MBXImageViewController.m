@@ -28,18 +28,25 @@
 {
     [super viewDidLoad];
     
-    self.scrollView.minimumZoomScale = 1.0;
-    self.scrollView.maximumZoomScale = 6.0;
+    if(self.zoomEnabled) {
+        self.scrollView.minimumZoomScale = 1.0;
+        self.scrollView.maximumZoomScale = 6.0;
+    }
     
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = self.view.backgroundColor ?: [UIColor blackColor];
     
     self.imageView.image = self.image;
     
-    [self.imageView centerInSuperview];
-    
-    self.scrollView.contentSize = self.imageView.size;
     
     [self configureNavBar];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self.imageView trailVerticallyTo:self.navigationController.navigationBar andFitInView:self.view];
+    [self.imageView centerInSuperview];
+    self.scrollView.contentSize = self.imageView.size;
 }
 
 - (void)configureNavBar
@@ -56,7 +63,11 @@
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-    return self.imageView;
+    if(self.zoomEnabled) {
+        return self.imageView;
+    }
+    
+    return nil;
 }
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
