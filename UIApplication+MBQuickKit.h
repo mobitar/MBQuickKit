@@ -14,4 +14,6 @@
 
 - (void)openAppStoreToReviewsTabForAppId:(NSString *)appId;
 
+- (NSString *)versionString;
+
 @end
