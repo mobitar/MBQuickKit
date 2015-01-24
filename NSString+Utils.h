@@ -25,6 +25,8 @@
 
 - (BOOL)isValidURL;
 
+- (BOOL)isValidEmail;
+
 - (NSString *)stringByDecodingURLFormat;
 
 - (NSString *)stringByEncodingURLFormat;
