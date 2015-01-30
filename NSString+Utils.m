@@ -43,6 +43,12 @@
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
+- (BOOL)containsOnlyLetters
+{
+    NSCharacterSet *set = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"] invertedSet];
+    return [self rangeOfCharacterFromSet:set].location == NSNotFound;
+}
+
 - (BOOL)isValidEmail
 {
     NSString *emailRegex =

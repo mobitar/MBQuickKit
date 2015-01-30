@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PWLocationSuggestion.h"
 
 @interface MBXAnnotation : NSObject <MKAnnotation>
 
