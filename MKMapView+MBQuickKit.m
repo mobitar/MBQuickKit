@@ -52,9 +52,14 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
 
 - (NSArray *)annotationsExcludingUserLocation
 {
+    return [self annotationsExcludingUserLocationAnd:nil];
+}
+
+- (NSArray *)annotationsExcludingUserLocationAnd:(NSArray *)annotationsToExclude
+{
     NSMutableArray *annotations = [self.annotations mutableCopy];
     for(id<MKAnnotation> annotation in self.annotations) {
-        if([annotation isKindOfClass:[MKUserLocation class]]) {
+        if([annotation isKindOfClass:[MKUserLocation class]] || [annotationsToExclude containsObject:annotation]) {
             [annotations removeObject:annotation];
         }
     }
