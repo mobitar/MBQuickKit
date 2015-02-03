@@ -300,6 +300,11 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
 
 - (void)centerSubviewsHorizontally:(NSArray *)subviews offsetPerView:(NSArray *)spacing
 {
+    [self centerSubviewsHorizontally:subviews offsetPerView:spacing inRect:self.bounds];
+}
+
+- (void)centerSubviewsHorizontally:(NSArray *)subviews offsetPerView:(NSArray *)spacing inRect:(CGRect)rect
+{
     if(spacing.count) {
         NSAssert(spacing.count == subviews.count, @"Subviews and spacing arrays should match in count");
     }
@@ -310,7 +315,7 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
         totalWidth += CGRectGetWidth(view.frame) + offset.floatValue;
     }];
     
-    __block CGFloat currentX = CGRectGetWidth(self.frame)/2.0 - totalWidth/2.0;
+    __block CGFloat currentX = rect.origin.x + CGRectGetWidth(rect)/2.0 - totalWidth/2.0;
     [subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
         NSNumber *offset = [spacing safeObjectAtIndex:idx];
         [view setXOrigin:offset.floatValue + currentX];

@@ -39,4 +39,6 @@
 - (void)proceedToPageHorizontally:(NSInteger)page animated:(BOOL)animated;
 - (void)proceedToPageVertically:(NSInteger)page animated:(BOOL)animated;
 
+- (BOOL)isAtTop;
+- (BOOL)isAtBottom;
 @end
