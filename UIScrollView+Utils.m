@@ -77,7 +77,7 @@
 
 - (void)scrollToBottomAnimated:(BOOL)animated
 {
-    [self setContentOffset:CGPointMake(self.contentOffset.x, self.contentSize.height - self.bounds.size.height + self.contentInset.bottom) animated:animated];
+    [self setContentOffset:CGPointMake(self.contentOffset.x, [self verticalOffsetForBottom]) animated:animated];
 }
 
 - (NSInteger)currentPageHorizontally
