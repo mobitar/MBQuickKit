@@ -35,4 +35,6 @@
 
 + (NSString *)emdashString;
 
+- (NSArray *)sentences;
+
 @end
