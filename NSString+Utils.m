@@ -100,4 +100,13 @@
     return [NSString stringWithFormat: @"%C", (unichar)0x2014];
 }
 
+- (NSArray *)sentences
+{
+    NSMutableArray *results = [NSMutableArray array];
+    [self enumerateSubstringsInRange:NSMakeRange(0, [self length]) options:NSStringEnumerationBySentences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+        [results addObject:substring];
+    }];
+    return results;
+}
+
 @end
