@@ -394,13 +394,13 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     [self setSize:self.superview.frame.size];
 }
 
-- (void)sizeEqualToSuperviewWithOffset:(CGPoint)offset
+- (void)sizeEqualToSuperviewWithOffset:(CGSize)offset
 {
     NSAssert(self.superview, @"Superview cannot be nil");
     
     CGSize superSize = self.superview.frame.size;
-    superSize.width += offset.x;
-    superSize.height += offset.y;
+    superSize.width += offset.width;
+    superSize.height += offset.height;
     [self setSize:superSize];
 }
 
