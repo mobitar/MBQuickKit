@@ -39,5 +39,6 @@
 #import "CLLocation+MBQuickKit.h"
 #import "NSIndexPath+MBQuickKit.h"
 #import "UIPageViewController+MBQuickKit.h"
+#import "UIWindow+MBQuickKit.h"
 
 #define UIString(key) NSLocalizedString(key, nil)
