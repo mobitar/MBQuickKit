@@ -60,7 +60,7 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return [[NSDate date] dateBySubtractingDays:days];
 }
 
-+ (NSDate *) dateTomorrow
++ (NSDate *)dateTomorrow
 {
     return [NSDate dateWithDaysFromNow:1];
 }
@@ -82,6 +82,28 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
 - (BOOL)isTomorrow
 {
     return [self isEqualToDateIgnoringTime:[NSDate dateTomorrow]];
+}
+
+- (BOOL)isLessThan:(NSDate *)date
+{
+    return [self compare:date] == NSOrderedAscending;
+}
+
+- (BOOL)isLessThanOrEqualTo:(NSDate *)date
+{
+    NSComparisonResult result = [self compare:date];
+    return result == NSOrderedAscending || result == NSOrderedSame;
+}
+
+- (BOOL)isGreaterThan:(NSDate *)date
+{
+    return [self compare:date] == NSOrderedDescending;
+}
+
+- (BOOL)isGreaterThanOrEqualTo:(NSDate *)date
+{
+    NSComparisonResult result = [self compare:date];
+    return result == NSOrderedDescending || result == NSOrderedSame;
 }
 
 - (BOOL)isWithinRangeOfDate:(NSDate *)fromDate andDate:(NSDate *)toDate
@@ -325,6 +347,7 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     NSInteger hoursFromGMT   = [[GMTString substringToIndex:3] intValue];
     NSInteger minutesFromGMT = [[GMTString substringFromIndex:3] intValue];
     NSInteger secondsFromGMT = (hoursFromGMT * 60 * 60) + (minutesFromGMT * 60);
-    return [NSTimeZone timeZoneForSecondsFromGMT:secondsFromGMT * directionVector];}
+    return [NSTimeZone timeZoneForSecondsFromGMT:secondsFromGMT * directionVector];
+}
 
 @end

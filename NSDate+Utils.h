@@ -16,6 +16,11 @@
 - (BOOL) isToday;
 - (BOOL) isTomorrow;
 
+- (BOOL)isLessThan:(NSDate *)date;
+- (BOOL)isGreaterThan:(NSDate *)date;
+- (BOOL)isLessThanOrEqualTo:(NSDate *)date;
+- (BOOL)isGreaterThanOrEqualTo:(NSDate *)date;
+
 - (NSDateComponents *)componentsWithTimeZone:(NSTimeZone *)timeZone;
 
 - (NSInteger)yearWithTimeZone:(NSTimeZone *)timezone;
