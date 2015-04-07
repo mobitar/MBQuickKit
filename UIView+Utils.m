@@ -411,6 +411,13 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     [self sizeWidthEqualToView:self.superview];
 }
 
+- (void)sizeWidthEqualToSuperviewWithOffset:(CGFloat)offset
+{
+    NSAssert(self.superview, @"Superview cannot be nil");
+    
+    [self setWidth:UIViewGetWidth(self.superview) + offset];
+}
+
 - (void)sizeWidthEqualToView:(UIView *)view
 {
     [self setWidth:UIViewGetWidth(view)];
