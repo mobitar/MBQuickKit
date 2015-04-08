@@ -13,8 +13,8 @@
 @property (nonatomic) id identifier;
 
 @property (nonatomic) NSMutableArray *rows;
-
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic) Class cellClass;
 
 + (instancetype)sectionWithIdentifier:(id)identifier title:(NSString *)title rows:(NSArray *)rows;
 + (instancetype)sectionWithIdentifier:(id)identifier title:(NSString *)title rowsBlock:(NSArray *(^)())rows;

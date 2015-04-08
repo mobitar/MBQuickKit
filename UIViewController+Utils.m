@@ -57,7 +57,13 @@
             .right = currentInsets.right
         };
     }
+}
 
+- (void)adjustNavBarContentInsetForScrollView:(UIScrollView *)scrollView
+{
+    [scrollView setTopInset:UIViewGetMaxY(self.navigationController.navigationBar)];
+    
+    [scrollView setContentOffset:CGPointMake(0, -scrollView.contentInset.top)];
 }
 
 @end

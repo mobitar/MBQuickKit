@@ -463,9 +463,9 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     [self setHeight:UIViewGetMaxY(view) - UIViewGetMinY(self)];
 }
 
-- (void)offsetSizeBy:(CGPoint)offset
+- (void)offsetSizeBy:(CGSize)offset
 {
-    [self setSize:CGSizeMake(self.size.width + offset.x, self.size.height + offset.y)];
+    [self setSize:CGSizeMake(self.size.width + offset.width, self.size.height + offset.height)];
 }
 
 - (void)moveToBottomOfSuperview
