@@ -39,7 +39,7 @@
     
     for(NSURL *url in self.urls) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.imageSize.width, self.imageSize.height)];
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.contentMode = self.imageViewContentMode;
         [imageView sd_setImageWithURL:url];
         [self.imageViews addObject:imageView];
         [self.scrollView addSubview:imageView];

@@ -11,13 +11,10 @@
 @interface MBXScrollingImagesView : UIView
 
 @property (nonatomic) NSArray *urls;
-
 @property (nonatomic) CGSize imageSize;
-
+@property (nonatomic) UIViewContentMode imageViewContentMode;
 @property (nonatomic) CGFloat horizontalSpaceBetweenImages;
-
 @property (nonatomic) UIEdgeInsets contentInset;
-
 @property (nonatomic) BOOL showScrollers;
 
 @end
