@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MBXScrollingImagesViewDelegate <NSObject>
+
+- (void)scrollingImagesViewDidSelectImageAtIndex:(NSInteger)index;
+
+@end
+
 @interface MBXScrollingImagesView : UIView
 
 @property (nonatomic) NSArray *urls;
@@ -16,5 +22,5 @@
 @property (nonatomic) CGFloat horizontalSpaceBetweenImages;
 @property (nonatomic) UIEdgeInsets contentInset;
 @property (nonatomic) BOOL showScrollers;
-
+@property (nonatomic, weak) id<MBXScrollingImagesViewDelegate> delegate;
 @end

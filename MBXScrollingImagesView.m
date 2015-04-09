@@ -39,6 +39,9 @@
     
     for(NSURL *url in self.urls) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.imageSize.width, self.imageSize.height)];
+        imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureDidRecognize:)];
+        [imageView addGestureRecognizer:tapGesture];
         imageView.contentMode = self.imageViewContentMode;
         [imageView sd_setImageWithURL:url];
         [self.imageViews addObject:imageView];
@@ -71,6 +74,11 @@
     self.scrollView.contentInset = self.contentInset;
     
     [self.scrollView setContentOffset:CGPointMake(-self.contentInset.left, 0)];
+}
+
+- (void)tapGestureDidRecognize:(UITapGestureRecognizer *)gesture
+{
+    [self.delegate scrollingImagesViewDidSelectImageAtIndex:[self.imageViews indexOfObject:gesture.view]];
 }
 
 @end
