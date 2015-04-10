@@ -7,6 +7,7 @@
 //
 
 #import "MBXGradientView.h"
+#import "MBQuickKit.h"
 
 @implementation MBXGradientView
 {

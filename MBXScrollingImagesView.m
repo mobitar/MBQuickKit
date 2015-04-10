@@ -8,6 +8,7 @@
 
 #import "MBXScrollingImagesView.h"
 #import "UIImageView+WebCache.h"
+#import "MBQuickKit.h"
 
 @interface MBXScrollingImagesView ()
 @property (nonatomic) UIScrollView *scrollView;

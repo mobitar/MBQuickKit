@@ -7,6 +7,7 @@
 //
 
 #import "MBXAnnotation.h"
+#import "MBQuickKit.h"
 
 @implementation MBXAnnotation
 

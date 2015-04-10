@@ -7,6 +7,7 @@
 //
 
 #import "MBXImageViewController.h"
+#import "MBQuickKit.h"
 
 @interface MBXImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
