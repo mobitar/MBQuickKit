@@ -16,4 +16,6 @@
 
 @property (nonatomic) BOOL zoomEnabled;
 
+@property (nonatomic) UIViewContentMode imageViewContentMode;
+
 @end

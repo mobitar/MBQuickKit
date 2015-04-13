@@ -37,7 +37,7 @@
     self.view.backgroundColor = self.view.backgroundColor ?: [UIColor blackColor];
     
     self.imageView.image = self.image;
-    
+    self.imageView.contentMode = self.imageViewContentMode;
     
     [self configureNavBar];
 }

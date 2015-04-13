@@ -14,6 +14,7 @@
 - (NSString *)stringByRemovingAllButNumbers;
 
 - (CGFloat)heightWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
+- (CGFloat)heightWithFont:(UIFont *)font lineHeight:(CGFloat)lineHeight constrainedToSize:(CGSize)size;
 
 - (CGSize)sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
 
