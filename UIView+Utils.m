@@ -128,11 +128,16 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     }
 }
 
-- (void)centerHorizontallyInView:(UIView *)view
+- (void)centerHorizontallyInView:(UIView *)view withOffset:(CGFloat)offset
 {
     CGRect frame = self.frame;
-    frame.origin.x = CGRectGetWidth(view.frame)/2.0 - CGRectGetWidth(frame)/2.0;
+    frame.origin.x = CGRectGetWidth(view.frame)/2.0 - CGRectGetWidth(frame)/2.0 + offset;
     self.frame = frame;
+}
+
+- (void)centerHorizontallyInView:(UIView *)view
+{
+    [self centerHorizontallyInView:view withOffset:0];
 }
 
 - (void)setWidth:(CGFloat)width
