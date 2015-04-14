@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 ParkWhiz. All rights reserved.
 //
 
-CGFloat const MBXBaseScreenWidth = 414; // 6 Plus width
-
 #import "UIFont+MBQuickKit.h"
+#import "MBQuickKit.h"
+
+CGFloat const MBXBaseScreenWidth = 414; // 6 Plus width
 
 @implementation UIFont (MBQuickKit)
 

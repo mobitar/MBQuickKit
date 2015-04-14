@@ -7,6 +7,7 @@
 //
 
 #import "MBXImageViewController.h"
+#import "MBQuickKit.h"
 
 @interface MBXImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -36,7 +37,7 @@
     self.view.backgroundColor = self.view.backgroundColor ?: [UIColor blackColor];
     
     self.imageView.image = self.image;
-    
+    self.imageView.contentMode = self.imageViewContentMode;
     
     [self configureNavBar];
 }

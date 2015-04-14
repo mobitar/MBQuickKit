@@ -22,6 +22,20 @@
                            attributes:@{NSFontAttributeName : font} context:nil].size.height;
 }
 
+- (CGFloat)heightWithFont:(UIFont *)font lineHeight:(CGFloat)lineHeight constrainedToSize:(CGSize)size
+{
+    CGRect rect = [self boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:@{NSFontAttributeName : font} context:nil];
+    
+    CGFloat textHeight = rect.size.height;
+    
+    // account for lineHeight
+    NSInteger numberOfLines = textHeight/(font.lineHeight);
+    textHeight += (lineHeight * (numberOfLines - 1));
+    
+    return textHeight;
+}
+
 - (CGSize)sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size
 {
     return [self boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin

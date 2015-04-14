@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+Utils.h"
+#import "MBQuickKit.h"
 
 @implementation UIViewController (Utils)
 

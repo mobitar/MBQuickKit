@@ -7,6 +7,7 @@
 //
 
 #import "MBXTriangleView.h"
+#import "MBQuickKit.h"
 
 @implementation MBXTriangleView
 

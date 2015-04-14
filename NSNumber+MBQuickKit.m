@@ -7,6 +7,7 @@
 //
 
 #import "NSNumber+MBQuickKit.h"
+#import "MBQuickKit.h"
 
 @implementation NSNumber (MBQuickKit)
 

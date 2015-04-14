@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface NSDate (Utils)
 
 - (BOOL)isWithinRangeOfDate:(NSDate *)fromDate andDate:(NSDate *)toDate;
 - (BOOL)isInSameDayAsDate:(NSDate *)otherDate timezone:(NSTimeZone *)timezone;
 
-- (BOOL) isToday;
-- (BOOL) isTomorrow;
+- (BOOL)isToday;
+- (BOOL)isTomorrow;
 
 - (BOOL)isLessThan:(NSDate *)date;
 - (BOOL)isGreaterThan:(NSDate *)date;
@@ -43,6 +44,8 @@
 - (NSDate *)dateByAddingHours:(CGFloat)numberOfHours;
 - (NSDate *)dateByAddingYears:(NSInteger)years;
 - (NSDate *)dateByAddingMonths:(NSInteger)months;
+- (NSDate *)dateByAddingDays: (NSInteger) dDays;
+- (NSDate *)dateBySubtractingDays:(NSInteger)dDays;
 
 - (NSDate *)dateByApplyingTimeOfDate:(NSDate *)sourceDate inTimeZone:(NSTimeZone *)timeZone;
 

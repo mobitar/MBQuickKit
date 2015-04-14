@@ -7,6 +7,7 @@
 //
 
 #import "UIScrollView+Utils.h"
+#import "MBQuickKit.h"
 
 @implementation UIScrollView (Utils)
 

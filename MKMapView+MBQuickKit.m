@@ -8,6 +8,7 @@
 
 #import "MKMapView+MBQuickKit.h"
 #import "MBXAnnotation.h"
+#import "MBQuickKit.h"
 
 @implementation MKMapView (MBQuickKit)
 

@@ -7,6 +7,7 @@
 //
 
 #import "NSIndexPath+MBQuickKit.h"
+#import "MBQuickKit.h"
 
 @implementation NSIndexPath (MBQuickKit)
 

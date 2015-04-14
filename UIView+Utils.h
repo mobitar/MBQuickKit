@@ -85,15 +85,16 @@ CGFloat UIViewGetMidY(UIView *view);
 - (void)sizeEqualToSuperviewWithOffset:(CGSize)offset;
 - (void)sizeWidthEqualToView:(UIView *)view;
 - (void)sizeEqualToSuperview;
-- (void)stretchWidthToReachView:(UIView *)view offset:(CGFloat)offset;
+- (void)stretchWidthToReachBeginningOfSiblingView:(UIView *)view offset:(CGFloat)offset;
 - (void)stretchWidthToEndOfSuperviewWithOffset:(CGFloat)offset;
-- (void)stretchWIdthToReachEndOfSiblingView:(UIView *)siblingView offset:(CGFloat)offset;
+- (void)stretchWidthToReachEndOfSiblingView:(UIView *)siblingView offset:(CGFloat)offset;
 - (void)stretchWidthToEndOfSuperview;
 - (void)offsetSizeBy:(CGSize)offset;
 - (BOOL)isOutOfSuperviewBoundsHorizontally;
 
 - (void)stretchHeightToReachBottomOfSuperview;
 - (void)stretchHeightToReachTopOfView:(UIView *)view;
+- (void)stretchHeightToReachTopOfView:(UIView *)view withOffset:(CGFloat)offset;
 - (void)stretchHeightToReachBottomOfView:(UIView *)view;
 
 - (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom;

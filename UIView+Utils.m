@@ -433,12 +433,12 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     [self setWidth:[UIScreen mainScreen].bounds.size.width];
 }
 
-- (void)stretchWidthToReachView:(UIView *)view offset:(CGFloat)offset
+- (void)stretchWidthToReachBeginningOfSiblingView:(UIView *)view offset:(CGFloat)offset
 {
     [self setWidth:UIViewGetMinX(view) - UIViewGetMinX(self) + offset];
 }
 
-- (void)stretchWIdthToReachEndOfSiblingView:(UIView *)siblingView offset:(CGFloat)offset
+- (void)stretchWidthToReachEndOfSiblingView:(UIView *)siblingView offset:(CGFloat)offset
 {
     [self setWidth:UIViewGetMaxX(siblingView) - UIViewGetMinX(self) + offset];
 }
@@ -460,7 +460,12 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
 
 - (void)stretchHeightToReachTopOfView:(UIView *)view
 {
-    [self setHeight:UIViewGetMinY(view) - UIViewGetMinY(self)];
+    [self stretchHeightToReachTopOfView:view withOffset:0];
+}
+
+- (void)stretchHeightToReachTopOfView:(UIView *)view withOffset:(CGFloat)offset
+{
+    [self setHeight:UIViewGetMinY(view) - UIViewGetMinY(self) + offset];
 }
 
 - (void)stretchHeightToReachBottomOfView:(UIView *)view

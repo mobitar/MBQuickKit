@@ -7,6 +7,7 @@
 //
 
 #import "NSDate+Utils.h"
+#import "MBQuickKit.h"
 
 static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekOfYear | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal);
 
@@ -21,7 +22,7 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return sharedCalendar;
 }
 
-- (NSDate *) dateByAddingDays: (NSInteger) dDays
+- (NSDate *)dateByAddingDays: (NSInteger) dDays
 {
     NSDateComponents *dateComponents = [NSDateComponents new];
     [dateComponents setDay:dDays];

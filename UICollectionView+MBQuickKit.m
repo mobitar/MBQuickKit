@@ -25,4 +25,15 @@
     return [self dequeueReusableCellWithReuseIdentifier:NSStringFromClass(aClass) forIndexPath:indexPath];
 }
 
+- (CGFloat)leftInsetForCenteredSection:(NSInteger)section layout:(UICollectionViewLayout *)layout
+{
+    // Add inset to the collection view if there are not enough cells to fill the width.
+    CGFloat cellSpacing = ((UICollectionViewFlowLayout *) layout).minimumInteritemSpacing;
+    CGFloat cellWidth = ((UICollectionViewFlowLayout *) layout).itemSize.width;
+    NSInteger cellCount = [self numberOfItemsInSection:section];
+    CGFloat inset = (self.bounds.size.width - (cellCount * (cellWidth + cellSpacing))) * 0.5;
+    inset = MAX(inset, 0.0);
+    return inset;
+}
+
 @end
