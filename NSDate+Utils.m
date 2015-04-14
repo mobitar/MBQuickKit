@@ -22,7 +22,7 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return sharedCalendar;
 }
 
-- (NSDate *) dateByAddingDays: (NSInteger) dDays
+- (NSDate *)dateByAddingDays: (NSInteger) dDays
 {
     NSDateComponents *dateComponents = [NSDateComponents new];
     [dateComponents setDay:dDays];
