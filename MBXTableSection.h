@@ -21,6 +21,10 @@
 
 @end
 
+
+
+
+
 /** MBXRow Definition */
 
 @interface MBXRow : NSObject
@@ -29,4 +33,19 @@
 
 + (instancetype)rowWithIdentifier:(id)identifier;
 
+@end
+
+
+
+
+
+
+
+
+/** MBXIndexPath Definition */
+
+@interface MBXIndexPath : NSObject
+@property (nonatomic) MBXTableSection *section;
+@property (nonatomic) MBXRow *row;
++ (instancetype)indexPathForRow:(MBXRow *)row section:(MBXTableSection *)section;
 @end

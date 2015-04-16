@@ -27,6 +27,19 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     return [[[CLLocation alloc] initWithCoordinate:coord1] distanceFromLocation:[[CLLocation alloc] initWithCoordinate:coord2]];
 }
 
+- (BOOL)regionDidChangeFromUserInteraction
+{
+    UIView *view = self.subviews.firstObject;
+    //	Look through gesture recognizers to determine whether this region change is from user interaction
+    for(UIGestureRecognizer *recognizer in view.gestureRecognizers) {
+        if(recognizer.state == UIGestureRecognizerStateBegan) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 - (void)zoomToStreetLevel
 {
     [self zoomToShowMeters:500];

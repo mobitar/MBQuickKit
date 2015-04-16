@@ -34,6 +34,13 @@
 
 @end
 
+
+
+
+
+
+
+
 @implementation MBXRow
 
 + (instancetype)rowWithIdentifier:(id)identifier
@@ -41,6 +48,29 @@
     MBXRow *row = [MBXRow new];
     row.identifier = identifier;
     return row;
+}
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
+@implementation MBXIndexPath
+
++ (instancetype)indexPathForRow:(MBXRow *)row section:(MBXTableSection *)section
+{
+    MBXIndexPath *indexPath = [MBXIndexPath new];
+    indexPath.row = row;
+    indexPath.section = section;
+    return indexPath;
 }
 
 @end
