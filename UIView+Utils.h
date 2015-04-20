@@ -124,11 +124,13 @@ CGFloat UIViewGetMidY(UIView *view);
 
 - (void)addSubviewWithFadeAnimation:(UIView *)view;
 - (void)removeFromSuperviewWithFadeAnimation;
+- (void)layoutAnimatedWithDuration:(CGFloat)duration completion:(void(^)())completion;
 
 #pragma mark - Misc
 
 - (void)makeCircular;
 - (void)addShadow;
 - (UIView *)nextResponderBySearchingSuperviewHeirarchyVertically;
+
 
 @end

@@ -624,4 +624,16 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     return closestView;
 }
 
+- (void)layoutAnimatedWithDuration:(CGFloat)duration completion:(void(^)())completion
+{
+    [UIView animateWithDuration:duration animations:^{
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        if(completion) {
+            completion();
+        }
+    }];
+}
+
 @end
