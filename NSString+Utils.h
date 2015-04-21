@@ -38,4 +38,6 @@
 
 - (NSArray *)sentences;
 
++ (NSString *)properlyPluralizedNounForNoun:(NSString *)noun pluralizationSuffix:(NSString *)suffix count:(CGFloat)count;
+
 @end

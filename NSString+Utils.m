@@ -123,4 +123,13 @@
     return results;
 }
 
++ (NSString *)properlyPluralizedNounForNoun:(NSString *)noun pluralizationSuffix:(NSString *)suffix count:(CGFloat)count
+{
+    if(count == 1) {
+        return noun;
+    } else {
+        return [noun stringByAppendingString:suffix];
+    }
+}
+
 @end
