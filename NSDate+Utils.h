@@ -22,6 +22,9 @@
 - (BOOL)isLessThanOrEqualTo:(NSDate *)date;
 - (BOOL)isGreaterThanOrEqualTo:(NSDate *)date;
 
+- (BOOL)isInFuture;
+- (BOOL)isInPast;
+
 - (NSDateComponents *)componentsWithTimeZone:(NSTimeZone *)timeZone;
 
 - (NSInteger)yearWithTimeZone:(NSTimeZone *)timezone;

@@ -85,6 +85,16 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return [self isEqualToDateIgnoringTime:[NSDate dateTomorrow]];
 }
 
+- (BOOL)isInFuture
+{
+    return [self isGreaterThan:[NSDate date]];
+}
+
+- (BOOL)isInPast
+{
+    return [self isLessThan:[NSDate date]];
+}
+
 - (BOOL)isLessThan:(NSDate *)date
 {
     return [self compare:date] == NSOrderedAscending;
