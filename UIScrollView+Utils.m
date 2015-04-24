@@ -81,6 +81,13 @@
     [self setContentOffset:CGPointMake(self.contentOffset.x, [self verticalOffsetForBottom]) animated:animated];
 }
 
+- (void)scrollToBottomWithAnimationDuration:(CGFloat)duration
+{
+    [UIView animateWithDuration:duration animations:^{
+        [self setContentOffset:CGPointMake(self.contentOffset.x, [self verticalOffsetForBottom]) animated:NO];
+    }];
+}
+
 - (NSInteger)currentPageHorizontally
 {
     return self.contentOffset.x / self.bounds.size.width;

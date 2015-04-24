@@ -27,6 +27,7 @@
 - (void)setBottomInset:(CGFloat)bottomInset;
 
 - (void)scrollToBottomAnimated:(BOOL)animated;
+- (void)scrollToBottomWithAnimationDuration:(CGFloat)duration;
 
 - (void)sizeEqualToContent;
 

@@ -64,4 +64,19 @@ static CGFloat const metersInMile = 1609.34;
     return @(self.floatValue * metersInMile);
 }
 
+- (NSString *)minimalDollarString
+{
+    CGFloat priceToUse = self.floatValue;
+    int price = priceToUse;
+    CGFloat decimal = priceToUse - price;
+    BOOL hasDecimal = decimal > 0;
+    NSString *priceText = nil;
+    if(hasDecimal) {
+        priceText = [NSString stringWithFormat:@"$%.2f", priceToUse];
+    } else {
+        priceText = [NSString stringWithFormat:@"$%.0f", priceToUse];
+    }
+    return priceText;
+}
+
 @end

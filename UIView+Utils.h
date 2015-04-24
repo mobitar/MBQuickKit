@@ -60,6 +60,7 @@ CGFloat UIViewGetMidY(UIView *view);
 - (void)centerHorizontallyInRect:(CGRect)rect;
 - (void)centerHorizontallyBetweenView:(UIView *)leftView andView:(UIView *)rightView;
 - (void)centerInSuperview;
+- (void)centerWithRespectToView:(UIView *)view;
 - (void)centerVerticallyInSuperview;
 - (void)centerVerticallyInSuperviewWithOffset:(CGFloat)offset;
 - (void)centerVerticallyWithRespectToView:(UIView *)wrtView withOffset:(CGFloat)offset;

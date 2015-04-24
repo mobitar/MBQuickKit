@@ -207,6 +207,12 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     [self centerVerticallyInView:self.superview];
 }
 
+- (void)centerWithRespectToView:(UIView *)view
+{
+    [self centerHorizontallyInView:view];
+    [self centerVerticallyInView:view];
+}
+
 - (void)centerHorizontallyInSuperview
 {
     NSAssert(self.superview, nil);
