@@ -454,6 +454,11 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     [self stretchWidthToEndOfSuperviewWithOffset:0];
 }
 
+- (void)stretchWidthToReachPoint:(CGFloat)x
+{
+    [self setWidth:x - UIViewGetMinX(self)];
+}
+
 - (void)stretchWidthToEndOfSuperviewWithOffset:(CGFloat)offset
 {
     [self setWidth:UIViewGetWidth(self.superview) - UIViewGetMinX(self) + offset];
