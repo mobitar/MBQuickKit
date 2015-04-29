@@ -40,22 +40,22 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     return NO;
 }
 
-- (void)zoomToStreetLevel
+- (void)zoomToStreetLevelAnimated:(BOOL)animated
 {
-    [self zoomToShowMeters:500];
+    [self zoomToShowMeters:500 animated:animated];
 }
 
-- (void)zoomToShowMiles:(CGFloat)miles
+- (void)zoomToShowMiles:(CGFloat)miles animated:(BOOL)animated
 {
     CGFloat meters = [@(miles) milesToMeters].floatValue;
-    [self zoomToShowMeters:meters];
+    [self zoomToShowMeters:meters animated:animated];
 }
 
-- (void)zoomToShowMeters:(CGFloat)meters
+- (void)zoomToShowMeters:(CGFloat)meters animated:(BOOL)animated
 {
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.centerCoordinate, meters, meters);
     MKCoordinateRegion adjustedRegion = [self regionThatFits:viewRegion];
-    [self setRegion:adjustedRegion animated:YES];
+    [self setRegion:adjustedRegion animated:animated];
 }
 
 - (CLLocation *)centerLocation
@@ -81,16 +81,6 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     return annotations;
 }
 
-- (void)zoomToShowAnnotations:(NSArray *)annotations paddingMultiplier:(CGFloat)multipler
-{    
-    [self zoomToShowAnnotationsWhileLockingCenter:NO annotations:annotations edgeInsets:UIEdgeInsetsZero extraPaddingMultiplier:multipler];
-}
-
-- (void)zoomToShowAnnotationsWhileLockingCenter:(NSArray *)annotations paddingMultiplier:(CGFloat)multipler
-{
-    [self zoomToShowAnnotationsWhileLockingCenter:YES annotations:annotations paddingMultiplier:multipler];
-}
-
 - (MKMapRect)MKMapRectForCoordinateRegion:(MKCoordinateRegion)region
 {
     MKMapPoint a = MKMapPointForCoordinate(CLLocationCoordinate2DMake(
@@ -102,57 +92,23 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     return MKMapRectMake(MIN(a.x,b.x), MIN(a.y,b.y), ABS(a.x-b.x), ABS(a.y-b.y));
 }
 
-- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)insets extraPaddingMultiplier:(CGFloat)multiplier
-{
-    CLLocationCoordinate2D topLeftCoord;
-    topLeftCoord.latitude = -90;
-    topLeftCoord.longitude = 180;
-    
-    CLLocationCoordinate2D bottomRightCoord;
-    bottomRightCoord.latitude = 90;
-    bottomRightCoord.longitude = -180;
-    
-    MBXAnnotation *center = [MBXAnnotation new];
-    center.coordinate = self.centerCoordinate;
-    if(lockCenter) {
-        annotations = [annotations arrayByAddingObject:center];
-    }
-    
-    for(id<MKAnnotation> annotation in annotations)
-    {
-        topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
-        topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
-        
-        bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
-        bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
-    }
-    
-    MKCoordinateRegion region;
-    
-    if(lockCenter) {
-        region.center.latitude = self.centerCoordinate.latitude;
-        region.center.longitude = self.centerCoordinate.longitude;
-    } else  {
-        region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
-        region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
-    }
-    
-    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * (multiplier != 0 ? multiplier : 1); // Add a little extra space on the sides
-    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * (multiplier != 0 ? multiplier : 1); // Add a little extra space on the sides
-    
-    
-    if(isnan(region.span.latitudeDelta) || isnan(region.span.longitudeDelta)) {
-        return;
-    }
-    
-    region = [self regionThatFits:region];
-    MKMapRect mapRect = [self MKMapRectForCoordinateRegion:region];
-    [self setVisibleMapRect:mapRect edgePadding:insets animated:YES];
-}
 
-- (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations paddingMultiplier:(CGFloat)multiplier
+
+- (void)zoomToShowAnnotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)insets
 {
-    [self zoomToShowAnnotationsWhileLockingCenter:lockCenter annotations:annotations edgeInsets:UIEdgeInsetsZero extraPaddingMultiplier:multiplier];
+    MKMapRect currentMapRect = [self visibleMapRect];
+    
+    MKMapRect mapRect = MKMapRectNull;
+    
+    for (id<MKAnnotation> annotation in annotations) {
+        MKMapPoint p = MKMapPointForCoordinate([annotation coordinate]);
+        mapRect = MKMapRectUnion(mapRect, MKMapRectMake(p.x, p.y, 0, 0));
+    }
+    
+    mapRect.size.width = currentMapRect.size.width;
+    mapRect.origin.x = currentMapRect.origin.x;
+    
+    [self setVisibleMapRect:mapRect edgePadding:insets animated:YES];
 }
 
 @end
