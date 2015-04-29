@@ -227,6 +227,15 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     self.frame = frame;
 }
 
+- (void)centerInRect:(CGRect)rect
+{
+    CGRect frame = self.frame;
+    frame.origin.x = rect.origin.x + CGRectGetWidth(rect)/2.0 - CGRectGetWidth(frame)/2.0;
+    frame.origin.y = rect.origin.y + CGRectGetHeight(rect)/2.0 - CGRectGetHeight(frame)/2.0;
+    self.frame = frame;
+}
+
+
 - (void)centerVerticallyInView:(UIView *)view
 {
     [self centerVerticallyInRect:view.bounds];
