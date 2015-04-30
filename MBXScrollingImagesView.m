@@ -48,6 +48,8 @@
         [self.imageViews addObject:imageView];
         [self.scrollView addSubview:imageView];
     }
+    
+    [self layoutImageViews];
 }
 
 - (void)layoutImageViews
