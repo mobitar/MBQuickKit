@@ -24,4 +24,31 @@
     return jsonDict;
 }
 
+- (NSString *)stringFromQueryComponents
+{
+    NSString *result = nil;
+    for(__strong NSString *key in [self allKeys])
+    {
+        key = [key stringByEncodingURLFormat];
+        NSArray *allValues = [self objectForKey:key];
+        if([allValues isKindOfClass:[NSArray class]])
+            for(__strong NSString *value in allValues)
+            {
+                value = [[value description] stringByEncodingURLFormat];
+                if(!result)
+                    result = [NSString stringWithFormat:@"%@=%@",key,value];
+                else
+                    result = [result stringByAppendingFormat:@"&%@=%@",key,value];
+            }
+        else {
+            NSString *value = [[allValues description] stringByEncodingURLFormat];
+            if(!result)
+                result = [NSString stringWithFormat:@"%@=%@",key,value];
+            else
+                result = [result stringByAppendingFormat:@"&%@=%@",key,value];
+        }
+    }
+    return result;
+}
+
 @end
