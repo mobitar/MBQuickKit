@@ -14,4 +14,6 @@
 
 + (NSDictionary *)dictionaryFromLocalJSONFileNamed:(NSString *)fileName;
 
+- (NSString *)stringFromQueryComponents;
+
 @end

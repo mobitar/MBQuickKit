@@ -34,6 +34,8 @@
 
 - (NSString *)stringByEncodingURLFormat;
 
+- (NSMutableDictionary *)dictionaryFromQueryComponents;
+
 + (NSString *)emdashString;
 
 - (NSArray *)sentences;
