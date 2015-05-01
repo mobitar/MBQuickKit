@@ -12,7 +12,9 @@
 
 + (void)showAlertWithTitle:(NSString *)title text:(NSString *)text
 {
+#ifndef WATCHKIT
     [[[UIAlertView alloc] initWithTitle:title message:text delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil] show];
+#endif
 }
 
 @end

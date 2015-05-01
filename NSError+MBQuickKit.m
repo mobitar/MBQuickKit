@@ -8,12 +8,15 @@
 
 #import "NSError+MBQuickKit.h"
 #import <UIKit/UIKit.h>
+#import "UIAlertView+Utils.h"
 
 @implementation NSError (MBQuickKit)
 
 - (void)showAlert
 {
+#ifndef WATCHKIT
     [[[UIAlertView alloc] initWithTitle:@"Oops" message:self.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", nil) otherButtonTitles:nil] show];
+#endif
 }
 
 @end

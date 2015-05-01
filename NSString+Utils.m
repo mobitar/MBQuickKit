@@ -8,6 +8,11 @@
 
 #import "NSString+Utils.h"
 
+NSString *UIString(NSString *key)
+{
+    return NSLocalizedString(key, nil);
+}
+
 @implementation NSString (Utils)
 
 - (NSString *)stringByRemovingAllButNumbers

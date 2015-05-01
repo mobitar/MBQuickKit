@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NSString *UIString(NSString *key);
+
 @interface NSString (Utils)
 
 - (NSString *)stringByRemovingAllButNumbers;

@@ -42,4 +42,3 @@
 #import "UIWindow+MBQuickKit.h"
 #import "NSURL+MBQuickKit.h"
 
-#define UIString(key) NSLocalizedString(key, nil)

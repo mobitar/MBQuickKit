@@ -7,6 +7,7 @@
 //
 
 #import "NSDictionary+MBQuickKit.h"
+#import "NSString+Utils.h"
 
 @implementation NSDictionary (MBQuickKit)
 
