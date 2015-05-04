@@ -22,5 +22,5 @@
 - (NSNumber *)metersToMiles;
 - (NSNumber *)milesToMeters;
 - (NSString *)minimalDollarString;
-
+- (NSString *)minimalDecimalString;
 @end
