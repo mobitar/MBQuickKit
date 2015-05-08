@@ -87,7 +87,7 @@ static CGFloat const metersInMile = 1609.34;
     BOOL hasDecimal = decimal > 0;
     NSString *text = nil;
     if(hasDecimal) {
-        text = [NSString stringWithFormat:@"%.2f", valueToUse];
+        text = [self toStringWithSignificantDigits];
     } else {
         text = [NSString stringWithFormat:@"%.0f", valueToUse];
     }
