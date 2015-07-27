@@ -32,6 +32,11 @@
     return _rows;
 }
 
+- (NSInteger)indexForRow:(MBXRow *)row
+{
+    return [self.rows indexOfObject:row];
+}
+
 @end
 
 

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class MBXRow;
+
 @interface MBXTableSection : NSObject
 
 @property (nonatomic) id identifier;
@@ -15,6 +17,8 @@
 @property (nonatomic) NSMutableArray *rows;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic) Class cellClass;
+
+- (NSInteger)indexForRow:(MBXRow *)row;
 
 + (instancetype)sectionWithIdentifier:(id)identifier title:(NSString *)title rows:(NSArray *)rows;
 + (instancetype)sectionWithIdentifier:(id)identifier title:(NSString *)title rowsBlock:(NSArray *(^)())rows;

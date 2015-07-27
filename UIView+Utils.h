@@ -99,6 +99,7 @@ CGFloat UIViewGetMidY(UIView *view);
 - (void)stretchHeightToReachTopOfView:(UIView *)view;
 - (void)stretchHeightToReachTopOfView:(UIView *)view withOffset:(CGFloat)offset;
 - (void)stretchHeightToReachBottomOfView:(UIView *)view;
+- (void)stretchHeightToReachBottomOfSuperviewWithOffset:(CGFloat)offset;
 
 - (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom;
 - (void)autoFitBetween:(UIView *)top andView:(UIView *)bottom offset:(CGFloat)offset;

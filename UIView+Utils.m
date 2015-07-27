@@ -475,7 +475,12 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
 
 - (void)stretchHeightToReachBottomOfSuperview
 {
-    [self setHeight:UIViewGetHeight(self.superview) - UIViewGetMinY(self)];
+    [self stretchHeightToReachBottomOfSuperviewWithOffset:0];
+}
+
+- (void)stretchHeightToReachBottomOfSuperviewWithOffset:(CGFloat)offset
+{
+    [self setHeight:UIViewGetHeight(self.superview) - UIViewGetMinY(self) + offset];
 }
 
 - (void)stretchHeightToReachTopOfView:(UIView *)view
