@@ -35,7 +35,9 @@ void dispatch_once_forever(NSString *eventName, dispatch_block_t block, void(^co
 {
     NSString *key = [NSString stringWithFormat:@"dispatch_once_forever_%@", eventName];
     if([[NSUserDefaults standardUserDefaults] objectForKey:key]) {
-        completion(NO);
+        if(completion) {
+            completion(NO);
+        }
         return;
     }
 
@@ -43,7 +45,10 @@ void dispatch_once_forever(NSString *eventName, dispatch_block_t block, void(^co
     [[NSUserDefaults standardUserDefaults] synchronize];
    
     block();
-    completion(YES);
+   
+    if(completion) {
+        completion(YES);
+    }
 }
 
 - (void)printDescription
