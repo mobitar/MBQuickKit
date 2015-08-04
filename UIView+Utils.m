@@ -349,6 +349,14 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     return CGRectMake(0, origin, UIViewGetWidth(self), UIViewGetMinY(bottomView) - origin);
 }
 
+- (void)sizeToFitWhileMaintainingWidth
+{
+    CGSize size = [self sizeThatFits:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+    CGRect frame = self.frame;
+    frame.size.height = size.height;
+    self.frame = frame;
+}
+
 - (void)setXOrigin:(CGFloat)x
 {
     CGRect frame = self.frame;

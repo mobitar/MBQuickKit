@@ -39,7 +39,7 @@
 - (void)proceedToPreviousPageHorizontallyAnimated:(BOOL)animated;
 - (void)proceedToPageHorizontally:(NSInteger)page animated:(BOOL)animated;
 - (void)proceedToPageVertically:(NSInteger)page animated:(BOOL)animated;
-
+- (CGFloat)verticalOffsetForBottom;
 - (BOOL)isAtTop;
 - (BOOL)isAtBottom;
 @end
