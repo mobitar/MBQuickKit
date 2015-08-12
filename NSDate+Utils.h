@@ -50,6 +50,8 @@
 - (NSDate *)dateByAddingDays: (NSInteger) dDays;
 - (NSDate *)dateBySubtractingDays:(NSInteger)dDays;
 
+- (NSDate *)dateByRemovingSecondsInTimeZone:(NSTimeZone *)timezone;
+
 - (NSDate *)dateByApplyingTimeOfDate:(NSDate *)sourceDate inTimeZone:(NSTimeZone *)timeZone;
 
 - (NSInteger)numberOfMonthsFromDate:(NSDate *)date;

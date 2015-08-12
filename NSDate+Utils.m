@@ -327,6 +327,13 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return [currentCalendar dateFromComponents:comps];
 }
 
+- (NSDate *)dateByRemovingSecondsInTimeZone:(NSTimeZone *)timezone
+{
+    NSDateComponents *time = [self componentsWithTimeZone:timezone];
+    [time setSecond:0];
+    return [time.calendar dateFromComponents:time];
+}
+
 - (NSDate *)dateByRoundingMinutesDownToNearestQuarterWithTimeZone:(NSTimeZone *)timeZone
 {
     return [self dateByRoundingMinutesDownToNearestFraction:0.25 timeZone:timeZone];
