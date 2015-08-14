@@ -35,7 +35,7 @@
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
     NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     
-    NSString *info = [NSString stringWithFormat:@"\n\n\n\n-----------------\nDevice Information\n\nOS Version: %@\nDevice Model: %@\nApp Version: %@\n-----------------", systemVersion, deviceType, appVersion];
+    NSString *info = [NSString stringWithFormat:@"\n\n\n\n——————————————————\nDevice Information:\nOS Version: %@\nDevice Model: %@\nApp Version: %@\n——————————————————", systemVersion, deviceType, appVersion];
     return info;
 }
 

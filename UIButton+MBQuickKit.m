@@ -8,6 +8,7 @@
 
 #import "UIButton+MBQuickKit.h"
 #import <objc/runtime.h>
+#import "UIView+Utils.h"
 
 @implementation UIButton (MBQuickKit)
 
@@ -56,6 +57,31 @@ static const NSString *KEY_HIT_TEST_EDGE_INSETS = @"HitTestEdgeInsets";
     CGRect hitFrame = UIEdgeInsetsInsetRect(relativeFrame, self.hitTestEdgeInsets);
     
     return CGRectContainsPoint(hitFrame, point);
+}
+
+static NSInteger const activityIndicatorTag = 89235;
+
+- (void)addActivityIndicatorWithColor:(UIColor *)color
+{
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [indicator startAnimating];
+    indicator.tintColor = color;
+    indicator.color = color;
+    indicator.tag = activityIndicatorTag;
+    
+    
+    [self.titleLabel sizeToFit];
+    
+    [self addSubview:indicator];
+    [self setTitleEdgeInsets:UIEdgeInsetsMake(0, -UIViewGetWidth(indicator), 0, 0)];
+    [indicator trailHorizontallyTo:self.titleLabel withOffset:0];
+    [indicator centerVerticallyInSuperview];
+}
+
+- (void)removeActivityIndicator
+{
+    [self setTitleEdgeInsets:UIEdgeInsetsZero];
+    [[self viewWithTag:activityIndicatorTag] removeFromSuperview];
 }
 
 @end

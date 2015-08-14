@@ -20,4 +20,6 @@
 
 + (UIImage *)imageFromLayer:(CALayer *)layer;
 
++ (UIImage *)imageWithView:(UIView *)view;
+
 @end
