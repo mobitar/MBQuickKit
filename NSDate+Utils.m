@@ -75,6 +75,35 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
             (components1.day == components2.day));
 }
 
+- (NSComparisonResult)compareTimesWithDate:(NSDate *)secondDate
+{
+    NSDateComponents *components1 = [[NSDate currentCalendar] components:componentFlags fromDate:self];
+    NSDateComponents *components2 = [[NSDate currentCalendar] components:componentFlags fromDate:secondDate];
+    
+    if(components1.hour > components2.hour) {
+        return NSOrderedDescending;
+    } else if(components1.hour < components2.hour) {
+        return NSOrderedAscending;
+    } else {
+        // hours are equal, compare minutes
+        if(components1.minute > components2.minute) {
+            return NSOrderedDescending;
+        } else if(components1.minute < components2.minute) {
+            return NSOrderedAscending;
+        } else {
+            // minutes are equal, compare seconnds
+            if(components1.second > components2.second) {
+                return NSOrderedDescending;
+            } else if(components1.second < components2.second) {
+                return NSOrderedAscending;
+            } else {
+                // second are equal
+                return NSOrderedSame;
+            }
+        }
+    }
+}
+
 - (BOOL)isToday
 {
     return [self isEqualToDateIgnoringTime:[NSDate date]];
