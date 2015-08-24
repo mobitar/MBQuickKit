@@ -16,7 +16,7 @@
 
 - (void)setImageRenderingMode:(UIImageRenderingMode)renderMode;
 
-- (void)addActivityIndicatorWithColor:(UIColor *)color;
+- (UIActivityIndicatorView *)addActivityIndicatorWithColor:(UIColor *)color;
 - (void)removeActivityIndicator;
 
 @end

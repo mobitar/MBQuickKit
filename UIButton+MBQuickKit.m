@@ -61,7 +61,7 @@ static const NSString *KEY_HIT_TEST_EDGE_INSETS = @"HitTestEdgeInsets";
 
 static NSInteger const activityIndicatorTag = 89235;
 
-- (void)addActivityIndicatorWithColor:(UIColor *)color
+- (UIActivityIndicatorView *)addActivityIndicatorWithColor:(UIColor *)color
 {
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [indicator startAnimating];
@@ -76,6 +76,8 @@ static NSInteger const activityIndicatorTag = 89235;
     [self setTitleEdgeInsets:UIEdgeInsetsMake(0, -UIViewGetWidth(indicator), 0, 0)];
     [indicator trailHorizontallyTo:self.titleLabel withOffset:0];
     [indicator centerVerticallyInSuperview];
+    
+    return indicator;
 }
 
 - (void)removeActivityIndicator
