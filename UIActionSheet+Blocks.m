@@ -51,6 +51,29 @@ static const void *UIActionSheetCancelBlockKey      = &UIActionSheetCancelBlockK
 #endif
 }
 
++ (instancetype)actionSheetWithTitle:(NSString *)title
+                   cancelButtonTitle:(NSString *)cancelButtonTitle
+              destructiveButtonTitle:(NSString *)destructiveButtonTitle
+                   otherButtonTitles:(NSArray *)otherButtonTitles
+                            tapBlock:(UIActionSheetCompletionBlock)tapBlock
+{
+    UIActionSheet *actionSheet = [[self alloc] initWithTitle:title
+                                                    delegate:nil
+                                           cancelButtonTitle:cancelButtonTitle
+                                      destructiveButtonTitle:destructiveButtonTitle
+                                           otherButtonTitles:NSArrayToVariableArgumentsList(otherButtonTitles)];
+    
+    if (tapBlock) {
+        actionSheet.tapBlock = tapBlock;
+    }
+    
+#if !__has_feature(objc_arc)
+    return [actionSheet autorelease];
+#else
+    return actionSheet;
+#endif
+}
+
 + (instancetype)showFromToolbar:(UIToolbar *)toolbar
                       withTitle:(NSString *)title
               cancelButtonTitle:(NSString *)cancelButtonTitle

@@ -16,4 +16,12 @@
 
 - (NSString *)versionString;
 
+- (void)openAppStoreToApplicationWithName:(NSString *)name;
+
+- (NSString *)appStoreURLForAppName:(NSString *)name;
+
+- (NSString *)appStoreURLForAppID:(NSString *)appID;
+
+- (void)openAppStoreToApplicationWithID:(NSString *)appID;
+
 @end

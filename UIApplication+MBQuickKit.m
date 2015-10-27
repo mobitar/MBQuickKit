@@ -25,10 +25,29 @@
 
 - (NSString *)versionString
 {
-//    NSString *name = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleExecutableKey] ?: [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleIdentifierKey];
     NSString *version = (__bridge id)CFBundleGetValueForInfoDictionaryKey(CFBundleGetMainBundle(), kCFBundleVersionKey) ?: [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
     NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     return [NSString stringWithFormat:@"V%@.%@", appVersion, version];
+}
+
+- (NSString *)appStoreURLForAppName:(NSString *)name
+{
+    return [NSString stringWithFormat:@"http://itunes.com/apps/%@", [name lowercaseString]];
+}
+
+- (NSString *)appStoreURLForAppID:(NSString *)appID
+{
+    return [NSString stringWithFormat:@"http://itunes.apple.com/app/id%@", appID];
+}
+
+- (void)openAppStoreToApplicationWithID:(NSString *)appID
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[self appStoreURLForAppID:appID]]];
+}
+
+- (void)openAppStoreToApplicationWithName:(NSString *)name
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[self appStoreURLForAppName:name]]];
 }
 
 @end

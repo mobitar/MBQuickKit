@@ -27,6 +27,9 @@
 
 - (NSDateComponents *)componentsWithTimeZone:(NSTimeZone *)timeZone;
 
+- (BOOL)isEqualToDateIgnoringTime:(NSDate *)aDate;
+- (NSComparisonResult)compareTimesWithDate:(NSDate *)secondDate;
+
 - (NSInteger)yearWithTimeZone:(NSTimeZone *)timezone;
 - (NSString *)weekdayWithTimeZone:(NSTimeZone *)timezone;
 - (NSString *)shortWeekdayWithTimeZone:(NSTimeZone *)timezone;

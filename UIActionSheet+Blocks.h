@@ -13,6 +13,12 @@ typedef void (^UIActionSheetCompletionBlock) (UIActionSheet *actionSheet, NSInte
 
 @interface UIActionSheet (Blocks)
 
++ (instancetype)actionSheetWithTitle:(NSString *)title
+                   cancelButtonTitle:(NSString *)cancelButtonTitle
+              destructiveButtonTitle:(NSString *)destructiveButtonTitle
+                   otherButtonTitles:(NSArray *)otherButtonTitles
+                            tapBlock:(UIActionSheetCompletionBlock)tapBlock;
+
 + (instancetype)showFromTabBar:(UITabBar *)tabBar
                      withTitle:(NSString *)title
              cancelButtonTitle:(NSString *)cancelButtonTitle
