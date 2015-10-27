@@ -623,6 +623,13 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
 
 #pragma mark - Misc
 
+- (void)removeAllSubviews
+{
+    for(UIView *subview in self.subviews) {
+        [subview removeFromSuperview];
+    }
+}
+
 - (void)makeCircular
 {
     self.layer.cornerRadius = UIViewGetWidth(self)/2.0;

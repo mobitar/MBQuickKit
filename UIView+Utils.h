@@ -133,7 +133,7 @@ CGFloat UIViewGetMidY(UIView *view);
 - (void)layoutAnimatedWithDuration:(CGFloat)duration completion:(void(^)())completion;
 
 #pragma mark - Misc
-
+- (void)removeAllSubviews;
 - (void)makeCircular;
 - (void)addShadow;
 - (UIView *)nextResponderBySearchingSuperviewHeirarchyVertically;
