@@ -62,13 +62,12 @@ static const NSString *KEY_HIT_TEST_EDGE_INSETS = @"HitTestEdgeInsets";
 static NSInteger const activityIndicatorTag = 89235;
 
 - (UIActivityIndicatorView *)addActivityIndicatorWithColor:(UIColor *)color
-{
+{    
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [indicator startAnimating];
     indicator.tintColor = color;
     indicator.color = color;
     indicator.tag = activityIndicatorTag;
-    
     
     [self.titleLabel sizeToFit];
     

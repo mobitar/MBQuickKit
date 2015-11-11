@@ -28,6 +28,7 @@
 
 - (void)scrollToBottomAnimated:(BOOL)animated;
 - (void)scrollToBottomWithAnimationDuration:(CGFloat)duration;
+- (void)scrollToTopAnimated:(BOOL)animated;
 
 - (void)sizeEqualToContent;
 

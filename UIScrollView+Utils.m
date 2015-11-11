@@ -76,6 +76,11 @@
     self.contentInset = insets;
 }
 
+- (void)scrollToTopAnimated:(BOOL)animated
+{
+    [self setContentOffset:CGPointMake(self.contentOffset.x, [self verticalOffsetForTop]) animated:animated];
+}
+
 - (void)scrollToBottomAnimated:(BOOL)animated
 {
     [self setContentOffset:CGPointMake(self.contentOffset.x, [self verticalOffsetForBottom]) animated:animated];
