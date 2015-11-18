@@ -19,7 +19,7 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
 
 - (CLLocation *)centerLocation;
 - (void)zoomToStreetLevelAnimated:(BOOL)animated;
-
+- (void)setCenterCoordinate:(CLLocationCoordinate2D)centerCoordinate visibleRadius:(CGFloat)meters animated:(BOOL)animated;
 - (void)zoomToShowMiles:(CGFloat)miles animated:(BOOL)animated;
 - (void)zoomToShowMeters:(CGFloat)meters animated:(BOOL)animated;
 - (NSArray *)annotationsExcludingUserLocation;
@@ -28,4 +28,5 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
 - (MKMapRect)MKMapRectForCoordinateRegion:(MKCoordinateRegion)region;
 
 - (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)insets extraPaddingMultiplier:(CGFloat)multiplier;
+- (void)zoomToShowAnnotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)insets;
 @end

@@ -40,9 +40,11 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     return NO;
 }
 
+static CGFloat streetLevelMeterRadius = 500;
+
 - (void)zoomToStreetLevelAnimated:(BOOL)animated
 {
-    [self zoomToShowMeters:500 animated:animated];
+    [self zoomToShowMeters:streetLevelMeterRadius animated:animated];
 }
 
 - (void)zoomToShowMiles:(CGFloat)miles animated:(BOOL)animated
@@ -54,6 +56,13 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
 - (void)zoomToShowMeters:(CGFloat)meters animated:(BOOL)animated
 {
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.centerCoordinate, meters, meters);
+    MKCoordinateRegion adjustedRegion = [self regionThatFits:viewRegion];
+    [self setRegion:adjustedRegion animated:animated];
+}
+
+- (void)setCenterCoordinate:(CLLocationCoordinate2D)centerCoordinate visibleRadius:(CGFloat)meters animated:(BOOL)animated
+{
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(centerCoordinate, meters, meters);
     MKCoordinateRegion adjustedRegion = [self regionThatFits:viewRegion];
     [self setRegion:adjustedRegion animated:animated];
 }
@@ -92,7 +101,10 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     return MKMapRectMake(MIN(a.x,b.x), MIN(a.y,b.y), ABS(a.x-b.x), ABS(a.y-b.y));
 }
 
-
+- (void)zoomToShowAnnotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)insets
+{
+    [self zoomToShowAnnotationsWhileLockingCenter:NO annotations:annotations edgeInsets:insets extraPaddingMultiplier:1.0];
+}
 
 - (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)insets extraPaddingMultiplier:(CGFloat)multiplier
 {
@@ -137,9 +149,6 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
         return;
     }
     
-    //    CGFloat topInsetFactor = insets.top / UIViewGetHeight(self);
-    //    region.span.latitudeDelta *= (1.0 + topInsetFactor);
-    
     region = [self regionThatFits:region];
     MKMapRect mapRect = [self MKMapRectForCoordinateRegion:region];
     mapRect = [self mapRectThatFits:mapRect edgePadding:insets];
@@ -152,7 +161,6 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
     }
     
     [self setRegion:region animated:YES];
-    //    [self setVisibleMapRect:mapRect animated:YES];
 }
 
 @end

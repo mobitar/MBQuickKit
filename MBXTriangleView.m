@@ -11,6 +11,13 @@
 
 @implementation MBXTriangleView
 
+- (void)setColor:(UIColor *)color
+{
+    _color = color;
+    
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     UIBezierPath* polygonPath = UIBezierPath.bezierPath;

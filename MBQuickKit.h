@@ -39,3 +39,21 @@
 #import "UIWindow+MBQuickKit.h"
 #import "NSURL+MBQuickKit.h"
 
+/** Via http://www.takingnotes.co/blog/2011/09/27/making-nsassert-play-nice-with-blocks/ */
+#if !defined(NS_BLOCK_ASSERTIONS)
+
+#define BlockAssert(condition, desc, ...) \
+do {\
+if (!(condition)) { \
+[[NSAssertionHandler currentHandler] handleFailureInFunction:NSStringFromSelector(_cmd) \
+file:[NSString stringWithUTF8String:__FILE__] \
+lineNumber:__LINE__ \
+description:(desc), ##__VA_ARGS__]; \
+}\
+} while(0);
+
+#else // NS_BLOCK_ASSERTIONS defined
+
+#define BlockAssert(condition, desc, ...)
+
+#endif
