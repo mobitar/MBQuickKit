@@ -7,22 +7,23 @@
 //
 
 #import "UICollectionView+MBQuickKit.h"
+#import "NSString+MBQuickKit.h"
 
 @implementation UICollectionView (MBQuickKit)
 
 - (void)registerNibForClass:(Class)aClass
 {
-    [self registerNib:[UINib nibWithNibName:NSStringFromClass(aClass) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass(aClass)];
+    [self registerNib:[UINib nibWithNibName:MBXSwiftSafeStringFromClass(aClass) bundle:nil] forCellWithReuseIdentifier:MBXSwiftSafeStringFromClass(aClass)];
 }
 
 - (void)registerCellForClass:(Class)aClass
 {
-    [self registerClass:aClass forCellWithReuseIdentifier:NSStringFromClass(aClass)];
+    [self registerClass:aClass forCellWithReuseIdentifier:MBXSwiftSafeStringFromClass(aClass)];
 }
 
 - (id)dequeueReusableCellForClass:(Class)aClass indexPath:(NSIndexPath *)indexPath
 {
-    return [self dequeueReusableCellWithReuseIdentifier:NSStringFromClass(aClass) forIndexPath:indexPath];
+    return [self dequeueReusableCellWithReuseIdentifier:MBXSwiftSafeStringFromClass(aClass) forIndexPath:indexPath];
 }
 
 - (CGFloat)leftInsetForCenteredSection:(NSInteger)section layout:(UICollectionViewLayout *)layout

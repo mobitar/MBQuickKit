@@ -5,7 +5,7 @@
 #import "UIViewController+Utils.h"
 #import "UITableView+Utils.h"
 #import "NSDate+Utils.h"
-#import "NSString+Utils.h"
+#import "NSString+MBQuickKit.h"
 #import "UIControl+Utils.h"
 #import "UIView+Animations.h"
 #import "NSFileManager+Utils.h"

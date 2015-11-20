@@ -10,8 +10,9 @@
 #import <UIKit/UIKit.h>
 
 NSString *UIString(NSString *key);
+NSString *MBXSwiftSafeStringFromClass(Class class);
 
-@interface NSString (Utils)
+@interface NSString (MBQuickKit)
 
 - (NSString *)stringByRemovingAllButNumbers;
 

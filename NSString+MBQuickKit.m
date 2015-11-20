@@ -6,14 +6,24 @@
 //  Copyright (c) 2014 Punchkick. All rights reserved.
 //
 
-#import "NSString+Utils.h"
+#import "NSString+MBQuickKit.h"
 
 NSString *UIString(NSString *key)
 {
     return NSLocalizedString(key, nil);
 }
 
-@implementation NSString (Utils)
+NSString *MBXSwiftSafeStringFromClass(Class class)
+{
+    NSString *className = NSStringFromClass(class);
+    // Swift classes have the format ModuleName.Class - we need to get rid of the module name part
+    if([className rangeOfString:@"."].location != NSNotFound) {
+        className = [className componentsSeparatedByString:@"."].lastObject;
+    }
+    return className;
+}
+
+@implementation NSString (MBQuickKit)
 
 - (NSString *)stringByRemovingAllButNumbers
 {

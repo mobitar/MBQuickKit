@@ -7,7 +7,7 @@
 //
 
 #import "NSURL+MBQuickKit.h"
-#import "NSString+Utils.h"
+#import "NSString+MBQuickKit.h"
 
 @implementation NSURL (MBQuickKit)
 
