@@ -38,6 +38,7 @@
 #import "UIPageViewController+MBQuickKit.h"
 #import "UIWindow+MBQuickKit.h"
 #import "NSURL+MBQuickKit.h"
+#import "RMUniversalAlert+MBQuickKit.h"
 
 /** Via http://www.takingnotes.co/blog/2011/09/27/making-nsassert-play-nice-with-blocks/ */
 #if !defined(NS_BLOCK_ASSERTIONS)

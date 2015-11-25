@@ -8,6 +8,7 @@
 
 #import "UIView+Utils.h"
 #import "NSArray+Utils.h"
+#import "NSString+MBQuickKit.h"
 
 CGFloat UIViewGetHeight(UIView *view) { return CGRectGetHeight(view.frame); }
 CGFloat UIViewGetWidth(UIView *view)  { return CGRectGetWidth(view.frame); }
@@ -581,7 +582,7 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
 
 + (instancetype)loadFromNIB
 {
-    return [self viewFromNibNamed:NSStringFromClass(self)];
+    return [self viewFromNibNamed:MBXSwiftSafeStringFromClass(self)];
 }
 
 - (UIView *)firstSuperviewMatchingClasss:(Class)aClass
