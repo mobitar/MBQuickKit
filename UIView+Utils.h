@@ -66,6 +66,7 @@ CGFloat UIViewGetMidY(UIView *view);
 - (void)centerVerticallyInSuperviewWithOffset:(CGFloat)offset;
 - (void)centerVerticallyWithRespectToView:(UIView *)wrtView withOffset:(CGFloat)offset;
 - (void)centerVerticallyBetweenView:(UIView *)topView andView:(UIView *)bottomView;
+- (void)centerVerticallyBetweenView:(UIView *)topView andView:(UIView *)bottomView withOffset:(CGFloat)offset;
 - (void)centerVerticallyInRect:(CGRect)rect;
 - (void)centerSubviewsVertically:(NSArray *)subviews offsetPerView:(NSArray *)spacing;
 - (void)centerSubviewsVertically:(NSArray *)subviews offsetPerView:(NSArray *)spacing inRect:(CGRect)rect;

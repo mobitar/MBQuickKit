@@ -251,7 +251,12 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
 
 - (void)centerVerticallyBetweenView:(UIView *)topView andView:(UIView *)bottomView
 {
-    [self centerVerticallyInRect:CGRectMake(0, UIViewGetMaxY(topView), 0, UIViewGetMinY(bottomView) - UIViewGetMaxY(topView))];
+    [self centerVerticallyBetweenView:topView andView:bottomView withOffset:0];
+}
+
+- (void)centerVerticallyBetweenView:(UIView *)topView andView:(UIView *)bottomView withOffset:(CGFloat)offset
+{
+    [self centerVerticallyInRect:CGRectMake(0, UIViewGetMaxY(topView) + offset, 0, UIViewGetMinY(bottomView) - UIViewGetMaxY(topView))];
 }
 
 - (void)centerHorizontallyBetweenView:(UIView *)leftView andView:(UIView *)rightView
