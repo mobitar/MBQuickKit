@@ -82,6 +82,7 @@ static NSInteger const activityIndicatorTag = 89235;
 - (void)removeActivityIndicator
 {
     [self setTitleEdgeInsets:UIEdgeInsetsZero];
+    
     [[self viewWithTag:activityIndicatorTag] removeFromSuperview];
 }
 
