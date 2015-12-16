@@ -106,6 +106,21 @@ static CGFloat streetLevelMeterRadius = 500;
     [self zoomToShowAnnotationsWhileLockingCenter:NO annotations:annotations edgeInsets:insets extraPaddingMultiplier:1.0];
 }
 
+- (void)zoomFromCenterToShowAnnotation:(id<MKAnnotation>)annotation insets:(UIEdgeInsets)insets
+{
+    NSAssert([annotation coordinate].latitude != 0, nil);
+    CLLocationCoordinate2D center = self.centerCoordinate;
+    CLLocationCoordinate2D annotationCoordinate = [annotation coordinate];
+    MKCoordinateSpan span = MKCoordinateSpanMake(fabs(center.latitude - annotationCoordinate.latitude) * 2.0,
+                                                 fabs(center.longitude - annotationCoordinate.longitude) * 2.0);
+    
+    MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
+    MKMapRect mapRect = [self MKMapRectForCoordinateRegion:region];
+    mapRect = [self mapRectThatFits:mapRect edgePadding:insets];
+    region = MKCoordinateRegionForMapRect(mapRect);
+    [self setRegion:region animated:YES];
+}
+
 - (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)insets extraPaddingMultiplier:(CGFloat)multiplier
 {
     CLLocationCoordinate2D topLeftCoord;
@@ -122,8 +137,7 @@ static CGFloat streetLevelMeterRadius = 500;
         annotations = [annotations arrayByAddingObject:center];
     }
     
-    for(id<MKAnnotation> annotation in annotations)
-    {
+    for(id<MKAnnotation> annotation in annotations) {
         topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
         topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
         
@@ -154,10 +168,11 @@ static CGFloat streetLevelMeterRadius = 500;
     mapRect = [self mapRectThatFits:mapRect edgePadding:insets];
     region = MKCoordinateRegionForMapRect(mapRect);
     if(lockCenter) {
-        MKCoordinateSpan deltaFromCentering = MKCoordinateSpanMake(fabs(self.centerCoordinate.latitude - region.center.latitude), fabs(self.centerCoordinate.longitude - region.center.longitude));
+        MKCoordinateSpan deltaFromCentering = MKCoordinateSpanMake(self.centerCoordinate.latitude - region.center.latitude,
+                                                                   self.centerCoordinate.longitude - region.center.longitude);
         region.center = self.centerCoordinate;
-        region.span.latitudeDelta += deltaFromCentering.latitudeDelta * 2.0;
-        region.span.longitudeDelta += deltaFromCentering.longitudeDelta * 2.0;
+        region.span.latitudeDelta -= deltaFromCentering.latitudeDelta * 2.0;
+        region.span.longitudeDelta -= deltaFromCentering.longitudeDelta * 2.0;
     }
     
     [self setRegion:region animated:YES];

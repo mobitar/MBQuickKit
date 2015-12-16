@@ -29,4 +29,6 @@ CLLocationDistance CLLocationCoordinate2DCalculateDistance(CLLocationCoordinate2
 
 - (void)zoomToShowAnnotationsWhileLockingCenter:(BOOL)lockCenter annotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)insets extraPaddingMultiplier:(CGFloat)multiplier;
 - (void)zoomToShowAnnotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)insets;
+
+- (void)zoomFromCenterToShowAnnotation:(id<MKAnnotation>)annotation insets:(UIEdgeInsets)insets;
 @end
