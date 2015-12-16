@@ -531,6 +531,14 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
     [self moveToBottomOfView:self.superview withOffset:offset];
 }
 
+- (void)moveUnderSuperview
+{
+    NSAssert(self.superview, @"Superview cannot be nil");
+    
+    [self moveToBottomOfView:self.superview withOffset:UIViewGetHeight(self)];
+}
+
+
 - (void)moveToBottomOfView:(UIView *)view
 {
     [self moveToBottomOfView:view withOffset:0];
@@ -644,12 +652,17 @@ CGFloat UIViewGetMidY(UIView *view)   { return CGRectGetMidY(view.frame); }
 
 - (void)addShadow
 {
-    self.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.layer.shadowOffset = CGSizeMake(0, 3);
+    [self addShadowWithColor:[UIColor blackColor] offset:CGSizeMake(0, 3) radius:2.0 opacity:0.5];
+}
+
+- (void)addShadowWithColor:(UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius opacity:(CGFloat)opacity
+{
+    self.layer.shadowColor = color.CGColor;
+    self.layer.shadowOffset = offset;
     self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
-    self.layer.shadowRadius = 2.0;
-    self.layer.shadowOpacity = 0.5;
     self.layer.masksToBounds = NO;
+    self.layer.shadowRadius = radius;
+    self.layer.shadowOpacity = opacity;
 }
 
 - (UIView *)nextResponderBySearchingSuperviewHeirarchyVertically

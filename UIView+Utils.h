@@ -111,6 +111,8 @@ CGFloat UIViewGetMidY(UIView *view);
 - (void)moveToBottomOfSuperviewWithOffset:(CGFloat)offset;
 - (void)moveToBottomOfView:(UIView *)view;
 - (void)moveToBottomOfView:(UIView *)view withOffset:(CGFloat)offset;
+- (void)moveUnderSuperview;
+
 - (void)moveToRightOfSuperviewWithOffset:(CGFloat)offset;
 - (void)moveToRightOfSuperview;
 - (void)moveToRightOfView:(UIView *)view offset:(CGFloat)offset;
@@ -137,6 +139,7 @@ CGFloat UIViewGetMidY(UIView *view);
 - (void)removeAllSubviews;
 - (void)makeCircular;
 - (void)addShadow;
+- (void)addShadowWithColor:(UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius opacity:(CGFloat)opacity;
 - (UIView *)nextResponderBySearchingSuperviewHeirarchyVertically;
 
 
