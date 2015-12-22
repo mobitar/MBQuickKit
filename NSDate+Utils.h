@@ -79,5 +79,5 @@
 - (NSDate *)dateByRoundingMinutesDownToNearestFraction:(CGFloat)fraction timeZone:(NSTimeZone *)timeZone;
 
 + (NSTimeZone *)timezoneFromDateString:(NSString *)dateStr;
-
++ (NSString *)timeIntervalToStringWithInterval:(NSTimeInterval)interval;
 @end

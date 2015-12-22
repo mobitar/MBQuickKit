@@ -397,4 +397,36 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return [NSTimeZone timeZoneForSecondsFromGMT:secondsFromGMT * directionVector];
 }
 
++ (NSString *)timeIntervalToStringWithInterval:(NSTimeInterval)interval
+{
+    NSString *retVal = @"At time of event";
+    if (interval == 0) return retVal;
+    
+    int second = 1;
+    int minute = second*60;
+    int hour = minute*60;
+    int day = hour*24;
+    // interval can be before (negative) or after (positive)
+    int num = fabs(interval);
+    
+    NSString *unit = @"day";
+    
+    if (num >= day) {
+        num /= day;
+        if (num > 1) unit = @"days";
+    } else if (num >= hour) {
+        num /= hour;
+        unit = (num > 1) ? @"hours" : @"hour";
+    } else if (num >= minute) {
+        num /= minute;
+        unit = (num > 1) ? @"minutes" : @"minute";
+    } else if (num >= second) {
+        num /= second;
+        unit = (num > 1) ? @"seconds" : @"second";
+        
+    }
+    
+    return [NSString stringWithFormat:@"%d %@", num, unit];
+}
+
 @end
