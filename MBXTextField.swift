@@ -12,11 +12,12 @@ class MBXTextField: UITextField {
 
     var textInset: CGSize = CGSizeZero
     var placeholderColor: UIColor?
+    var placeholderFont: UIFont!
     
     override var placeholder: String? {
         didSet {
             if self.placeholderColor != nil && placeholder != nil {
-                self.attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: [NSForegroundColorAttributeName : self.placeholderColor!])
+                self.attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: [NSForegroundColorAttributeName : self.placeholderColor!, NSFontAttributeName : self.placeholderFont])
             }
         }
     }

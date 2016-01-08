@@ -18,4 +18,6 @@
 
 - (void)removeFirstObject;
 
+- (void)shuffle;
+
 @end
