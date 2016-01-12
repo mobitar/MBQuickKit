@@ -22,3 +22,12 @@ func delay(delay:Double, closure:()->()) {
         ),
         dispatch_get_main_queue(), closure)
 }
+
+func arrayFromJSONData(data: NSData) -> [AnyObject]? {
+    do {
+        return try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [AnyObject]
+    } catch let error as NSError {
+        print(error)
+    }
+    return nil
+}
