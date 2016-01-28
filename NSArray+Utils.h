@@ -21,5 +21,5 @@
 - (id)safeObjectAtIndex:(NSInteger)index;
 - (instancetype)safeSubArrayWithRange:(NSRange)range;
 - (NSString*)toJSON;
-
+- (NSArray *)arrayByRemovingObjectsIdenticalTo:(NSArray *)toRemove;
 @end

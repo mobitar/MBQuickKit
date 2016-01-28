@@ -24,6 +24,16 @@
     return [newArray copy];
 }
 
+- (NSArray *)arrayByRemovingObjectsIdenticalTo:(NSArray *)toRemove
+{
+    NSMutableArray *newArray = [self mutableCopy];
+    for(id obj in toRemove) {
+        [newArray removeObjectIdenticalTo:obj];
+    }
+    
+    return [newArray copy];
+}
+
 - (instancetype)arrayWithUniqueObjects
 {
     NSMutableArray *uniqueObjects = [NSMutableArray new];
@@ -34,6 +44,7 @@
     }
     return uniqueObjects;
 }
+
 
 - (id)safeObjectAtIndex:(NSInteger)index
 {
