@@ -45,4 +45,6 @@ NSString *MBXSwiftSafeStringFromClass(Class class);
 
 + (NSString *)properlyPluralizedNounForNoun:(NSString *)noun pluralizationSuffix:(NSString *)suffix count:(CGFloat)count;
 
+- (BOOL)hasString:(NSString *)string;
+
 @end

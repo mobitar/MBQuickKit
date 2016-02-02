@@ -167,4 +167,9 @@ NSString *MBXSwiftSafeStringFromClass(Class class)
     return queryComponents;
 }
 
+- (BOOL)hasString:(NSString *)string
+{
+    return [self rangeOfString:string].location != NSNotFound;
+}
+
 @end
