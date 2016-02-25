@@ -31,6 +31,8 @@ NSString *MBXSwiftSafeStringFromClass(Class class);
 
 - (BOOL)isValidEmail;
 
+- (BOOL)isValidPhoneNumber;
+
 - (BOOL)containsOnlyLetters;
 
 - (NSString *)stringByDecodingURLFormat;

@@ -92,6 +92,13 @@ NSString *MBXSwiftSafeStringFromClass(Class class)
     return [emailTest evaluateWithObject:self];
 }
 
+- (BOOL)isValidPhoneNumber
+{
+    NSString *samplePhone = @"1234560044";
+    NSString *number = [self stringByRemovingAllButNumbers];
+    return number.length == samplePhone.length;
+}
+
 - (BOOL)isValidURL
 {
     if (!self.length) {
